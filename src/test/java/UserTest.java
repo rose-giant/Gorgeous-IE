@@ -65,7 +65,68 @@ public class UserTest {
     public void isPasswordValidReturnsFalseForEmptyPassword() {
         assertFalse(user.isPasswordValid(""));
     }
+    @Test
+    public void unmarshalUserIntoObject() throws JsonProcessingException {
+        String jsonString = "{\"role\":\"manager\",\"username\":\"rosepose\",\"password\":\"John Doe\",\"email\":\"john.doe@example.com\", \"address\":{\"city\":\"milan\", \"country\":\"italy\"}}";
+        user = user.unmarshlIntoUser(jsonString);
+        assertEquals(user.role, "manager");
+        assertEquals(user.username, "rosepose");
+        assertEquals(user.email, "john.doe@example.com");
+        assertEquals(user.address.city, "milan");
+        assertEquals(user.address.country, "italy");
+    }
 
+    @Test
+    public void addUserResponseGeneratorTestForInvalidUserRole() {
+        user.role = "chef";
+        user.username = "razi";
+        user.password = "12";
+        user.email = "r@r.com";
+        address.city = "milan";
+        address.country = "italy";
+        user.address = address;
+        user.addUserResponseGenerator(user);
+        ResponseHandler expectesResponse = new ResponseHandler();
+        expectesResponse.responseBody =" role is not valid";
+        expectesResponse.responseStatus = false;
+        assertEquals(user.responseHandler.responseBody, expectesResponse.responseBody);
+        assertEquals(expectesResponse.responseStatus, user.responseHandler.responseStatus);
+    }
+
+    @ParameterizedTest
+    @ValueSource (strings = {"sojfs&", "**sfs", "wwe.33"})
+    public void addUserResponseGeneratorTestForInvalidUsername(String username) {
+        user.role = "manager";
+        user.username = username;
+        user.password = "12";
+        user.email = "r@r.com";
+        address.city = "milan";
+        address.country = "italy";
+        user.address = address;
+        user.addUserResponseGenerator(user);
+        ResponseHandler expectesResponse = new ResponseHandler();
+        expectesResponse.responseBody =" username is not valid";
+        expectesResponse.responseStatus = false;
+        assertEquals(user.responseHandler.responseBody, expectesResponse.responseBody);
+        assertEquals(expectesResponse.responseStatus, user.responseHandler.responseStatus);
+    }
+
+    @Test
+    public void addUserResponseGeneratorTestForValidUsername() {
+        user.role = "manager";
+        user.username = "razi";
+        user.password = "12";
+        user.email = "r@r.com";
+        address.city = "milan";
+        address.country = "italy";
+        user.address = address;
+        user.addUserResponseGenerator(user);
+        ResponseHandler expectesResponse = new ResponseHandler();
+        expectesResponse.responseBody ="User added successfully.";
+        expectesResponse.responseStatus = true;
+        assertEquals(user.responseHandler.responseBody, expectesResponse.responseBody);
+        assertEquals(expectesResponse.responseStatus, user.responseHandler.responseStatus);
+    }
 }
 
 
