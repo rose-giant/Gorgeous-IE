@@ -164,9 +164,9 @@ public class CommandHandler {
 
     public void mainHandler() throws JsonProcessingException {
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        String inputString;
+        while (!(inputString =scanner.nextLine()).equals("stop")) {
             System.out.println("How can I help you baby?");
-            String inputString = scanner.nextLine();
             parseCommand(inputString);
             CommandHandlerCaller();
             System.out.println(this.responseHandler.marshalResponse(this.responseHandler));
