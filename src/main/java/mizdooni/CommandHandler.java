@@ -11,6 +11,38 @@ public class CommandHandler {
     public ArrayList<User> users = new ArrayList<User>();
     public ArrayList<Restourant> restaurants = new ArrayList<Restourant>();
 
+    public void parseCommand(String userInput) {
+        this.jsonString = "";
+        String[] splittedInput = userInput.split(" ");
+        this.command = splittedInput[0];
+
+        for (int i = 1 ; i < splittedInput.length ; i++) {
+            this.jsonString += splittedInput[i];
+
+            if (i < splittedInput.length - 1) {
+                this.jsonString += " ";
+            }
+        }
+    }
+
+    public boolean CommandHandlerCaller(String userIput) throws JsonProcessingException {
+        User user = new User();
+        user.address = new Address();
+        user.responseHandler = new ResponseHandler();
+        parseCommand(userIput);
+        switch (this.command){
+            case "addUser":
+
+                break;
+            case "addRestaurant":
+
+                break;
+            default:
+                return false;
+        }
+
+        return true;
+    }
 
     public void mainHandler() throws JsonProcessingException {
 
@@ -18,7 +50,7 @@ public class CommandHandler {
         while (true) {
             System.out.println("How can I help you baby?");
             String inputString = scanner.nextLine();
-            //CommandHandlerCaller(inputString);
+            CommandHandlerCaller(inputString);
         }
     }
 }
