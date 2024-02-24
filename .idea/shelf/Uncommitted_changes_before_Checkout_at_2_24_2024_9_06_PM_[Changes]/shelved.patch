@@ -1,0 +1,226 @@
+Index: .idea/modules.xml
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+deleted file mode 100644
+--- a/.idea/modules.xml	(revision 3de53738c2e99fc0f1c0b2ad01e253000b4dc3ee)
++++ /dev/null	(revision 3de53738c2e99fc0f1c0b2ad01e253000b4dc3ee)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/Gorgeous-IE.iml" filepath="$PROJECT_DIR$/.idea/Gorgeous-IE.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"MavenRunner\">\r\n    <option name=\"jreName\" value=\"19\" />\r\n  </component>\r\n  <component name=\"ProjectRootManager\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 3de53738c2e99fc0f1c0b2ad01e253000b4dc3ee)
++++ b/.idea/misc.xml	(date 1708795259421)
+@@ -1,9 +1,14 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="MavenRunner">
+-    <option name="jreName" value="19" />
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="MavenProjectsManager">
++    <option name="originalFiles">
++      <list>
++        <option value="$PROJECT_DIR$/pom.xml" />
++      </list>
++    </option>
+   </component>
+-  <component name="ProjectRootManager">
++  <component name="ProjectRootManager" version="2" project-jdk-name="19" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"a1100196-ce9e-4911-a66b-ae9c43c85a45\" name=\"Changes\" comment=\"fix: restaurant response generator method was improved\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/mizdooni/User.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/mizdooni/User.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/RestaurantTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/RestaurantTest.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2cdSwzF4gYvQSJxD8w4kWEIuQzU\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.Main.executor\": \"Run\",\r\n    \"JUnit.AddressTest.isCityValidReturnsFalseForEmptyCity.executor\": \"Run\",\r\n    \"JUnit.AddressTest.isCityValidReturnsTrueForValidCity.executor\": \"Run\",\r\n    \"JUnit.AddressTest.isCountryValidReturnsFalseForEmptyCountry.executor\": \"Run\",\r\n    \"JUnit.AddressTest.isCountryValidReturnsTrueForValidCountry.executor\": \"Run\",\r\n    \"JUnit.AddressTest.setCityDoesNotSetWhenInputIsEmpty.executor\": \"Run\",\r\n    \"JUnit.AddressTest.setCityDoestSetWhenInputIsNotEmpty.executor\": \"Run\",\r\n    \"JUnit.CommandHandlerTest.Test_parseCommand.executor\": \"Run\",\r\n    \"JUnit.CommandHandlerTest.parseCommandParsesCommandAndJsonBody.executor\": \"Run\",\r\n    \"JUnit.ResponseHandlerTest.marshalResponseHandler.executor\": \"Run\",\r\n    \"JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidAddress.executor\": \"Run\",\r\n    \"JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidDescription.executor\": \"Run\",\r\n    \"JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidManagerUsername.executor\": \"Run\",\r\n    \"JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidTime.executor\": \"Run\",\r\n    \"JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesSuccessfulResponse.executor\": \"Run\",\r\n    \"JUnit.RestaurantTest.handleIncorrectManagerRoleUpdatesResponseHandler.executor\": \"Run\",\r\n    \"JUnit.RestaurantTest.handleNoneExistingUsernameFillsResponseHandler (1).executor\": \"Run\",\r\n    \"JUnit.RestaurantTest.handleNoneExistingUsernameFillsResponseHandler.executor\": \"Run\",\r\n    \"JUnit.RestaurantTest.handleNoneExistingUsernameUpdatesResponseHandler.executor\": \"Run\",\r\n    \"JUnit.RestaurantTest.isTimeValidReturnsFalseForValidTime.executor\": \"Run\",\r\n    \"JUnit.RestaurantTest.isTimeValidReturnsTrueForValidTime.executor\": \"Run\",\r\n    \"JUnit.RestaurantTest.parseDate.executor\": \"Run\",\r\n    \"JUnit.UserTest.addUserResponseGeneratorTestForInvalidUserRole.executor\": \"Run\",\r\n    \"JUnit.UserTest.addUserResponseGeneratorTestForInvalidUsername.executor\": \"Run\",\r\n    \"JUnit.UserTest.addUserResponseGeneratorTestForValidUsername.executor\": \"Run\",\r\n    \"JUnit.UserTest.executor\": \"Run\",\r\n    \"JUnit.UserTest.isEmailValidDetectsValidEmails.executor\": \"Run\",\r\n    \"JUnit.UserTest.isEmailValidReturnsFalseForValidEmails.executor\": \"Run\",\r\n    \"JUnit.UserTest.isPasswordValidReturnsFalseForEmptyPassword.executor\": \"Run\",\r\n    \"JUnit.UserTest.isRoleValidReturnsFalseForInvalidRoles (1).executor\": \"Run\",\r\n    \"JUnit.UserTest.isRoleValidReturnsFalseForInvalidRoles.executor\": \"Run\",\r\n    \"JUnit.UserTest.isRoleValidReturnsTrueForValidRoles.executor\": \"Run\",\r\n    \"JUnit.UserTest.unmarshalUserIntoObject.executor\": \"Run\",\r\n    \"JUnit.UserTest.userSetRoleDoesNotSetsInValidRoles.executor\": \"Run\",\r\n    \"JUnit.UserTest.userSetRoleSetsValidRoles.executor\": \"Run\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"settings.editor.selected.configurable\": \"reference.settings.project.maven.repository.indices\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"mizdooni\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidDescription\">\r\n    <configuration name=\"RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidAddress\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"gorgeousIE1\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"RestaurantTest\" />\r\n      <option name=\"METHOD_NAME\" value=\"addRestaurantResponseGeneratorGeneratesResponseForInvalidAddress\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidDescription\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"gorgeousIE1\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"RestaurantTest\" />\r\n      <option name=\"METHOD_NAME\" value=\"addRestaurantResponseGeneratorGeneratesResponseForInvalidDescription\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidManagerUsername\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"gorgeousIE1\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"RestaurantTest\" />\r\n      <option name=\"METHOD_NAME\" value=\"addRestaurantResponseGeneratorGeneratesResponseForInvalidManagerUsername\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidTime\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"gorgeousIE1\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"RestaurantTest\" />\r\n      <option name=\"METHOD_NAME\" value=\"addRestaurantResponseGeneratorGeneratesResponseForInvalidTime\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"RestaurantTest.addRestaurantResponseGeneratorGeneratesSuccessfulResponse\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"gorgeousIE1\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"RestaurantTest\" />\r\n      <option name=\"METHOD_NAME\" value=\"addRestaurantResponseGeneratorGeneratesSuccessfulResponse\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidDescription\" />\r\n        <item itemvalue=\"JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidAddress\" />\r\n        <item itemvalue=\"JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidManagerUsername\" />\r\n        <item itemvalue=\"JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidTime\" />\r\n        <item itemvalue=\"JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesSuccessfulResponse\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"a1100196-ce9e-4911-a66b-ae9c43c85a45\" name=\"Changes\" comment=\"\" />\r\n      <created>1708440210954</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1708440210954</updated>\r\n      <workItem from=\"1708440212055\" duration=\"6614000\" />\r\n      <workItem from=\"1708497952742\" duration=\"3329000\" />\r\n      <workItem from=\"1708517559033\" duration=\"10398000\" />\r\n      <workItem from=\"1708582415516\" duration=\"16379000\" />\r\n      <workItem from=\"1708643661972\" duration=\"4663000\" />\r\n      <workItem from=\"1708667906498\" duration=\"1158000\" />\r\n      <workItem from=\"1708674367622\" duration=\"3686000\" />\r\n      <workItem from=\"1708693712619\" duration=\"7665000\" />\r\n      <workItem from=\"1708737490751\" duration=\"9086000\" />\r\n      <workItem from=\"1708753030759\" duration=\"7552000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"feat !: project was created&#10;Breaking change: maven dependencies were specified\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708745443794</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708745443794</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"feat : User class and attributes were created and defined\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708745534198</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708745534198</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"feat : User validators were creted\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708745596989</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708745596989</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"feat : User validators' unit tests were written&#10;Breaking Change: A new Test suite was created\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708745705592</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708745705592</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"feat : Address class and test was written &#10;Breaking Change: All validators were specified and tested\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708745793625</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708745793625</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"feat : Command Handler class was made&#10;Breaking Change: Program's main loop was specified\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708745941482</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708745941482</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"feat: Response Handler class was made&#10;Breaking Change: Commands are able to be parsed now\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708746109132</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708746109132</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"feat: Command Caller switch case was implemented\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708746221332</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708746221332</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"feat: unmarshaling tinto userobject and response generation was added to user class\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708746472505</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708746472505</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"feat: unmarshaling tinto userobject and response generation unit tests were added to user test suite\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708746556976</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708746556976</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"feat: addUser case was added to handler\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708757616831</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708757616831</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"feat: commandHandler parse command test was created\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708757663663</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708757663663</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"feat: Handle repeated user method was created\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708757812143</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708757812143</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"fix: User response generator was improved to detect repeated users\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708757843599</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708757843599</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"fix: Restaurant class attributes and validators were created\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708758028098</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708758028098</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"feat: AddRestaurant command was implemented\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708763774207</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708763774207</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"fix: Main handler is called in main.java\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708763801310</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708763801311</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"fix: restaurant unit tests were added\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708765704599</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708765704599</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"fix: restaurant response generator method was improved\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1708765732702</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1708765732702</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"20\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"feat !: project was created&#10;Breaking change: maven dependencies were specified\" />\r\n    <MESSAGE value=\"feat : User class and attributes were created and defined\" />\r\n    <MESSAGE value=\"feat : User validators were creted\" />\r\n    <MESSAGE value=\"feat : User validators' unit tests were written&#10;Breaking Change: A new Test suite was created\" />\r\n    <MESSAGE value=\"feat : Address class and test was written &#10;Breaking Change: All validators were specified and tested\" />\r\n    <MESSAGE value=\"feat : Command Handler class was made&#10;Breaking Change: Program's main loop was specified\" />\r\n    <MESSAGE value=\"feat: Response Handler class was made&#10;Breaking Change: Commands are able to be parsed now\" />\r\n    <MESSAGE value=\"feat: Command Caller switch case was implemented\" />\r\n    <MESSAGE value=\"feat: unmarshaling tinto userobject and response generation was added to user class\" />\r\n    <MESSAGE value=\"feat: unmarshaling tinto userobject and response generation unit tests were added to user test suite\" />\r\n    <MESSAGE value=\"feat: addUser case was added to handler\" />\r\n    <MESSAGE value=\"feat: commandHandler parse command test was created\" />\r\n    <MESSAGE value=\"feat: Handle repeated user method was created\" />\r\n    <MESSAGE value=\"fix: User response generator was improved to detect repeated users\" />\r\n    <MESSAGE value=\"fix: Restaurant class attributes and validators were created\" />\r\n    <MESSAGE value=\"feat: AddRestaurant command was implemented\" />\r\n    <MESSAGE value=\"fix: Main handler is called in main.java\" />\r\n    <MESSAGE value=\"fix: restaurant unit tests were added\" />\r\n    <MESSAGE value=\"fix: restaurant response generator method was improved\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"fix: restaurant response generator method was improved\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 3de53738c2e99fc0f1c0b2ad01e253000b4dc3ee)
++++ b/.idea/workspace.xml	(date 1708795906106)
+@@ -5,8 +5,9 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="fix: restaurant response generator method was improved">
+-      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/User.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/RestaurantTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RestaurantTest.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -22,6 +23,9 @@
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="MavenRunner">
++    <option name="jreName" value="19" />
+   </component>
+   <component name="ProjectColorInfo">{
+   &quot;associatedIndex&quot;: 4
+@@ -34,66 +38,66 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.Main.executor": "Run",
+-    "JUnit.AddressTest.isCityValidReturnsFalseForEmptyCity.executor": "Run",
+-    "JUnit.AddressTest.isCityValidReturnsTrueForValidCity.executor": "Run",
+-    "JUnit.AddressTest.isCountryValidReturnsFalseForEmptyCountry.executor": "Run",
+-    "JUnit.AddressTest.isCountryValidReturnsTrueForValidCountry.executor": "Run",
+-    "JUnit.AddressTest.setCityDoesNotSetWhenInputIsEmpty.executor": "Run",
+-    "JUnit.AddressTest.setCityDoestSetWhenInputIsNotEmpty.executor": "Run",
+-    "JUnit.CommandHandlerTest.Test_parseCommand.executor": "Run",
+-    "JUnit.CommandHandlerTest.parseCommandParsesCommandAndJsonBody.executor": "Run",
+-    "JUnit.ResponseHandlerTest.marshalResponseHandler.executor": "Run",
+-    "JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidAddress.executor": "Run",
+-    "JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidDescription.executor": "Run",
+-    "JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidManagerUsername.executor": "Run",
+-    "JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidTime.executor": "Run",
+-    "JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesSuccessfulResponse.executor": "Run",
+-    "JUnit.RestaurantTest.handleIncorrectManagerRoleUpdatesResponseHandler.executor": "Run",
+-    "JUnit.RestaurantTest.handleNoneExistingUsernameFillsResponseHandler (1).executor": "Run",
+-    "JUnit.RestaurantTest.handleNoneExistingUsernameFillsResponseHandler.executor": "Run",
+-    "JUnit.RestaurantTest.handleNoneExistingUsernameUpdatesResponseHandler.executor": "Run",
+-    "JUnit.RestaurantTest.isTimeValidReturnsFalseForValidTime.executor": "Run",
+-    "JUnit.RestaurantTest.isTimeValidReturnsTrueForValidTime.executor": "Run",
+-    "JUnit.RestaurantTest.parseDate.executor": "Run",
+-    "JUnit.UserTest.addUserResponseGeneratorTestForInvalidUserRole.executor": "Run",
+-    "JUnit.UserTest.addUserResponseGeneratorTestForInvalidUsername.executor": "Run",
+-    "JUnit.UserTest.addUserResponseGeneratorTestForValidUsername.executor": "Run",
+-    "JUnit.UserTest.executor": "Run",
+-    "JUnit.UserTest.isEmailValidDetectsValidEmails.executor": "Run",
+-    "JUnit.UserTest.isEmailValidReturnsFalseForValidEmails.executor": "Run",
+-    "JUnit.UserTest.isPasswordValidReturnsFalseForEmptyPassword.executor": "Run",
+-    "JUnit.UserTest.isRoleValidReturnsFalseForInvalidRoles (1).executor": "Run",
+-    "JUnit.UserTest.isRoleValidReturnsFalseForInvalidRoles.executor": "Run",
+-    "JUnit.UserTest.isRoleValidReturnsTrueForValidRoles.executor": "Run",
+-    "JUnit.UserTest.unmarshalUserIntoObject.executor": "Run",
+-    "JUnit.UserTest.userSetRoleDoesNotSetsInValidRoles.executor": "Run",
+-    "JUnit.UserTest.userSetRoleSetsValidRoles.executor": "Run",
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "git-widget-placeholder": "master",
+-    "kotlin-language-version-configured": "true",
+-    "node.js.detected.package.eslint": "true",
+-    "node.js.detected.package.tslint": "true",
+-    "node.js.selected.package.eslint": "(autodetect)",
+-    "node.js.selected.package.tslint": "(autodetect)",
+-    "nodejs_package_manager_path": "npm",
+-    "project.structure.last.edited": "Modules",
+-    "project.structure.proportion": "0.0",
+-    "project.structure.side.proportion": "0.0",
+-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.AddressTest.isCityValidReturnsFalseForEmptyCity.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.AddressTest.isCityValidReturnsTrueForValidCity.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.AddressTest.isCountryValidReturnsFalseForEmptyCountry.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.AddressTest.isCountryValidReturnsTrueForValidCountry.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.AddressTest.setCityDoesNotSetWhenInputIsEmpty.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.AddressTest.setCityDoestSetWhenInputIsNotEmpty.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.CommandHandlerTest.Test_parseCommand.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.CommandHandlerTest.parseCommandParsesCommandAndJsonBody.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.ResponseHandlerTest.marshalResponseHandler.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidAddress.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidDescription.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidManagerUsername.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidTime.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesSuccessfulResponse.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.RestaurantTest.handleIncorrectManagerRoleUpdatesResponseHandler.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.RestaurantTest.handleNoneExistingUsernameFillsResponseHandler (1).executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.RestaurantTest.handleNoneExistingUsernameFillsResponseHandler.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.RestaurantTest.handleNoneExistingUsernameUpdatesResponseHandler.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.RestaurantTest.isTimeValidReturnsFalseForValidTime.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.RestaurantTest.isTimeValidReturnsTrueForValidTime.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.RestaurantTest.parseDate.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserTest.addUserResponseGeneratorTestForInvalidUserRole.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserTest.addUserResponseGeneratorTestForInvalidUsername.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserTest.addUserResponseGeneratorTestForValidUsername.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserTest.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserTest.isEmailValidDetectsValidEmails.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserTest.isEmailValidReturnsFalseForValidEmails.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserTest.isPasswordValidReturnsFalseForEmptyPassword.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserTest.isRoleValidReturnsFalseForInvalidRoles (1).executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserTest.isRoleValidReturnsFalseForInvalidRoles.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserTest.isRoleValidReturnsTrueForValidRoles.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserTest.unmarshalUserIntoObject.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserTest.userSetRoleDoesNotSetsInValidRoles.executor&quot;: &quot;Run&quot;,
++    &quot;JUnit.UserTest.userSetRoleSetsValidRoles.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
++    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
++    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
++    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyClassDialog.RECENTS_KEY">
+       <recent name="mizdooni" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidDescription">
++  <component name="RunManager" selected="JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidAddress">
+     <configuration name="RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidAddress" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="gorgeousIE1" />
+       <option name="PACKAGE_NAME" value="" />
+@@ -330,6 +334,17 @@
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="feat !: project was created&#10;Breaking change: maven dependencies were specified" />
+@@ -351,6 +366,7 @@
+     <MESSAGE value="fix: Main handler is called in main.java" />
+     <MESSAGE value="fix: restaurant unit tests were added" />
+     <MESSAGE value="fix: restaurant response generator method was improved" />
+-    <option name="LAST_COMMIT_MESSAGE" value="fix: restaurant response generator method was improved" />
++    <MESSAGE value="." />
++    <option name="LAST_COMMIT_MESSAGE" value="." />
+   </component>
+ </project>
+\ No newline at end of file
