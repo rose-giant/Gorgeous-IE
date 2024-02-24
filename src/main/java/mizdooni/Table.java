@@ -20,8 +20,4 @@ public class Table {
         managerUsername = table.managerUsername;
     }
 
-    public void checkTableProperties(String jsonString) throws JsonProcessingException {
-        ObjectMapper om = new ObjectMapper();
-        Table table  = om.readValue(jsonString, Table.class);
-    }
 }

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class User {
-    private static final String ROLE_1 = "manager";
-    private static final String ROLE_2 = "client";
+    public static final String MANAGER_ROLE = "manager";
+    public static final String CLIENT_ROLE = "client";
     private final char[] forbiddenCharacters = {'`', '~', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-',
             '=', '{', '[', '}', ']', ';', ':', '|', '/', '\'', '.', '>', ',', '<', ' '};
     public String role;
@@ -19,8 +19,8 @@ public class User {
     public ResponseHandler responseHandler;
     public ArrayList<User> users = new ArrayList<>();
     public boolean isRoleValid(String role) {
-        validRoles.add(ROLE_1);
-        validRoles.add(ROLE_2);
+        validRoles.add(MANAGER_ROLE);
+        validRoles.add(CLIENT_ROLE);
         if (validRoles.contains(role)) {
             return true;
         }  else {

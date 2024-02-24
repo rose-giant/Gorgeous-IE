@@ -44,11 +44,10 @@ public class CommandHandler {
                 break;
             }
         }
-
         return exists;
     }
 
-    public boolean resaurantManagerRoleIsCorrect(String managerUsername) {
+    public boolean restaurantManagerRoleIsCorrect(String managerUsername) {
         boolean isCorrect = false;
         for(User value: users) {
             if (Objects.equals(managerUsername, value.username)) {
@@ -58,7 +57,6 @@ public class CommandHandler {
                 }
             }
         }
-
         return isCorrect;
     }
 
@@ -70,7 +68,6 @@ public class CommandHandler {
                 break;
             }
         }
-
         return alreadyExists;
     }
 
@@ -87,6 +84,15 @@ public class CommandHandler {
         for(Table tb: tables) {
             if(Objects.equals(tb.restaurantName, restaurantName) && Objects.equals(tb.tableNumber, tableNumber)) {
                 return tb;
+            }
+        }
+        return null;
+    }
+
+    public User findUserByUserName(String userName) {
+        for(User user: users) {
+            if(Objects.equals(user.username, userName)) {
+                return user;
             }
         }
         return null;
@@ -130,7 +136,7 @@ public class CommandHandler {
                     restourant.handleNoneExistingUsername();
                 }
 
-                if(!resaurantManagerRoleIsCorrect(restourant.managerUsername)) {
+                if(!restaurantManagerRoleIsCorrect(restourant.managerUsername)) {
                     restourant.handleIncorrectManagerRole();
                 }
 
@@ -149,7 +155,12 @@ public class CommandHandler {
             case "addTable":
                 Table table = new Table(this.jsonString);
                 Restourant relatedRestaurant = findRestaurantByName(table.restaurantName);
-
+                User manager = findUserByUserName(table.managerUsername);
+                if (manager == null){
+                    this.responseHandler.responseBody += "Manager username not found.\n";
+                } else if (manager.role == User.CLIENT_ROLE) {
+                    this.responseHandler.responseBody += "This user is not allowed to add a table.\n";
+                }
                 if (relatedRestaurant == null){
                     this.responseHandler.responseBody += "Restaurant name not found.\n";
                 }
