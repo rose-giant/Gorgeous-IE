@@ -97,7 +97,7 @@ public class Restourant {
         this.responseHandler.responseStatus = false;
     }
 
-    public ResponseHandler addRestaurantResponseGenerator() {
+    public void addRestaurantResponseGenerator() {
         this.responseHandler = new ResponseHandler();
         this.responseHandler.responseBody = "";
         boolean isRestaurantNameValid = isRestaurantNameValid(this.name);
@@ -142,7 +142,6 @@ public class Restourant {
         if (this.responseHandler.responseStatus) {
             this.responseHandler.responseBody = "Restaurant added successfully.";
         }
-        return this.responseHandler;
     }
     public void addRestaurantHandler(String jsonString) throws JsonProcessingException {
         Restourant restourant = unmarshlIntoRestaurant(jsonString);

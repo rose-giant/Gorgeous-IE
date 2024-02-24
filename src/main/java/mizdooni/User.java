@@ -1,29 +1,23 @@
 package mizdooni;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import javax.swing.plaf.SplitPaneUI;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class User {
-    public enum POSITION {
-        MANAGER, SOFTWARE_ENGINEER
-    }
     private static final String ROLE_1 = "manager";
     private static final String ROLE_2 = "client";
-    private char[] forbiddenCharacters = {'`', '~', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-',
+    private final char[] forbiddenCharacters = {'`', '~', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '-',
             '=', '{', '[', '}', ']', ';', ':', '|', '/', '\'', '.', '>', ',', '<', ' '};
     public String role;
-    public ArrayList<String> validRoles = new ArrayList<String>();
+    public ArrayList<String> validRoles = new ArrayList<>();
     public String username;
     public  String password;
     public String email;
     public Address address;
 
     public ResponseHandler responseHandler;
-    public String addUserResponse;
-    public ArrayList<User> users = new ArrayList<User>();
+    public ArrayList<User> users = new ArrayList<>();
     public boolean isRoleValid(String role) {
         validRoles.add(ROLE_1);
         validRoles.add(ROLE_2);
@@ -131,7 +125,7 @@ public class User {
         this.responseHandler.responseStatus = false;
     }
 
-    public boolean addUserHandler(String jsonString) throws JsonProcessingException {
+    public void addUserHandler(String jsonString) throws JsonProcessingException {
         User user = unmarshlIntoUser(jsonString);
         user.responseHandler = new ResponseHandler();
         user.responseHandler = addUserResponseGenerator(user);
@@ -141,6 +135,5 @@ public class User {
         this.username = user.username;
         this.email = user.email;
         this.password = user.password;
-        return user.responseHandler.responseStatus;
     }
 }

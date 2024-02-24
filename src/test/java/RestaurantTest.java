@@ -99,7 +99,7 @@ public class RestaurantTest {
         restaurant.endTime = "12:0";
         restaurant.name = "vanila";
 
-        restaurant.addRestaurantResponseGenerator(restaurant);
+        restaurant.addRestaurantResponseGenerator();
         assertTrue(restaurant.responseHandler.responseStatus);
         assertEquals(restaurant.responseHandler.responseBody, "Restaurant added successfully.");
     }
@@ -117,7 +117,7 @@ public class RestaurantTest {
         restaurant.endTime = "12:30";
         restaurant.name = "vanila";
 
-        restaurant.addRestaurantResponseGenerator(restaurant);
+        restaurant.addRestaurantResponseGenerator();
         assertFalse(restaurant.responseHandler.responseStatus);
         assertEquals( " start time is not rond. end time is not rond.", restaurant.responseHandler.responseBody);
     }
@@ -135,7 +135,7 @@ public class RestaurantTest {
         restaurant.endTime = "12:0";
         restaurant.name = "vanila";
 
-        restaurant.addRestaurantResponseGenerator(restaurant);
+        restaurant.addRestaurantResponseGenerator();
         assertFalse(restaurant.responseHandler.responseStatus);
         assertEquals( " manager username is not valid.", restaurant.responseHandler.responseBody);
     }
@@ -153,7 +153,7 @@ public class RestaurantTest {
         restaurant.endTime = "12:0";
         restaurant.name = "vanila";
 
-        restaurant.addRestaurantResponseGenerator(restaurant);
+        restaurant.addRestaurantResponseGenerator();
         assertFalse(restaurant.responseHandler.responseStatus);
         assertEquals( " address is not valid.", restaurant.responseHandler.responseBody);
     }
@@ -171,7 +171,7 @@ public class RestaurantTest {
         restaurant.endTime = "12:0";
         restaurant.name = "vanila";
 
-        restaurant.addRestaurantResponseGenerator(restaurant);
+        restaurant.addRestaurantResponseGenerator();
         assertFalse(restaurant.responseHandler.responseStatus);
         assertEquals( " description is not valid.", restaurant.responseHandler.responseBody);
     }

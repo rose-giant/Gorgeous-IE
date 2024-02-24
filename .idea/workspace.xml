@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="fix: Main handler is called in main.java">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Restourant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Restourant.java" afterDir="false" />
+    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="fix: restaurant response generator method was improved">
+      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/RestaurantTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RestaurantTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,20 +93,7 @@
       <recent name="mizdooni" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mizdooni.Main" />
-      <module name="gorgeousIE1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mizdooni.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidDescription">
     <configuration name="RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidAddress" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gorgeousIE1" />
       <option name="PACKAGE_NAME" value="" />
@@ -148,13 +134,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RestaurantTest.addRestaurantResponseGeneratorGeneratesSuccessfulResponse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gorgeousIE1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RestaurantTest" />
+      <option name="METHOD_NAME" value="addRestaurantResponseGeneratorGeneratesSuccessfulResponse" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidDescription" />
         <item itemvalue="JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidAddress" />
         <item itemvalue="JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidManagerUsername" />
         <item itemvalue="JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidTime" />
+        <item itemvalue="JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesSuccessfulResponse" />
       </list>
     </recent_temporary>
   </component>
@@ -175,7 +171,7 @@
       <workItem from="1708674367622" duration="3686000" />
       <workItem from="1708693712619" duration="7665000" />
       <workItem from="1708737490751" duration="9086000" />
-      <workItem from="1708753030759" duration="7249000" />
+      <workItem from="1708753030759" duration="7552000" />
     </task>
     <task id="LOCAL-00001" summary="feat !: project was created&#10;Breaking change: maven dependencies were specified">
       <option name="closed" value="true" />
@@ -313,7 +309,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708763801311</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fix: restaurant unit tests were added">
+      <option name="closed" value="true" />
+      <created>1708765704599</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1708765704599</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fix: restaurant response generator method was improved">
+      <option name="closed" value="true" />
+      <created>1708765732702</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1708765732702</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,6 +349,8 @@
     <MESSAGE value="fix: Restaurant class attributes and validators were created" />
     <MESSAGE value="feat: AddRestaurant command was implemented" />
     <MESSAGE value="fix: Main handler is called in main.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: Main handler is called in main.java" />
+    <MESSAGE value="fix: restaurant unit tests were added" />
+    <MESSAGE value="fix: restaurant response generator method was improved" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: restaurant response generator method was improved" />
   </component>
 </project>

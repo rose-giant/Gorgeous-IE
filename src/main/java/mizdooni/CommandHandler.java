@@ -8,8 +8,8 @@ public class CommandHandler {
     public String command;
     public String jsonString;
     public ResponseHandler responseHandler = new ResponseHandler();
-    public ArrayList<User> users = new ArrayList<User>();
-    public ArrayList<Restourant> restaurants = new ArrayList<Restourant>();
+    public ArrayList<User> users = new ArrayList<>();
+    public ArrayList<Restourant> restaurants = new ArrayList<>();
 
     public void parseCommand(String userInput) {
        this.jsonString = "";
@@ -118,7 +118,6 @@ public class CommandHandler {
                 break;
 
             default:
-                return;
         }
     }
 
