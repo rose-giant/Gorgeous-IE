@@ -4,25 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Address.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mizdooni/ResponseHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Restourant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mizdooni/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/AddressTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/CommandHandlerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/ResponseHandlerTest.java" afterDir="false" />
+    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="fix: Restaurant class attributes and validators were created">
       <change afterPath="$PROJECT_DIR$/src/test/java/RestaurantTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,11 +166,151 @@
       <workItem from="1708667906498" duration="1158000" />
       <workItem from="1708674367622" duration="3686000" />
       <workItem from="1708693712619" duration="7665000" />
-      <workItem from="1708737490751" duration="7031000" />
+      <workItem from="1708737490751" duration="9086000" />
+      <workItem from="1708753030759" duration="4740000" />
     </task>
+    <task id="LOCAL-00001" summary="feat !: project was created&#10;Breaking change: maven dependencies were specified">
+      <option name="closed" value="true" />
+      <created>1708745443794</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1708745443794</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat : User class and attributes were created and defined">
+      <option name="closed" value="true" />
+      <created>1708745534198</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1708745534198</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat : User validators were creted">
+      <option name="closed" value="true" />
+      <created>1708745596989</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1708745596989</updated>
+    </task>
+    <task id="LOCAL-00004" summary="feat : User validators' unit tests were written&#10;Breaking Change: A new Test suite was created">
+      <option name="closed" value="true" />
+      <created>1708745705592</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1708745705592</updated>
+    </task>
+    <task id="LOCAL-00005" summary="feat : Address class and test was written &#10;Breaking Change: All validators were specified and tested">
+      <option name="closed" value="true" />
+      <created>1708745793625</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1708745793625</updated>
+    </task>
+    <task id="LOCAL-00006" summary="feat : Command Handler class was made&#10;Breaking Change: Program's main loop was specified">
+      <option name="closed" value="true" />
+      <created>1708745941482</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708745941482</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: Response Handler class was made&#10;Breaking Change: Commands are able to be parsed now">
+      <option name="closed" value="true" />
+      <created>1708746109132</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1708746109132</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: Command Caller switch case was implemented">
+      <option name="closed" value="true" />
+      <created>1708746221332</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1708746221332</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: unmarshaling tinto userobject and response generation was added to user class">
+      <option name="closed" value="true" />
+      <created>1708746472505</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1708746472505</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: unmarshaling tinto userobject and response generation unit tests were added to user test suite">
+      <option name="closed" value="true" />
+      <created>1708746556976</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1708746556976</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: addUser case was added to handler">
+      <option name="closed" value="true" />
+      <created>1708757616831</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708757616831</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: commandHandler parse command test was created">
+      <option name="closed" value="true" />
+      <created>1708757663663</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1708757663663</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: Handle repeated user method was created">
+      <option name="closed" value="true" />
+      <created>1708757812143</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1708757812143</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fix: User response generator was improved to detect repeated users">
+      <option name="closed" value="true" />
+      <created>1708757843599</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1708757843599</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix: Restaurant class attributes and validators were created">
+      <option name="closed" value="true" />
+      <created>1708758028098</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1708758028098</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat !: project was created&#10;Breaking change: maven dependencies were specified" />
+    <MESSAGE value="feat : User class and attributes were created and defined" />
+    <MESSAGE value="feat : User validators were creted" />
+    <MESSAGE value="feat : User validators' unit tests were written&#10;Breaking Change: A new Test suite was created" />
+    <MESSAGE value="feat : Address class and test was written &#10;Breaking Change: All validators were specified and tested" />
+    <MESSAGE value="feat : Command Handler class was made&#10;Breaking Change: Program's main loop was specified" />
+    <MESSAGE value="feat: Response Handler class was made&#10;Breaking Change: Commands are able to be parsed now" />
+    <MESSAGE value="feat: Command Caller switch case was implemented" />
+    <MESSAGE value="feat: unmarshaling tinto userobject and response generation was added to user class" />
+    <MESSAGE value="feat: unmarshaling tinto userobject and response generation unit tests were added to user test suite" />
+    <MESSAGE value="feat: addUser case was added to handler" />
+    <MESSAGE value="feat: commandHandler parse command test was created" />
+    <MESSAGE value="feat: Handle repeated user method was created" />
+    <MESSAGE value="fix: User response generator was improved to detect repeated users" />
+    <MESSAGE value="fix: Restaurant class attributes and validators were created" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: Restaurant class attributes and validators were created" />
   </component>
 </project>

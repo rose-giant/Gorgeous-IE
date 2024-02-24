@@ -91,7 +91,31 @@ public class CommandHandler {
                 this.responseHandler = user.responseHandler;
 
                 break;
+            case "addRestaurant":
+                Restourant restourant = new Restourant();
+                restourant.address = new Address();
+                restourant.responseHandler = new ResponseHandler();
+                restourant.addRestaurantHandler(this.jsonString);
 
+                if (!restaurantManagerUsernameExists(restourant.managerUsername)) {
+                    restourant.handleNoneExistingUsername();
+                }
+
+                if(!resaurantManagerRoleIsCorrect(restourant.managerUsername)) {
+                    restourant.handleIncorrectManagerRole();
+                }
+
+                if(restaurantNameAlreadyExists(restourant.name)) {
+                    restourant.handleRepeatedRestaurantName();
+                }
+
+                if (restourant.responseHandler.responseStatus) {
+                    restaurants.add(restourant);
+                    System.out.println(restaurants.size());
+                }
+
+                this.responseHandler = restourant.responseHandler;
+                break;
 
             default:
                 return;
