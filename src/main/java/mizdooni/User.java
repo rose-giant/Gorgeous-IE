@@ -73,4 +73,58 @@ public class User {
         return isCountryValid && isCityValid;
     }
 
+    public User unmarshlIntoUser(String jsonString) throws JsonProcessingException {
+        ObjectMapper om = new ObjectMapper();
+        User user  = om.readValue(jsonString, User.class);
+        //System.out.println("the user is " + user.username +" "+ user.password +" "+ user.email +" "+ user.role +" "+ user.address);
+        return user;
+    }
+
+    public ResponseHandler addUserResponseGenerator(User user) {
+        user.responseHandler.responseBody = "";
+        boolean isRoleValid = isRoleValid(user.role);
+        if (!isRoleValid) {
+            user.responseHandler.responseBody += " role is not valid.";
+        }
+        boolean isUsernameValid = isUsernameValid(user.username);
+        if (!isUsernameValid) {
+            user.responseHandler.responseBody += " username is not valid.";
+        }
+        boolean isPasswordValid = isPasswordValid(user.password);
+        if (!isPasswordValid) {
+            user.responseHandler.responseBody += " password is not valid.";
+        }
+        boolean isEmailValid = isEmailValid(user.email);
+        if (!isEmailValid) {
+            user.responseHandler.responseBody += " email address is not valid.";
+        }
+        boolean isAddressValid = isAddressValid(user.address);
+        if (!isAddressValid) {
+            user.responseHandler.responseBody += " user address is not valid.";
+        }
+
+
+
+        user.responseHandler.responseStatus = isRoleValid && isUsernameValid && isPasswordValid && isEmailValid && isAddressValid;
+        if (user.responseHandler.responseStatus) {
+            user.responseHandler.responseBody += "User added successfully.";
+            users.add(user);
+        }
+        return user.responseHandler;
+    }
+
+
+
+    public boolean addUserHandler(String jsonString) throws JsonProcessingException {
+        User user = unmarshlIntoUser(jsonString);
+        user.responseHandler = new ResponseHandler();
+        user.responseHandler = addUserResponseGenerator(user);
+        this.responseHandler = user.responseHandler;
+        this.address = user.address;
+        this.role = user.role;
+        this.username = user.username;
+        this.email = user.email;
+        this.password = user.password;
+        return user.responseHandler.responseStatus;
+    }
 }
