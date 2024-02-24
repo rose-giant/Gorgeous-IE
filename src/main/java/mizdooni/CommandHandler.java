@@ -7,50 +7,105 @@ import java.util.Scanner;
 public class CommandHandler {
     public String command;
     public String jsonString;
-
+    public ResponseHandler responseHandler = new ResponseHandler();
     public ArrayList<User> users = new ArrayList<User>();
     public ArrayList<Restourant> restaurants = new ArrayList<Restourant>();
 
     public void parseCommand(String userInput) {
-        this.jsonString = "";
-        String[] splittedInput = userInput.split(" ");
-        this.command = splittedInput[0];
+       this.jsonString = "";
+       String[] splittedInput = userInput.split(" ");
+       this.command = splittedInput[0];
 
-        for (int i = 1 ; i < splittedInput.length ; i++) {
-            this.jsonString += splittedInput[i];
+       for (int i = 1 ; i < splittedInput.length ; i++) {
+           this.jsonString += splittedInput[i];
 
-            if (i < splittedInput.length - 1) {
-                this.jsonString += " ";
-            }
-        }
+           if (i < splittedInput.length - 1) {
+               this.jsonString += " ";
+           }
+       }
     }
 
-    public boolean CommandHandlerCaller(String userIput) throws JsonProcessingException {
+    public boolean userAlreadyExists(User user) {
+        for(User value: users) {
+            if (Objects.equals(user.username, value.username) || Objects.equals(user.email, value.email)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean restaurantManagerUsernameExists(String managerUsername) {
+        boolean exists = false;
+        for(User value: users) {
+            if (Objects.equals(managerUsername, value.username)) {
+                exists = true;
+                break;
+            }
+        }
+
+        return exists;
+    }
+
+    public boolean resaurantManagerRoleIsCorrect(String managerUsername) {
+        boolean isCorrect = false;
+        for(User value: users) {
+            if (Objects.equals(managerUsername, value.username)) {
+                if (Objects.equals(value.role, "manager")) {
+                    isCorrect = true;
+                    break;
+                }
+            }
+        }
+
+        return isCorrect;
+    }
+
+    public boolean restaurantNameAlreadyExists(String restaurantName) {
+        boolean alreadyExists = false;
+        for(Restourant value: restaurants) {
+            if(Objects.equals(value.name, restaurantName)) {
+                alreadyExists = true;
+                break;
+            }
+        }
+
+        return alreadyExists;
+    }
+
+    public void CommandHandlerCaller() throws JsonProcessingException {
         User user = new User();
         user.address = new Address();
         user.responseHandler = new ResponseHandler();
-        parseCommand(userIput);
+
         switch (this.command){
             case "addUser":
+                user.addUserHandler(this.jsonString);
+                if(userAlreadyExists(user)) {
+                    user.handleRepeatedUser();
+                }
+                if (user.responseHandler.responseStatus) {
+                    users.add(user);
+                }
+
+                this.responseHandler = user.responseHandler;
 
                 break;
-            case "addRestaurant":
 
-                break;
+
             default:
-                return false;
+                return;
         }
-
-        return true;
     }
 
     public void mainHandler() throws JsonProcessingException {
-
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("How can I help you baby?");
             String inputString = scanner.nextLine();
-            CommandHandlerCaller(inputString);
+            parseCommand(inputString);
+            CommandHandlerCaller();
+            System.out.println(this.responseHandler.marshalResponse(this.responseHandler));
         }
     }
 }
