@@ -10,6 +10,7 @@ public class CommandHandler {
     public ResponseHandler responseHandler = new ResponseHandler();
     public ArrayList<User> users = new ArrayList<>();
     public ArrayList<Restourant> restaurants = new ArrayList<>();
+    public ArrayList<Table> tables = new ArrayList<>();
 
     public void parseCommand(String userInput) {
        this.jsonString = "";
@@ -73,13 +74,38 @@ public class CommandHandler {
         return alreadyExists;
     }
 
+    public Restourant findRestaurantByName(String restaurantName) {
+        for(Restourant rest: restaurants) {
+            if(Objects.equals(rest.name, restaurantName)) {
+                return rest;
+            }
+        }
+        return null;
+    }
+
+    public Table findTableByRestaurantNameAndTableNumber(String restaurantName, String tableNumber) {
+        for(Table tb: tables) {
+            if(Objects.equals(tb.restaurantName, restaurantName) && Objects.equals(tb.tableNumber, tableNumber)) {
+                return tb;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Table> findTablesByRestaurantName(String restaurantName) {
+        ArrayList<Table> wantedTables = new ArrayList<>();
+        for(Table tb: tables) {
+            if(Objects.equals(tb.restaurantName, restaurantName)) {
+                wantedTables.add(tb);
+            }
+        }
+        return wantedTables;
+    }
+
     public void CommandHandlerCaller() throws JsonProcessingException {
         User user = new User();
         user.address = new Address();
         user.responseHandler = new ResponseHandler();
-        Restourant restourant = new Restourant();
-        restourant.address = new Address();
-        restourant.responseHandler = new ResponseHandler();
 
         switch (this.command){
             case "addUser":
@@ -95,6 +121,9 @@ public class CommandHandler {
 
                 break;
             case "addRestaurant":
+                Restourant restourant = new Restourant();
+                restourant.address = new Address();
+                restourant.responseHandler = new ResponseHandler();
                 restourant.addRestaurantHandler(this.jsonString);
 
                 if (!restaurantManagerUsernameExists(restourant.managerUsername)) {
@@ -117,40 +146,23 @@ public class CommandHandler {
                 this.responseHandler = restourant.responseHandler;
                 break;
 
-            case "searchRestaurantByName":
-                this.responseHandler = searchRestaurantByNameHandler(this.jsonString);
+            case "addTable":
+                Table table = new Table(this.jsonString);
+                Restourant relatedRestaurant = findRestaurantByName(table.restaurantName);
+
+                if (relatedRestaurant == null){
+                    this.responseHandler.responseBody += "Restaurant name not found.\n";
+                }
+                if (findTableByRestaurantNameAndTableNumber(table.restaurantName, table.tableNumber) != null){
+                    this.responseHandler.responseBody += "Table number already exists.\n";
+                }
+                break;
 
             default:
         }
     }
 
-    public ResponseHandler searchRestaurantByNameHandler(String jsonString) throws JsonProcessingException {
-        Restourant restourant = new Restourant();
-        restourant = restourant.unmarshlIntoRestaurant(jsonString);
-        ResponseHandler responseHandler1 = new ResponseHandler();
-        responseHandler1.responseBody = "Restaurant not found.";
-        responseHandler1.responseStatus = false;
-
-        for(Restourant value : restaurants) {
-            if (Objects.equals(restourant.name, value.name)) {
-                responseHandler1.responseBody = value.marshalRestaurant(value);
-                responseHandler1.responseStatus = true;
-                break;
-            }
-        }
-
-        return responseHandler1;
-    }
-
     public void mainHandler() throws JsonProcessingException {
-
-        Restourant r = new Restourant();
-        r.name = "namnam";
-        r.address.city = "milan";
-        r.managerUsername = "najme";
-        r.type = "french";
-        restaurants.add(r);
-
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("How can I help you baby?");
@@ -162,10 +174,25 @@ public class CommandHandler {
     }
 }
 
-//searchRestaurantByName {"name":"verter"}
 //addUser {"role":"manager","username":"lisa","password":"John Doe","email":"jooe@example.com", "address":{"city":"milan", "country":"italy"}}
 //addRestaurant {"name":"wwe", "description":"d", "type":"a", "managerUsername":"lisa", "startTime":"11:00", "endTime":"12:0", "address":{"city":"c", "country":"i", "street":"k"}}
 
 //addUser {"role":"client","username":"aa","password":"John Doe","email":"john.doe@example.com", "address":{"city":"milan", "country":"italy"}}
 //addRestaurant {"name":"wwe", "description":"d", "type":"a", "managerUsername":"aa", "startTime":"11:00", "endTime":"12:0", "address":{"city":"c", "country":"i", "street":"k"}}
 //addRestaurant {"name":"w**we", "description":"d", "type":"", "managerUsername":"eunhoo", "startTime":"11:00", "endTime":"12:11", "address":{"city":"", "country":"i", "street":"k"}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
