@@ -102,7 +102,10 @@ public class User {
             user.responseHandler.responseBody += " user address is not valid.";
         }
 
-
+        boolean isUserRepeated = isUserRepeated(user);
+        if (isUserRepeated) {
+            user.responseHandler.responseBody += " user already exists.";
+        }
 
         user.responseHandler.responseStatus = isRoleValid && isUsernameValid && isPasswordValid && isEmailValid && isAddressValid && !isUserRepeated;
         if (user.responseHandler.responseStatus) {
