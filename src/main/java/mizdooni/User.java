@@ -76,7 +76,6 @@ public class User {
     public User unmarshlIntoUser(String jsonString) throws JsonProcessingException {
         ObjectMapper om = new ObjectMapper();
         User user  = om.readValue(jsonString, User.class);
-        //System.out.println("the user is " + user.username +" "+ user.password +" "+ user.email +" "+ user.role +" "+ user.address);
         return user;
     }
 
@@ -105,7 +104,7 @@ public class User {
 
 
 
-        user.responseHandler.responseStatus = isRoleValid && isUsernameValid && isPasswordValid && isEmailValid && isAddressValid;
+        user.responseHandler.responseStatus = isRoleValid && isUsernameValid && isPasswordValid && isEmailValid && isAddressValid && !isUserRepeated;
         if (user.responseHandler.responseStatus) {
             user.responseHandler.responseBody += "User added successfully.";
             users.add(user);
@@ -113,7 +112,21 @@ public class User {
         return user.responseHandler;
     }
 
+    public boolean isUserRepeated(User user) {
+        for (User value : users) {
+            System.out.println(value.username);
+            if (Objects.equals(user.username, value.username) || Objects.equals(user.email, value.email)) {
+                return true;
+            }
+        }
 
+        return false;
+    }
+
+    public void handleRepeatedUser() {
+        this.responseHandler.responseBody = " user already exists.";
+        this.responseHandler.responseStatus = false;
+    }
 
     public boolean addUserHandler(String jsonString) throws JsonProcessingException {
         User user = unmarshlIntoUser(jsonString);
