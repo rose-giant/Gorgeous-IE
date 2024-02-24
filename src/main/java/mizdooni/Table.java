@@ -3,12 +3,17 @@ package mizdooni;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 public class Table {
     public String tableNumber;
 
     public String restaurantName;
 
     public String managerUsername;
+
+    public ArrayList<String> reservedDateTimes;
 
     public int seatsNumber;
 

@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="feat : addTable added">
+    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="feat: add Reservation object">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/ResponseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/ResponseHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Table.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -359,7 +360,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708808443562</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fix : try catch statement added">
+      <option name="closed" value="true" />
+      <created>1708809762205</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1708809762205</updated>
+    </task>
+    <task id="LOCAL-00024" summary="feat: add Reservation object">
+      <option name="closed" value="true" />
+      <created>1708813265134</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1708813265134</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -388,6 +405,8 @@
     <MESSAGE value="fix: small refactorings were done" />
     <MESSAGE value="fix : add stop condition for while loop" />
     <MESSAGE value="feat : addTable added" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat : addTable added" />
+    <MESSAGE value="fix : try catch statement added" />
+    <MESSAGE value="feat: add Reservation object" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add Reservation object" />
   </component>
 </project>
