@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="fix : add stop condition for while loop">
+    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="feat : addTable added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/ResponseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/ResponseHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -351,7 +351,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708806771285</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="feat : addTable added">
+      <option name="closed" value="true" />
+      <created>1708808443562</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1708808443562</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -379,6 +387,7 @@
     <MESSAGE value="fix: restaurant response generator method was improved" />
     <MESSAGE value="fix: small refactorings were done" />
     <MESSAGE value="fix : add stop condition for while loop" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix : add stop condition for while loop" />
+    <MESSAGE value="feat : addTable added" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat : addTable added" />
   </component>
 </project>

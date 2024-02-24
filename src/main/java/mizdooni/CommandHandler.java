@@ -109,68 +109,76 @@ public class CommandHandler {
     }
 
     public void CommandHandlerCaller() throws JsonProcessingException {
-        User user = new User();
-        user.address = new Address();
-        user.responseHandler = new ResponseHandler();
+        try{
+            User user = new User();
+            user.address = new Address();
+            user.responseHandler = new ResponseHandler();
 
-        switch (this.command){
-            case "addUser":
-                user.addUserHandler(this.jsonString);
-                if(userAlreadyExists(user)) {
-                    user.handleRepeatedUser();
-                }
-                if (user.responseHandler.responseStatus) {
-                    users.add(user);
-                }
+            switch (this.command){
+                case "addUser":
+                    user.addUserHandler(this.jsonString);
+                    if(userAlreadyExists(user)) {
+                        user.handleRepeatedUser();
+                    }
+                    if (user.responseHandler.responseStatus) {
+                        users.add(user);
+                    }
 
-                this.responseHandler = user.responseHandler;
+                    this.responseHandler = user.responseHandler;
 
-                break;
-            case "addRestaurant":
-                Restourant restourant = new Restourant();
-                restourant.address = new Address();
-                restourant.responseHandler = new ResponseHandler();
-                restourant.addRestaurantHandler(this.jsonString);
+                    break;
+                case "addRestaurant":
+                    Restourant restourant = new Restourant();
+                    restourant.address = new Address();
+                    restourant.responseHandler = new ResponseHandler();
+                    restourant.addRestaurantHandler(this.jsonString);
 
-                if (!restaurantManagerUsernameExists(restourant.managerUsername)) {
-                    restourant.handleNoneExistingUsername();
-                }
+                    if (!restaurantManagerUsernameExists(restourant.managerUsername)) {
+                        restourant.handleNoneExistingUsername();
+                    }
 
-                if(!restaurantManagerRoleIsCorrect(restourant.managerUsername)) {
-                    restourant.handleIncorrectManagerRole();
-                }
+                    if(!restaurantManagerRoleIsCorrect(restourant.managerUsername)) {
+                        restourant.handleIncorrectManagerRole();
+                    }
 
-                if(restaurantNameAlreadyExists(restourant.name)) {
-                    restourant.handleRepeatedRestaurantName();
-                }
+                    if(restaurantNameAlreadyExists(restourant.name)) {
+                        restourant.handleRepeatedRestaurantName();
+                    }
 
-                if (restourant.responseHandler.responseStatus) {
-                    restaurants.add(restourant);
-                    System.out.println(restaurants.size());
-                }
+                    if (restourant.responseHandler.responseStatus) {
+                        restaurants.add(restourant);
+                        System.out.println(restaurants.size());
+                    }
 
-                this.responseHandler = restourant.responseHandler;
-                break;
+                    this.responseHandler = restourant.responseHandler;
+                    break;
 
-            case "addTable":
-                Table table = new Table(this.jsonString);
-                Restourant relatedRestaurant = findRestaurantByName(table.restaurantName);
-                User manager = findUserByUserName(table.managerUsername);
-                if (manager == null){
-                    this.responseHandler.responseBody += "Manager username not found.\n";
-                } else if (manager.role == User.CLIENT_ROLE) {
-                    this.responseHandler.responseBody += "This user is not allowed to add a table.\n";
-                }
-                if (relatedRestaurant == null){
-                    this.responseHandler.responseBody += "Restaurant name not found.\n";
-                }
-                if (findTableByRestaurantNameAndTableNumber(table.restaurantName, table.tableNumber) != null){
-                    this.responseHandler.responseBody += "Table number already exists.\n";
-                }
-                break;
+                case "addTable":
+                    Table table = new Table(this.jsonString);
+                    Restourant relatedRestaurant = findRestaurantByName(table.restaurantName);
+                    User manager = findUserByUserName(table.managerUsername);
+                    if (manager == null){
+                        throw new Exception("Manager username not found.");
+                    } else if (manager.role == User.CLIENT_ROLE) {
+                        throw new Exception("This user is not allowed to add a table.");
+                    }
+                    if (relatedRestaurant == null){
+                        throw new Exception("Restaurant name not found.");
+                    }
+                    if (findTableByRestaurantNameAndTableNumber(table.restaurantName, table.tableNumber) != null){
+                        throw new Exception("Table number already exists.");
+                    }
+                    tables.add(table);
+                    this.responseHandler = new ResponseHandler(true, "Table added successfully");
+                    break;
 
-            default:
+                default:
+            }
+
+        }catch (Exception error){
+            this.responseHandler = new ResponseHandler(false, error.getMessage());
         }
+
     }
 
     public void mainHandler() throws JsonProcessingException {
