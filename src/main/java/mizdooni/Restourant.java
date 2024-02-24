@@ -97,51 +97,52 @@ public class Restourant {
         this.responseHandler.responseStatus = false;
     }
 
-    public ResponseHandler addRestaurantResponseGenerator(Restourant restourant) {
-        restourant.responseHandler = new ResponseHandler();
-        restourant.responseHandler.responseBody = "";
-        boolean isRestaurantNameValid = isRestaurantNameValid(restourant.name);
+    public ResponseHandler addRestaurantResponseGenerator() {
+        this.responseHandler = new ResponseHandler();
+        this.responseHandler.responseBody = "";
+        boolean isRestaurantNameValid = isRestaurantNameValid(this.name);
         if (!isRestaurantNameValid) {
-            restourant.responseHandler.responseBody += " name is not valid.";
+            this.responseHandler.responseBody += " name is not valid.";
         }
 
-        boolean isManagerUsernameValid = isManagerUsernameValid(restourant.managerUsername);
-        if (isManagerUsernameValid) {
-            restourant.responseHandler.responseBody += " manager username is not valid.";
+        boolean isManagerUsernameValid = isManagerUsernameValid(this.managerUsername);
+        if (!isManagerUsernameValid) {
+            this.responseHandler.responseBody += " manager username is not valid.";
         }
 
-        boolean isDescriptionValid = isDescriptionValid(restourant.description);
+        boolean isDescriptionValid = isDescriptionValid(this.description);
         if (!isDescriptionValid) {
-            restourant.responseHandler.responseBody += " description is not valid.";
+            this.responseHandler.responseBody += " description is not valid.";
         }
 
-        boolean isTypeValid = isTypeValid(restourant.type);
+        boolean isTypeValid = isTypeValid(this.type);
         if (!isTypeValid) {
-            restourant.responseHandler.responseBody += " type is not valid.";
+            this.responseHandler.responseBody += " type is not valid.";
         }
 
-        boolean isAddressValid = isAddressValid(restourant.address);
+        boolean isAddressValid = isAddressValid(this.address);
         if (!isAddressValid) {
-            restourant.responseHandler.responseBody += " address is not valid.";
+            this.responseHandler.responseBody += " address is not valid.";
         }
 
-        restourant.parsedStartTime = parseDate(restourant.startTime);
-        boolean isStartTimeValid = isTimeValid(restourant.parsedStartTime);
+        this.parsedStartTime = parseDate(this.startTime);
+        boolean isStartTimeValid = isTimeValid(this.parsedStartTime);
         if (!isStartTimeValid) {
-            restourant.responseHandler.responseBody += " start time is not rond.";
+            this.responseHandler.responseBody += " start time is not rond.";
         }
 
-        restourant.parsedEndTIme = parseDate(restourant.endTime);
-        boolean isEndTimeValid = isTimeValid(restourant.parsedEndTIme);
+        this.parsedEndTIme = parseDate(this.endTime);
+        boolean isEndTimeValid = isTimeValid(this.parsedEndTIme);
         if (!isEndTimeValid) {
-            restourant.responseHandler.responseBody += " end time is not rond.";
+            this.responseHandler.responseBody += " end time is not rond.";
         }
 
-        restourant.responseHandler.responseStatus = isRestaurantNameValid && isAddressValid && isStartTimeValid && isEndTimeValid;
-        if (restourant.responseHandler.responseStatus) {
-            restourant.responseHandler.responseBody = "Restaurant added successfully.";
+        this.responseHandler.responseStatus = isTypeValid && isDescriptionValid && isManagerUsernameValid &&
+                isRestaurantNameValid && isAddressValid && isStartTimeValid && isEndTimeValid;
+        if (this.responseHandler.responseStatus) {
+            this.responseHandler.responseBody = "Restaurant added successfully.";
         }
-        return restourant.responseHandler;
+        return this.responseHandler;
     }
     public void addRestaurantHandler(String jsonString) throws JsonProcessingException {
         Restourant restourant = unmarshlIntoRestaurant(jsonString);
@@ -154,6 +155,6 @@ public class Restourant {
         this.parsedEndTIme = restourant.parsedEndTIme;
         this.address = restourant.address;
         this.description = restourant.description;
-        this.responseHandler = addRestaurantResponseGenerator(restourant);
+        addRestaurantResponseGenerator();
     }
 }
