@@ -11,6 +11,7 @@ public class CommandHandler {
     public ArrayList<User> users = new ArrayList<>();
     public ArrayList<Restourant> restaurants = new ArrayList<>();
     public ArrayList<Table> tables = new ArrayList<>();
+    public ArrayList<Reservation> reservations = new ArrayList<>();
 
     public void parseCommand(String userInput) {
        this.jsonString = "";
@@ -113,6 +114,9 @@ public class CommandHandler {
             User user = new User();
             user.address = new Address();
             user.responseHandler = new ResponseHandler();
+            String returnedData;
+            Restourant relatedRestaurant;
+            User relatedUser;
 
             switch (this.command){
                 case "addUser":
@@ -155,11 +159,11 @@ public class CommandHandler {
 
                 case "addTable":
                     Table table = new Table(this.jsonString);
-                    Restourant relatedRestaurant = findRestaurantByName(table.restaurantName);
-                    User manager = findUserByUserName(table.managerUsername);
-                    if (manager == null){
+                    relatedRestaurant = findRestaurantByName(table.restaurantName);
+                    relatedUser = findUserByUserName(table.managerUsername);
+                    if (relatedUser == null){
                         throw new Exception("Manager username not found.");
-                    } else if (manager.role == User.CLIENT_ROLE) {
+                    } else if (relatedUser.role == User.CLIENT_ROLE) {
                         throw new Exception("This user is not allowed to add a table.");
                     }
                     if (relatedRestaurant == null){
@@ -168,10 +172,32 @@ public class CommandHandler {
                     if (findTableByRestaurantNameAndTableNumber(table.restaurantName, table.tableNumber) != null){
                         throw new Exception("Table number already exists.");
                     }
+
                     tables.add(table);
-                    this.responseHandler = new ResponseHandler(true, "Table added successfully");
+                    returnedData = "Table added successfully";
+                    this.responseHandler = new ResponseHandler(true, returnedData);
                     break;
 
+                case "reserveTable":
+                    Reservation reservation = new Reservation(this.jsonString);
+                    relatedRestaurant = findRestaurantByName(reservation.restaurantName);
+                    relatedUser = findUserByUserName(reservation.username);
+                    if (relatedUser == null){
+                        throw new Exception("Username not found.");
+                    } else if (relatedUser.role == User.MANAGER_ROLE) {
+                        throw new Exception("This user is not allowed to reserve a table.");
+                    }
+                    if (relatedRestaurant == null){
+                        throw new Exception("Restaurant name not found.");
+                    }
+                    if (findTableByRestaurantNameAndTableNumber(reservation.restaurantName, reservation.tableNumber) == null){
+                        throw new Exception("Table number already exists.");
+                    }
+
+                    reservations.add(reservation);
+                    returnedData = String.format("{“reservationNumber”: %d}", reservation.reservationNumber);
+                    this.responseHandler = new ResponseHandler(true, returnedData);
+                    break;
                 default:
             }
 
