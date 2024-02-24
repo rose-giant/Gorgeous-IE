@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.core.JsonProcessingException;
 import mizdooni.Address;
 import mizdooni.ResponseHandler;
 import mizdooni.Restourant;
@@ -174,5 +175,37 @@ public class RestaurantTest {
         restaurant.addRestaurantResponseGenerator();
         assertFalse(restaurant.responseHandler.responseStatus);
         assertEquals( " description is not valid.", restaurant.responseHandler.responseBody);
+    }
+
+    @Test
+    public void marshalRestaurantJsonString() throws JsonProcessingException {
+        Address address = new Address();
+        address.city = "milan";
+        address.country = "italy";
+        address.street = "alferedo";
+        restaurant.address = address;
+        restaurant.name = "namnam";
+        restaurant.managerUsername = "najme";
+        restaurant.type = "french";
+        restaurant.endTime = "12:00";
+        restaurant.description = "yes";
+        restaurant.responseHandler = null;
+        String expectedJsonString = "{\n  \"name\" : \"namnam\",\n  \"managerUsername\" : \"najme\",\n  \"type\" : \"french\",\n  \"startTime\" : null,\n  \"endTime\" : \"12:00\",\n  \"parsedStartTime\" : null,\n  \"parsedEndTIme\" : null,\n  \"description\" : \"yes\",\n  \"address\" : {\n    \"city\" : \"milan\",\n    \"country\" : \"italy\",\n    \"street\" : \"alferedo\"\n  },\n  \"responseHandler\" : null\n}";
+        String actualString = restaurant.marshalRestaurant(restaurant);
+        assertEquals(expectedJsonString , actualString);
+    }
+
+    @Test
+    public void unmarshalIntoRestaurant() throws JsonProcessingException {
+        String jsonString = "{\n  \"name\" : \"namnam\",\n  \"managerUsername\" : \"najme\",\n  \"type\" : \"french\",\n  \"startTime\" : null,\n  \"endTime\" : \"12:00\",\n  \"parsedStartTime\" : null,\n  \"parsedEndTIme\" : null,\n  \"description\" : \"yes\",\n  \"address\" : {\n    \"city\" : \"milan\",\n    \"country\" : \"italy\",\n    \"street\" : \"alferedo\"\n  },\n  \"responseHandler\" : null\n}";
+        restaurant = restaurant.unmarshlIntoRestaurant(jsonString);
+        Address address = new Address();
+        address.street = "alferedo";
+        assertEquals(restaurant.managerUsername, "najme");
+        assertEquals(restaurant.name, "namnam");
+        assertEquals(restaurant.type, "french");
+        assertEquals(restaurant.endTime, "12:00");
+        assertEquals(restaurant.description, "yes");
+        assertEquals(restaurant.address.street, "alferedo");
     }
 }

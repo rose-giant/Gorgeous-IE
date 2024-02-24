@@ -17,12 +17,6 @@ public class Restourant {
     public Address address = new Address();
     public ResponseHandler responseHandler;
 
-    public Restourant unmarshlIntoRestaurant(String jsonString) throws JsonProcessingException {
-        ObjectMapper om = new ObjectMapper();
-        Restourant restourant  = om.readValue(jsonString, Restourant.class);
-        return restourant;
-    }
-
     public boolean isRestaurantNameValid(String name) {
         if (name.isEmpty()) {
             return false;
@@ -144,6 +138,7 @@ public class Restourant {
         }
     }
     public void addRestaurantHandler(String jsonString) throws JsonProcessingException {
+        //Restourant restourant = new Restourant();
         Restourant restourant = unmarshlIntoRestaurant(jsonString);
         this.managerUsername = restourant.managerUsername;
         this.name = restourant.name;
@@ -156,4 +151,17 @@ public class Restourant {
         this.description = restourant.description;
         addRestaurantResponseGenerator();
     }
+
+    public String marshalRestaurant(Restourant restourant) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String jsonStr = objectMapper.writeValueAsString(restourant);
+        return jsonStr;
+    }
+
+    public Restourant unmarshlIntoRestaurant(String jsonString) throws JsonProcessingException {
+        ObjectMapper om = new ObjectMapper();
+        Restourant restourant  = om.readValue(jsonString, Restourant.class);
+        return restourant;
+    }
+
 }

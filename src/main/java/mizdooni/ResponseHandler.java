@@ -9,7 +9,7 @@ public class ResponseHandler {
 
     public String marshalResponse(ResponseHandler responseHandler) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        String jsonStr = objectMapper.writeValueAsString(responseHandler);
+        String jsonStr = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseHandler);
         return jsonStr;
     }
 }
