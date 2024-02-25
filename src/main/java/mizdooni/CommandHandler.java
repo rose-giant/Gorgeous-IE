@@ -109,11 +109,32 @@ public class CommandHandler {
         return wantedTables;
     }
 
+    public ResponseHandler searchRestaurantByNameHandler(String jsonString) throws JsonProcessingException {
+        Restourant restourant = new Restourant();
+        restourant = restourant.unmarshlIntoRestaurant(jsonString);
+        ResponseHandler responseHandler1 = new ResponseHandler();
+        responseHandler1.responseBody = "Restaurant not found.";
+        responseHandler1.responseStatus = false;
+
+        for(Restourant value : restaurants) {
+            if (Objects.equals(restourant.name, value.name)) {
+                responseHandler1.responseBody = value.marshalRestaurant(value);
+                responseHandler1.responseStatus = true;
+                break;
+            }
+        }
+
+        return responseHandler1;
+    }
+
     public void CommandHandlerCaller() throws JsonProcessingException {
         try{
             User user = new User();
             user.address = new Address();
             user.responseHandler = new ResponseHandler();
+            Restourant restourant = new Restourant();
+            restourant.address = new Address();
+            restourant.responseHandler = new ResponseHandler();
             String returnedData;
             Restourant relatedRestaurant;
             User relatedUser;
@@ -132,9 +153,6 @@ public class CommandHandler {
 
                     break;
                 case "addRestaurant":
-                    Restourant restourant = new Restourant();
-                    restourant.address = new Address();
-                    restourant.responseHandler = new ResponseHandler();
                     restourant.addRestaurantHandler(this.jsonString);
 
                     if (!restaurantManagerUsernameExists(restourant.managerUsername)) {
@@ -155,6 +173,10 @@ public class CommandHandler {
                     }
 
                     this.responseHandler = restourant.responseHandler;
+                    break;
+
+                case "searchRestaurantByName":
+                    this.responseHandler = searchRestaurantByNameHandler(this.jsonString);
                     break;
 
                 case "addTable":
