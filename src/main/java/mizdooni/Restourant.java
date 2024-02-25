@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Restourant {
     public String name;
@@ -163,5 +164,4 @@ public class Restourant {
         Restourant restourant  = om.readValue(jsonString, Restourant.class);
         return restourant;
     }
-
 }

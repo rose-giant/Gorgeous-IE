@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="feat: add Reservation object">
+    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="feat: check reservations dateTime conflict">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Table.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Restourant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Restourant.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,9 +99,9 @@
       <recent name="mizdooni" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForExistingRestaurant">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mizdooni.Main" />
+  <component name="RunManager" selected="Application.Reservation">
+    <configuration name="Reservation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="mizdooni.Reservation" />
       <module name="gorgeousIE1" />
       <extension name="coverage">
         <pattern>
@@ -155,11 +155,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Reservation" />
         <item itemvalue="JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForExistingRestaurant" />
         <item itemvalue="JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForNoneExistingRestaurant" />
         <item itemvalue="JUnit.RestaurantTest.marshalRestaurantJsonString" />
         <item itemvalue="JUnit.RestaurantTest.marshalRestaurant" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -376,16 +376,45 @@
       <option name="project" value="LOCAL" />
       <updated>1708813265134</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="fix: Reservation class upgraded">
+      <option name="closed" value="true" />
+      <created>1708815293806</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1708815293806</updated>
+    </task>
+    <task id="LOCAL-00026" summary="feat: add reserveTable handler">
+      <option name="closed" value="true" />
+      <created>1708815445412</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1708815445412</updated>
+    </task>
+    <task id="LOCAL-00027" summary="fix: dateTime format added to table object">
+      <option name="closed" value="true" />
+      <created>1708815538976</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1708815538976</updated>
+    </task>
+    <task id="LOCAL-00028" summary="feat: check reservations dateTime conflict">
+      <option name="closed" value="true" />
+      <created>1708838616135</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1708838616135</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat !: project was created&#10;Breaking change: maven dependencies were specified" />
-    <MESSAGE value="feat : User class and attributes were created and defined" />
-    <MESSAGE value="feat : User validators were creted" />
     <MESSAGE value="feat : User validators' unit tests were written&#10;Breaking Change: A new Test suite was created" />
     <MESSAGE value="feat : Address class and test was written &#10;Breaking Change: All validators were specified and tested" />
     <MESSAGE value="feat : Command Handler class was made&#10;Breaking Change: Program's main loop was specified" />
@@ -407,6 +436,10 @@
     <MESSAGE value="feat : addTable added" />
     <MESSAGE value="fix : try catch statement added" />
     <MESSAGE value="feat: add Reservation object" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add Reservation object" />
+    <MESSAGE value="fix: Reservation class upgraded" />
+    <MESSAGE value="feat: add reserveTable handler" />
+    <MESSAGE value="fix: dateTime format added to table object" />
+    <MESSAGE value="feat: check reservations dateTime conflict" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: check reservations dateTime conflict" />
   </component>
 </project>
