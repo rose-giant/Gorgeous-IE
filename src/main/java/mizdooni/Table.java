@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Table {
     public String tableNumber;
@@ -23,6 +24,15 @@ public class Table {
         tableNumber = table.tableNumber;
         restaurantName = table.restaurantName;
         managerUsername = table.managerUsername;
+    }
+
+    public boolean hasDateTimeConflict(Reservation reservation) {
+        for(String rs: reservedDateTimes) {
+            if(Objects.equals(rs, reservation.datetime)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }
