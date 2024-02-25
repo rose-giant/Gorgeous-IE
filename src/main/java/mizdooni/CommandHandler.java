@@ -127,6 +127,24 @@ public class CommandHandler {
         return responseHandler1;
     }
 
+    public ResponseHandler searchRestaurantByTypeHandler(String jsonString) throws JsonProcessingException {
+        Restourant restourant = new Restourant();
+        restourant = restourant.unmarshlIntoRestaurant(jsonString);
+        ResponseHandler responseHandler1 = new ResponseHandler();
+        responseHandler1.responseBody = "Restaurant not found.";
+        responseHandler1.responseStatus = false;
+
+        for(Restourant value : restaurants) {
+            if (Objects.equals(restourant.type, value.type)) {
+                responseHandler1.responseBody = value.marshalRestaurant(value);
+                responseHandler1.responseStatus = true;
+                break;
+            }
+        }
+
+        return responseHandler1;
+    }
+
     public void CommandHandlerCaller() throws JsonProcessingException {
         try{
             User user = new User();
@@ -175,8 +193,12 @@ public class CommandHandler {
                     this.responseHandler = restourant.responseHandler;
                     break;
 
-                case "searchRestaurantByName":
+                case "searchRestaurantsByName":
                     this.responseHandler = searchRestaurantByNameHandler(this.jsonString);
+                    break;
+
+                case "searchRestaurantsByType":
+                    this.responseHandler = searchRestaurantByTypeHandler(this.jsonString);
                     break;
 
                 case "addTable":
@@ -240,6 +262,9 @@ public class CommandHandler {
         }
     }
 }
+
+
+//searchRestaurantsByType {"type":"italian"}
 
 //addUser {"role":"manager","username":"lisa","password":"John Doe","email":"jooe@example.com", "address":{"city":"milan", "country":"italy"}}
 //addRestaurant {"name":"wwe", "description":"d", "type":"a", "managerUsername":"lisa", "startTime":"11:00", "endTime":"12:0", "address":{"city":"c", "country":"i", "street":"k"}}

@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="feat: add Reservation object">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="feat: searchRestaurantByName command case was added to handler caller">
       <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CommandHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CommandHandlerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,70 +48,72 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AddressTest.isCityValidReturnsFalseForEmptyCity.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AddressTest.isCityValidReturnsTrueForValidCity.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AddressTest.isCountryValidReturnsFalseForEmptyCountry.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AddressTest.isCountryValidReturnsTrueForValidCountry.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AddressTest.setCityDoesNotSetWhenInputIsEmpty.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AddressTest.setCityDoestSetWhenInputIsNotEmpty.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CommandHandlerTest.Test_parseCommand.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CommandHandlerTest.parseCommandParsesCommandAndJsonBody.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForExistingRestaurant.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForNoneExistingRestaurant.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ResponseHandlerTest.marshalResponseHandler.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidAddress.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidDescription.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidManagerUsername.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidTime.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesSuccessfulResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.handleIncorrectManagerRoleUpdatesResponseHandler.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.handleNoneExistingUsernameFillsResponseHandler (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.handleNoneExistingUsernameFillsResponseHandler.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.handleNoneExistingUsernameUpdatesResponseHandler.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.isTimeValidReturnsFalseForValidTime.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.isTimeValidReturnsTrueForValidTime.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.marshalRestaurant.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.marshalRestaurantJsonString.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RestaurantTest.parseDate.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.addUserResponseGeneratorTestForInvalidUserRole.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.addUserResponseGeneratorTestForInvalidUsername.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.addUserResponseGeneratorTestForValidUsername.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.isEmailValidDetectsValidEmails.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.isEmailValidReturnsFalseForValidEmails.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.isPasswordValidReturnsFalseForEmptyPassword.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.isRoleValidReturnsFalseForInvalidRoles (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.isRoleValidReturnsFalseForInvalidRoles.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.isRoleValidReturnsTrueForValidRoles.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.unmarshalUserIntoObject.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.userSetRoleDoesNotSetsInValidRoles.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.userSetRoleSetsValidRoles.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "JUnit.AddressTest.isCityValidReturnsFalseForEmptyCity.executor": "Run",
+    "JUnit.AddressTest.isCityValidReturnsTrueForValidCity.executor": "Run",
+    "JUnit.AddressTest.isCountryValidReturnsFalseForEmptyCountry.executor": "Run",
+    "JUnit.AddressTest.isCountryValidReturnsTrueForValidCountry.executor": "Run",
+    "JUnit.AddressTest.setCityDoesNotSetWhenInputIsEmpty.executor": "Run",
+    "JUnit.AddressTest.setCityDoestSetWhenInputIsNotEmpty.executor": "Run",
+    "JUnit.CommandHandlerTest.Test_parseCommand.executor": "Run",
+    "JUnit.CommandHandlerTest.parseCommandParsesCommandAndJsonBody.executor": "Run",
+    "JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForExistingRestaurant.executor": "Run",
+    "JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForNoneExistingRestaurant.executor": "Run",
+    "JUnit.CommandHandlerTest.searchRestaurantByTYpeReturnsCorrectResponseForExistingRestaurant.executor": "Run",
+    "JUnit.ResponseHandlerTest.marshalResponseHandler.executor": "Run",
+    "JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidAddress.executor": "Run",
+    "JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidDescription.executor": "Run",
+    "JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidManagerUsername.executor": "Run",
+    "JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidTime.executor": "Run",
+    "JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesSuccessfulResponse.executor": "Run",
+    "JUnit.RestaurantTest.handleIncorrectManagerRoleUpdatesResponseHandler.executor": "Run",
+    "JUnit.RestaurantTest.handleNoneExistingUsernameFillsResponseHandler (1).executor": "Run",
+    "JUnit.RestaurantTest.handleNoneExistingUsernameFillsResponseHandler.executor": "Run",
+    "JUnit.RestaurantTest.handleNoneExistingUsernameUpdatesResponseHandler.executor": "Run",
+    "JUnit.RestaurantTest.isTimeValidReturnsFalseForValidTime.executor": "Run",
+    "JUnit.RestaurantTest.isTimeValidReturnsTrueForValidTime.executor": "Run",
+    "JUnit.RestaurantTest.marshalRestaurant.executor": "Run",
+    "JUnit.RestaurantTest.marshalRestaurantJsonString.executor": "Run",
+    "JUnit.RestaurantTest.parseDate.executor": "Run",
+    "JUnit.RestaurantTest.unmarshalIntoRestaurant.executor": "Run",
+    "JUnit.UserTest.addUserResponseGeneratorTestForInvalidUserRole.executor": "Run",
+    "JUnit.UserTest.addUserResponseGeneratorTestForInvalidUsername.executor": "Run",
+    "JUnit.UserTest.addUserResponseGeneratorTestForValidUsername.executor": "Run",
+    "JUnit.UserTest.executor": "Run",
+    "JUnit.UserTest.isEmailValidDetectsValidEmails.executor": "Run",
+    "JUnit.UserTest.isEmailValidReturnsFalseForValidEmails.executor": "Run",
+    "JUnit.UserTest.isPasswordValidReturnsFalseForEmptyPassword.executor": "Run",
+    "JUnit.UserTest.isRoleValidReturnsFalseForInvalidRoles (1).executor": "Run",
+    "JUnit.UserTest.isRoleValidReturnsFalseForInvalidRoles.executor": "Run",
+    "JUnit.UserTest.isRoleValidReturnsTrueForValidRoles.executor": "Run",
+    "JUnit.UserTest.unmarshalUserIntoObject.executor": "Run",
+    "JUnit.UserTest.userSetRoleDoesNotSetsInValidRoles.executor": "Run",
+    "JUnit.UserTest.userSetRoleSetsValidRoles.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="mizdooni" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RestaurantTest.unmarshalIntoRestaurant">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mizdooni.Main" />
       <module name="gorgeousIE1" />
@@ -136,21 +137,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForNoneExistingRestaurant" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CommandHandlerTest.searchRestaurantByTYpeReturnsCorrectResponseForExistingRestaurant" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gorgeousIE1" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="CommandHandlerTest" />
-      <option name="METHOD_NAME" value="searchRestaurantByNameReturnsCorrectResponseForNoneExistingRestaurant" />
+      <option name="METHOD_NAME" value="searchRestaurantByTYpeReturnsCorrectResponseForExistingRestaurant" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RestaurantTest.marshalRestaurantJsonString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CommandHandlerTest.searchRestaurantByTypeReturnsCorrectResponseForNoneExistingRestaurant" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gorgeousIE1" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="RestaurantTest" />
-      <option name="METHOD_NAME" value="marshalRestaurantJsonString" />
+      <option name="MAIN_CLASS_NAME" value="CommandHandlerTest" />
+      <option name="METHOD_NAME" value="searchRestaurantByTypeReturnsCorrectResponseForNoneExistingRestaurant" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -168,11 +169,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.CommandHandlerTest.searchRestaurantByTypeReturnsCorrectResponseForNoneExistingRestaurant" />
+        <item itemvalue="JUnit.CommandHandlerTest.searchRestaurantByTYpeReturnsCorrectResponseForExistingRestaurant" />
         <item itemvalue="JUnit.RestaurantTest.unmarshalIntoRestaurant" />
         <item itemvalue="JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForExistingRestaurant" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForNoneExistingRestaurant" />
-        <item itemvalue="JUnit.RestaurantTest.marshalRestaurantJsonString" />
       </list>
     </recent_temporary>
   </component>
@@ -389,7 +390,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708813265134</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="feat: searchRestaurantByName command case was added to handler caller">
+      <option name="closed" value="true" />
+      <created>1708844815912</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1708844815912</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -420,6 +429,7 @@
     <MESSAGE value="feat : addTable added" />
     <MESSAGE value="fix : try catch statement added" />
     <MESSAGE value="feat: add Reservation object" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add Reservation object" />
+    <MESSAGE value="feat: searchRestaurantByName command case was added to handler caller" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: searchRestaurantByName command case was added to handler caller" />
   </component>
 </project>

@@ -55,4 +55,27 @@ public class CommandHandlerTest {
         assertTrue(restourant.responseHandler.responseStatus);
         assertEquals(expected, restourant.responseHandler.responseBody);
     }
+
+    @Test
+    public void searchRestaurantByTypeReturnsCorrectResponseForNoneExistingRestaurant() throws JsonProcessingException {
+        String jsonString = "{\"type\": \"italian\"}";
+        commandHandler.restaurants = new ArrayList<>();
+        restourant.responseHandler = commandHandler.searchRestaurantByTypeHandler(jsonString);
+        assertFalse(restourant.responseHandler.responseStatus);
+        assertEquals(restourant.responseHandler.responseBody, "Restaurant not found.");
+    }
+
+    @Test
+    public void searchRestaurantByTYpeReturnsCorrectResponseForExistingRestaurant() throws JsonProcessingException {
+        String jsonString = "{\"type\": \"iranian\"}";
+
+        Restourant restourant1 = new Restourant();
+        restourant1.type = "iranian";
+        commandHandler.restaurants = new ArrayList<>();
+        commandHandler.restaurants.add(restourant1);
+        String expected = "{\"name\":null,\"managerUsername\":null,\"type\":\"iranian\",\"startTime\":null,\"endTime\":null,\"parsedStartTime\":null,\"parsedEndTIme\":null,\"description\":null,\"address\":{\"city\":null,\"country\":null,\"street\":null},\"responseHandler\":null}";
+        restourant.responseHandler = commandHandler.searchRestaurantByTypeHandler(jsonString);
+        assertTrue(restourant.responseHandler.responseStatus);
+        assertEquals(expected, restourant.responseHandler.responseBody);
+    }
 }
