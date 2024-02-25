@@ -61,31 +61,11 @@ public class Restourant {
         return !type.isEmpty();
     }
 
-    public void handleNoneExistingUsername() {
+    public void handleOuterErrorMessage(String errorMessage) {
         if (this.responseHandler.responseStatus) {
-            this.responseHandler.responseBody = " manager username does not exist.";
+            this.responseHandler.responseBody = errorMessage;
         } else {
-            this.responseHandler.responseBody += " manager username does not exist.";
-        }
-
-        this.responseHandler.responseStatus = false;
-    }
-
-    public void handleIncorrectManagerRole() {
-        if (this.responseHandler.responseStatus) {
-            this.responseHandler.responseBody = " manager role is not correct.";
-        } else {
-            this.responseHandler.responseBody += " manager role is not correct.";
-        }
-
-        this.responseHandler.responseStatus = false;
-    }
-
-    public void handleRepeatedRestaurantName() {
-        if (this.responseHandler.responseStatus) {
-            this.responseHandler.responseBody = " restaurant name is repeated.";
-        } else {
-            this.responseHandler.responseBody += " restaurant name is repeated.";
+            this.responseHandler.responseBody += errorMessage;
         }
 
         this.responseHandler.responseStatus = false;

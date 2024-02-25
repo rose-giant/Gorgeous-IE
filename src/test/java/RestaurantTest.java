@@ -49,42 +49,12 @@ public class RestaurantTest {
     }
 
     @Test
-    public void handleNoneExistingUsernameFillsResponseHandler() {
-        restaurant.responseHandler.responseStatus = true;
-        restaurant.responseHandler.responseBody = "";
-
-        restaurant.handleNoneExistingUsername();
-        assertEquals(restaurant.responseHandler.responseBody, " manager username does not exist.");
-        assertFalse(restaurant.responseHandler.responseStatus);
-    }
-
-    @Test
-    public void handleNoneExistingUsernameUpdatesResponseHandler() {
-        restaurant.responseHandler.responseStatus = false;
-        restaurant.responseHandler.responseBody = "hello!";
-
-        restaurant.handleNoneExistingUsername();
-        assertEquals(restaurant.responseHandler.responseBody, "hello! manager username does not exist.");
-        assertFalse(restaurant.responseHandler.responseStatus);
-    }
-
-    @Test
-    public void handleIncorrectManagerRoleFillsResponseHandler() {
-        restaurant.responseHandler.responseStatus = true;
-        restaurant.responseHandler.responseBody = "";
-
-        restaurant.handleNoneExistingUsername();
-        assertEquals(restaurant.responseHandler.responseBody, " manager role is not correct.");
-        assertFalse(restaurant.responseHandler.responseStatus);
-    }
-
-    @Test
     public void handleIncorrectManagerRoleUpdatesResponseHandler() {
         restaurant.responseHandler.responseStatus = false;
         restaurant.responseHandler.responseBody = "hello!";
 
-        restaurant.handleIncorrectManagerRole();
-        assertEquals(restaurant.responseHandler.responseBody, "hello! manager role is not correct.");
+        restaurant.handleOuterErrorMessage("I'm a boring error message bitches");
+        assertEquals(restaurant.responseHandler.responseBody, "hello!I'm a boring error message bitches");
         assertFalse(restaurant.responseHandler.responseStatus);
     }
 

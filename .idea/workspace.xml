@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="feat: searchRestaurantByName command case was added to handler caller">
+    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="feat: searchRestaurantByType command handler and its tests were added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Review.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ReviewTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/CommandHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CommandHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Restourant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Restourant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/RestaurantTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/RestaurantTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,12 +28,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "rose-giant"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;rose-giant&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -62,6 +67,7 @@
     "JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForExistingRestaurant.executor": "Run",
     "JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForNoneExistingRestaurant.executor": "Run",
     "JUnit.CommandHandlerTest.searchRestaurantByTYpeReturnsCorrectResponseForExistingRestaurant.executor": "Run",
+    "JUnit.CommandHandlerTest.searchRestaurantByTypeReturnsCorrectResponseForNoneExistingRestaurant.executor": "Run",
     "JUnit.ResponseHandlerTest.marshalResponseHandler.executor": "Run",
     "JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidAddress.executor": "Run",
     "JUnit.RestaurantTest.addRestaurantResponseGeneratorGeneratesResponseForInvalidDescription.executor": "Run",
@@ -78,6 +84,10 @@
     "JUnit.RestaurantTest.marshalRestaurantJsonString.executor": "Run",
     "JUnit.RestaurantTest.parseDate.executor": "Run",
     "JUnit.RestaurantTest.unmarshalIntoRestaurant.executor": "Run",
+    "JUnit.ReviewTest.handleNoneExistingUserConcatsNewErrorMessage.executor": "Run",
+    "JUnit.ReviewTest.isRateValidReturnsFalseForInvalidRates.executor": "Run",
+    "JUnit.ReviewTest.isRateValidReturnsTrueForValidRates.executor": "Run",
+    "JUnit.ReviewTest.responseGeneratorGeneratesSuccessfullResponseForValidReview.executor": "Run",
     "JUnit.UserTest.addUserResponseGeneratorTestForInvalidUserRole.executor": "Run",
     "JUnit.UserTest.addUserResponseGeneratorTestForInvalidUsername.executor": "Run",
     "JUnit.UserTest.addUserResponseGeneratorTestForValidUsername.executor": "Run",
@@ -113,55 +123,52 @@
       <recent name="mizdooni" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="mizdooni.Main" />
-      <module name="gorgeousIE1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="mizdooni.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForExistingRestaurant" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gorgeousIE1" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CommandHandlerTest" />
-      <option name="METHOD_NAME" value="searchRestaurantByNameReturnsCorrectResponseForExistingRestaurant" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CommandHandlerTest.searchRestaurantByTYpeReturnsCorrectResponseForExistingRestaurant" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gorgeousIE1" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CommandHandlerTest" />
-      <option name="METHOD_NAME" value="searchRestaurantByTYpeReturnsCorrectResponseForExistingRestaurant" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CommandHandlerTest.searchRestaurantByTypeReturnsCorrectResponseForNoneExistingRestaurant" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gorgeousIE1" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="CommandHandlerTest" />
-      <option name="METHOD_NAME" value="searchRestaurantByTypeReturnsCorrectResponseForNoneExistingRestaurant" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RestaurantTest.unmarshalIntoRestaurant" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ReviewTest.responseGeneratorGeneratesResponseFor4InvalidReviewFields">
+    <configuration name="RestaurantTest.handleIncorrectManagerRoleUpdatesResponseHandler" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="gorgeousIE1" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="RestaurantTest" />
-      <option name="METHOD_NAME" value="unmarshalIntoRestaurant" />
+      <option name="METHOD_NAME" value="handleIncorrectManagerRoleUpdatesResponseHandler" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReviewTest.responseGeneratorGeneratesResponseFor2InvalidReviewFields" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gorgeousIE1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ReviewTest" />
+      <option name="METHOD_NAME" value="responseGeneratorGeneratesResponseFor2InvalidReviewFields" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReviewTest.responseGeneratorGeneratesResponseFor4InvalidReviewFields" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gorgeousIE1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ReviewTest" />
+      <option name="METHOD_NAME" value="responseGeneratorGeneratesResponseFor4InvalidReviewFields" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReviewTest.responseGeneratorGeneratesResponseForInvalidReview" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gorgeousIE1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ReviewTest" />
+      <option name="METHOD_NAME" value="responseGeneratorGeneratesResponseForInvalidReview" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReviewTest.responseGeneratorGeneratesSuccessfullResponseForValidReview" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gorgeousIE1" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ReviewTest" />
+      <option name="METHOD_NAME" value="responseGeneratorGeneratesSuccessfullResponseForValidReview" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -169,11 +176,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.CommandHandlerTest.searchRestaurantByTypeReturnsCorrectResponseForNoneExistingRestaurant" />
-        <item itemvalue="JUnit.CommandHandlerTest.searchRestaurantByTYpeReturnsCorrectResponseForExistingRestaurant" />
-        <item itemvalue="JUnit.RestaurantTest.unmarshalIntoRestaurant" />
-        <item itemvalue="JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForExistingRestaurant" />
+        <item itemvalue="JUnit.ReviewTest.responseGeneratorGeneratesResponseFor4InvalidReviewFields" />
+        <item itemvalue="JUnit.ReviewTest.responseGeneratorGeneratesResponseFor2InvalidReviewFields" />
+        <item itemvalue="JUnit.ReviewTest.responseGeneratorGeneratesResponseForInvalidReview" />
+        <item itemvalue="JUnit.ReviewTest.responseGeneratorGeneratesSuccessfullResponseForValidReview" />
+        <item itemvalue="JUnit.RestaurantTest.handleIncorrectManagerRoleUpdatesResponseHandler" />
       </list>
     </recent_temporary>
   </component>
@@ -197,6 +204,7 @@
       <workItem from="1708753030759" duration="8591000" />
       <workItem from="1708784755283" duration="219000" />
       <workItem from="1708799977937" duration="5507000" />
+      <workItem from="1708876181031" duration="3186000" />
     </task>
     <task id="LOCAL-00001" summary="feat !: project was created&#10;Breaking change: maven dependencies were specified">
       <option name="closed" value="true" />
@@ -398,14 +406,21 @@
       <option name="project" value="LOCAL" />
       <updated>1708844815912</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="feat: searchRestaurantByType command handler and its tests were added">
+      <option name="closed" value="true" />
+      <created>1708845806229</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1708845806229</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat !: project was created&#10;Breaking change: maven dependencies were specified" />
     <MESSAGE value="feat : User class and attributes were created and defined" />
     <MESSAGE value="feat : User validators were creted" />
     <MESSAGE value="feat : User validators' unit tests were written&#10;Breaking Change: A new Test suite was created" />
@@ -430,6 +445,7 @@
     <MESSAGE value="fix : try catch statement added" />
     <MESSAGE value="feat: add Reservation object" />
     <MESSAGE value="feat: searchRestaurantByName command case was added to handler caller" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: searchRestaurantByName command case was added to handler caller" />
+    <MESSAGE value="feat: searchRestaurantByType command handler and its tests were added" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: searchRestaurantByType command handler and its tests were added" />
   </component>
 </project>
