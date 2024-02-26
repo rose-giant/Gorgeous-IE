@@ -15,6 +15,11 @@
             <artifactId>jackson-databind</artifactId>
             <version>LATEST</version>
         </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>LATEST</version>
+        </dependency>
 
         <dependency>
             <groupId>junit</groupId>
