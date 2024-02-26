@@ -1,5 +1,7 @@
 package mizdooni;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -99,6 +101,15 @@ public class CommandHandler {
         return null;
     }
 
+    private Reservation findReservationByNumber(int reservationNumber) {
+        for(Reservation res: reservations) {
+            if(Objects.equals(res.reservationNumber, reservationNumber)) {
+                return res;
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Table> findTablesByRestaurantName(String restaurantName) {
         ArrayList<Table> wantedTables = new ArrayList<>();
         for(Table tb: tables) {
@@ -153,6 +164,7 @@ public class CommandHandler {
             Restourant restourant = new Restourant();
             restourant.address = new Address();
             restourant.responseHandler = new ResponseHandler();
+            ObjectMapper om = new ObjectMapper();
             String returnedData;
             Restourant relatedRestaurant;
             User relatedUser;
@@ -244,7 +256,24 @@ public class CommandHandler {
                     }
 
                     reservations.add(reservation);
+
+                    //Because we need to handle showReservationHistory command, it's better to add reservation to the ordering user too.
+                    relatedUser.addReservation(reservation);
+
                     returnedData = String.format("{“reservationNumber”: %d}", reservation.reservationNumber);
+                    this.responseHandler = new ResponseHandler(true, returnedData);
+                    break;
+
+                case "cancelReservation":
+                    Reservation.CancelReservation cr = om.readValue(this.jsonString, Reservation.CancelReservation.class);
+                    Reservation targetReservation = findReservationByNumber(cr.reservationNumber);
+                    if(targetReservation == null){
+                        throw new Exception("Reservation not found");
+                    }else{
+
+                    }
+                    reservations.remove(targetReservation);
+                    returnedData = "Reservation cancelled successfully";
                     this.responseHandler = new ResponseHandler(true, returnedData);
                     break;
 

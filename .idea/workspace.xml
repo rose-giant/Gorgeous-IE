@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="feat: check reservations dateTime conflict">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="feat: check reservation time be in working hours of restaurant">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Reservation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Restourant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Restourant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -413,7 +413,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708838616135</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="feat: add checkOutdatedDateTimes method for reservation">
+      <option name="closed" value="true" />
+      <created>1708927602067</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1708927602067</updated>
+    </task>
+    <task id="LOCAL-00030" summary="feat: check reservation time be in working hours of restaurant">
+      <option name="closed" value="true" />
+      <created>1708927680349</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1708927680349</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -431,8 +447,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat : User validators' unit tests were written&#10;Breaking Change: A new Test suite was created" />
-    <MESSAGE value="feat : Address class and test was written &#10;Breaking Change: All validators were specified and tested" />
     <MESSAGE value="feat : Command Handler class was made&#10;Breaking Change: Program's main loop was specified" />
     <MESSAGE value="feat: Response Handler class was made&#10;Breaking Change: Commands are able to be parsed now" />
     <MESSAGE value="feat: Command Caller switch case was implemented" />
@@ -456,6 +470,8 @@
     <MESSAGE value="feat: add reserveTable handler" />
     <MESSAGE value="fix: dateTime format added to table object" />
     <MESSAGE value="feat: check reservations dateTime conflict" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: check reservations dateTime conflict" />
+    <MESSAGE value="feat: add checkOutdatedDateTimes method for reservation" />
+    <MESSAGE value="feat: check reservation time be in working hours of restaurant" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: check reservation time be in working hours of restaurant" />
   </component>
 </project>

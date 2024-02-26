@@ -18,6 +18,7 @@ public class User {
 
     public ResponseHandler responseHandler;
     public ArrayList<User> users = new ArrayList<>();
+    public ArrayList<Reservation> reservations = new ArrayList<>();
     public boolean isRoleValid(String role) {
         validRoles.add(MANAGER_ROLE);
         validRoles.add(CLIENT_ROLE);
@@ -135,5 +136,9 @@ public class User {
         this.username = user.username;
         this.email = user.email;
         this.password = user.password;
+    }
+
+    public void addReservation(Reservation reservation) {
+        reservations.add(reservation);
     }
 }
