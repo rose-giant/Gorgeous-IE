@@ -2,6 +2,8 @@ package mizdooni;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.util.Objects;
 
@@ -15,7 +17,9 @@ public class ResponseHandler {
         responseBody = body;
     }
     public String marshalResponse(ResponseHandler responseHandler) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper objectMapper = JsonMapper.builder()
+                                    .addModule(new JavaTimeModule())
+                                    .build();
         String jsonStr = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseHandler);
         return jsonStr;
     }

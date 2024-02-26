@@ -2,29 +2,19 @@ package mizdooni;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
-//reserveReservation {"username": "user1", "restaurantName": "restaurant1", "reservationNumber": 1,
-//        "datetime": "2024-02-14 21:00"}
 public class Reservation {
     public int reservationNumber;
     public String username;
-
     public String restaurantName;
-
     public int tableNumber;
-    
     public String datetime;
-
     public LocalDateTime datetimeFormatted;
-
     private static int counter;
 
     @JsonCreator
@@ -72,18 +62,35 @@ public class Reservation {
         }
     }
 
-    @Getter
-    @Setter
+
     static class CancelReservation{
         public String username;
         public int reservationNumber;
+        @JsonCreator
+        public CancelReservation(@JsonProperty("username") String username, @JsonProperty("reservationNumber") int reservationNumber) {
+            this.username = username;
+            this.reservationNumber = reservationNumber;
+        }
     }
     static class ResNumber{
         public int reservationNumber;
         public ResNumber(int rn){reservationNumber = rn;};
     }
 
-
+    static class ReservationInfo{
+        public int reservationNumber;
+        public String restaurantName;
+        public int tableNumber;
+        public String datetime;
+        @JsonCreator
+        public ReservationInfo(@JsonProperty("restaurantName") String restaurantName, @JsonProperty("reservationNumber") int reservationNumber,
+                               @JsonProperty("tableNumber") int tableNumber, @JsonProperty("datetime") String datetime) {
+            this.tableNumber = tableNumber;
+            this.reservationNumber = reservationNumber;
+            this.datetime = datetime;
+            this.restaurantName = restaurantName;
+        }
+    }
     private void checkOutdatedDateTimes(LocalDateTime datetime) throws Exception {
         if(LocalDateTime.now().isAfter(datetime)) {
             throw new Exception("Date expired!");

@@ -169,16 +169,27 @@ public class User {
     }
 
     public  ReservationList getReservationHistory() {
-        return new ReservationList(reservations);
+        ArrayList<Reservation.ReservationInfo> resInfo = new ArrayList<>();
+        for (Reservation res:reservations) {
+            resInfo.add(new Reservation.ReservationInfo(res.restaurantName, res.reservationNumber, res.tableNumber, res.datetime));
+        }
+        return new ReservationList(resInfo);
     }
 
-    class UserName{
+    static class UserName{
         public String username;
-        UserName(String un){username = un;};
+        @JsonCreator
+        public UserName(@JsonProperty("username") String username) {
+            this.username = username;
+        }
     }
 
-    class ReservationList{
-        public ArrayList<Reservation> reservationHistory;
-        public ReservationList(ArrayList<Reservation> rl){reservationHistory = rl;};
+    static class ReservationList{
+        public ArrayList<Reservation.ReservationInfo> reservationHistory;
+        @JsonCreator
+        public ReservationList(@JsonProperty("reservationHistory") ArrayList<Reservation.ReservationInfo> reservationHistory) {
+            this.reservationHistory = reservationHistory;
+        }
     }
+
 }

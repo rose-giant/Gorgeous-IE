@@ -1,6 +1,9 @@
 package mizdooni;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -164,7 +167,7 @@ public class CommandHandler {
             Restourant restourant = new Restourant();
             restourant.address = new Address();
             restourant.responseHandler = new ResponseHandler();
-            ObjectMapper om = new ObjectMapper();
+            ObjectMapper om = JsonMapper.builder().addModule(new JavaTimeModule()).build();
             Object returnedData;
             Restourant relatedRestaurant;
             User relatedUser;
@@ -268,10 +271,10 @@ public class CommandHandler {
                     Reservation.CancelReservation cr = om.readValue(this.jsonString, Reservation.CancelReservation.class);
                     relatedUser = findUserByUserName(cr.username);
                     relatedReservation = findReservationByNumber(cr.reservationNumber);
-                    relatedTable = findTableByRestaurantNameAndTableNumber(relatedReservation.restaurantName, relatedReservation.tableNumber);
                     if(!relatedUser.hasReserved(cr.reservationNumber)){
                         throw new Exception("Reservation not found");
                     }
+                    relatedTable = findTableByRestaurantNameAndTableNumber(relatedReservation.restaurantName, relatedReservation.tableNumber);
                     relatedReservation.checkSafetyRemoval();
 
                     reservations.remove(relatedReservation);
@@ -287,6 +290,17 @@ public class CommandHandler {
                     relatedUser = findUserByUserName(un.username);
 
                     returnedData = relatedUser.getReservationHistory();
+                    this.responseHandler = new ResponseHandler(true, returnedData);
+                    break;
+
+                case "showAvailableTables":
+                    Restourant.RestaurantName rn = om.readValue(this.jsonString, Restourant.RestaurantName.class);
+                    relatedRestaurant = findRestaurantByName(rn.restaurantName);
+
+                    if (relatedRestaurant == null) {
+                        throw new Exception("Restaurant name not found.");
+                    }
+                    returnedData = relatedRestaurant.getAvailableTables();
                     this.responseHandler = new ResponseHandler(true, returnedData);
                     break;
 

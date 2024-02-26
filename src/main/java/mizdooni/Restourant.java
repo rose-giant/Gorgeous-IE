@@ -1,10 +1,13 @@
 package mizdooni;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Restourant {
@@ -18,6 +21,28 @@ public class Restourant {
     public String description;
     public Address address = new Address();
     public ResponseHandler responseHandler;
+    private ArrayList<Table.TableInfo> tables = new ArrayList<>();
+
+    public void addTable(Table table){
+        ArrayList<LocalDateTime> availableTimes = new ArrayList<>();
+        LocalDateTime current = LocalDateTime.parse("2024-02-26t"+startTime);
+        LocalTime startDate = LocalTime.parse(startTime);
+        LocalTime endDate = LocalTime.parse(endTime);
+        int diff = endDate.getHour() - startDate.getHour();
+        for (int i = 0; i < diff; i++) {
+            availableTimes.add(current.plusDays(i));
+        }
+        Table.TableInfo tableInfo = new Table.TableInfo(table.tableNumber, table.seatsNumber,availableTimes);
+        tables.add(tableInfo);
+    }
+//    public static void main(String[] args){
+//        Table table = new Table(1, "", "", 4);
+//        Restourant restourant = new Restourant();
+//        restourant.startTime = "20:00";
+//        restourant.endTime = "23:00";
+//        restourant.addTable(table);
+//        System.out.println(restourant.tables.get(0).availableDateTimes.get(0));
+//    }
 
     public boolean isRestaurantNameValid(String name) {
         if (name.isEmpty()) {
@@ -145,13 +170,7 @@ public class Restourant {
         Restourant restourant  = om.readValue(jsonString, Restourant.class);
         return restourant;
     }
-    public static void main(String[] args){
-        Restourant res = new Restourant();
-        res.startTime = "00:00";
-        res.endTime = "02:00";
-        System.out.println(res.isOpenAt(LocalDateTime.parse("2024-02-14 03:00")));
 
-    }
     public boolean isOpenAt(LocalDateTime datetime) {
         LocalTime time = datetime.toLocalTime();
         LocalTime parsedStartTime = LocalTime.parse(startTime);
@@ -159,5 +178,25 @@ public class Restourant {
         if(parsedStartTime.isBefore(time) && parsedEndTime.isAfter(time)){
             return true;
         }else return false;
+    }
+
+    public Object getAvailableTables() {
+        return new AvailableTimes(tables);
+    }
+
+    static public class AvailableTimes{
+        ArrayList<Table.TableInfo>availableTables;
+        @JsonCreator
+        public AvailableTimes(@JsonProperty("availableTables") ArrayList<Table.TableInfo> availableTables) {
+            this.availableTables = availableTables;
+        }
+    }
+    static public class RestaurantName {
+        public String restaurantName;
+        @JsonCreator
+        public RestaurantName(@JsonProperty("restaurantName") String restaurantName) {
+            this.restaurantName = restaurantName;
+        }
+
     }
 }
