@@ -48,7 +48,7 @@ public class CommandHandler {
         return exists;
     }
 
-    public boolean restaurantManagerRoleIsCorrect(String managerUsername) {
+    public boolean userRoleIsManager(String managerUsername) {
         boolean isCorrect = false;
         for(User value: users) {
             if (Objects.equals(managerUsername, value.username)) {
@@ -109,11 +109,50 @@ public class CommandHandler {
         return wantedTables;
     }
 
+    public ResponseHandler searchRestaurantByNameHandler(String jsonString) throws JsonProcessingException {
+        Restourant restourant = new Restourant();
+        restourant = restourant.unmarshlIntoRestaurant(jsonString);
+        ResponseHandler responseHandler1 = new ResponseHandler();
+        responseHandler1.responseBody = "Restaurant not found.";
+        responseHandler1.responseStatus = false;
+
+        for(Restourant value : restaurants) {
+            if (Objects.equals(restourant.name, value.name)) {
+                responseHandler1.responseBody = value.marshalRestaurant(value);
+                responseHandler1.responseStatus = true;
+                break;
+            }
+        }
+
+        return responseHandler1;
+    }
+
+    public ResponseHandler searchRestaurantByTypeHandler(String jsonString) throws JsonProcessingException {
+        Restourant restourant = new Restourant();
+        restourant = restourant.unmarshlIntoRestaurant(jsonString);
+        ResponseHandler responseHandler1 = new ResponseHandler();
+        responseHandler1.responseBody = "Restaurant not found.";
+        responseHandler1.responseStatus = false;
+
+        for(Restourant value : restaurants) {
+            if (Objects.equals(restourant.type, value.type)) {
+                responseHandler1.responseBody = value.marshalRestaurant(value);
+                responseHandler1.responseStatus = true;
+                break;
+            }
+        }
+
+        return responseHandler1;
+    }
+
     public void CommandHandlerCaller() throws JsonProcessingException {
         try{
             User user = new User();
             user.address = new Address();
             user.responseHandler = new ResponseHandler();
+            Restourant restourant = new Restourant();
+            restourant.address = new Address();
+            restourant.responseHandler = new ResponseHandler();
             String returnedData;
             Restourant relatedRestaurant;
             User relatedUser;
@@ -132,21 +171,18 @@ public class CommandHandler {
 
                     break;
                 case "addRestaurant":
-                    Restourant restourant = new Restourant();
-                    restourant.address = new Address();
-                    restourant.responseHandler = new ResponseHandler();
                     restourant.addRestaurantHandler(this.jsonString);
 
                     if (!restaurantManagerUsernameExists(restourant.managerUsername)) {
-                        restourant.handleNoneExistingUsername();
+                        restourant.handleOuterErrorMessage(" manager username does not exist.");
                     }
 
-                    if(!restaurantManagerRoleIsCorrect(restourant.managerUsername)) {
-                        restourant.handleIncorrectManagerRole();
+                    if(!userRoleIsManager(restourant.managerUsername)) {
+                        restourant.handleOuterErrorMessage(" manager role is not correct.");
                     }
 
                     if(restaurantNameAlreadyExists(restourant.name)) {
-                        restourant.handleRepeatedRestaurantName();
+                        restourant.handleOuterErrorMessage(" restaurant name is repeated.");
                     }
 
                     if (restourant.responseHandler.responseStatus) {
@@ -155,6 +191,14 @@ public class CommandHandler {
                     }
 
                     this.responseHandler = restourant.responseHandler;
+                    break;
+
+                case "searchRestaurantsByName":
+                    this.responseHandler = searchRestaurantByNameHandler(this.jsonString);
+                    break;
+
+                case "searchRestaurantsByType":
+                    this.responseHandler = searchRestaurantByTypeHandler(this.jsonString);
                     break;
 
                 case "addTable":
@@ -174,7 +218,7 @@ public class CommandHandler {
                     }
 
                     tables.add(table);
-                    returnedData = "Table added successfully";
+                    returnedData = "Table added successfully.";
                     this.responseHandler = new ResponseHandler(true, returnedData);
                     break;
 
@@ -198,26 +242,48 @@ public class CommandHandler {
                     returnedData = String.format("{“reservationNumber”: %d}", reservation.reservationNumber);
                     this.responseHandler = new ResponseHandler(true, returnedData);
                     break;
+
+                case "addReview":
+                    Review review = new Review();
+                    review.addReviewHandler(this.jsonString);
+                    User user1 = new User();
+                    user1.username = review.username;
+                    if(!userAlreadyExists(user1)) {
+                        review.handleOuterErrorMessage(" username does not exist.");
+                    }
+
+                    if(userRoleIsManager(review.username)) {
+                        review.handleOuterErrorMessage(" username role is not client.");
+                    }
+
+                    if(!restaurantNameAlreadyExists(review.restaurantName)) {
+                        review.handleOuterErrorMessage(" restaurant name does not exist.");
+                    }
+
+                    this.responseHandler = review.responseHandler;
+                    break;
                 default:
             }
 
         }catch (Exception error){
             this.responseHandler = new ResponseHandler(false, error.getMessage());
         }
-
     }
 
     public void mainHandler() throws JsonProcessingException {
         Scanner scanner = new Scanner(System.in);
         String inputString;
         while (!(inputString =scanner.nextLine()).equals("stop")) {
-            System.out.println("How can I help you baby?");
             parseCommand(inputString);
             CommandHandlerCaller();
             System.out.println(this.responseHandler.marshalResponse(this.responseHandler));
         }
     }
 }
+
+//addReview {"foodRate": 12, "comment":"a", "serviceRate":3, "ambianceRate":1, "overall":30, "username": "rose", "restaurantName": "nakhl"}
+//addReview {"foodRate": 12, "comment":"", "serviceRate":3, "ambianceRate":1, "overall":3}
+//searchRestaurantsByType {"type":"italian"}
 
 //addUser {"role":"manager","username":"lisa","password":"John Doe","email":"jooe@example.com", "address":{"city":"milan", "country":"italy"}}
 //addRestaurant {"name":"wwe", "description":"d", "type":"a", "managerUsername":"lisa", "startTime":"11:00", "endTime":"12:0", "address":{"city":"c", "country":"i", "street":"k"}}
@@ -229,7 +295,7 @@ public class CommandHandler {
 
 
 
-
+//addReview {"foodRate": 2, "comment":"a", "serviceRate":3, "ambianceRate":1, "overall":3, "username": "lia", "restaurantName": "wwe"}
 
 
 
