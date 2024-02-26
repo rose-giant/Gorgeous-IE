@@ -1,28 +1,40 @@
 package mizdooni;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
-//reserveReservation {“username”: “user1”, “restaurantName”: “restaurant1”, “reservationNumber”: 1,
-//        “datetime”: “2024-02-14 21:00”}
+//reserveReservation {"username": "user1", "restaurantName": "restaurant1", "reservationNumber": 1,
+//        "datetime": "2024-02-14 21:00"}
 public class Reservation {
     public int reservationNumber;
     public String username;
 
     public String restaurantName;
 
-    public String tableNumber;
+    public int tableNumber;
     
     public String datetime;
 
+    private LocalDateTime datetimeFormatted;
+
     private static int counter;
+
+    @JsonCreator
+    public Reservation(@JsonProperty("username") String username, @JsonProperty("restaurantName") String restaurantName,
+                       @JsonProperty("tableNumber") int tableNumber, @JsonProperty("datetime") String datetime) {
+        this.username = username;
+        this.restaurantName = restaurantName;
+        this.tableNumber = tableNumber;
+        this.datetime  = datetime;
+    }
 
     public Reservation(String jsonString) throws Exception {
         counter += 1;
@@ -31,33 +43,51 @@ public class Reservation {
         username = reservation.username;
         restaurantName = reservation.restaurantName;
         tableNumber = reservation.tableNumber;
-        checkOutdatedDateTimes(reservation.datetime);
+
         checkDateTimeFormat(reservation.datetime);
+        datetime = reservation.datetime;
+        datetimeFormatted = LocalDateTime.parse(reservation.datetime.replace(' ', 't'));
+
+        checkOutdatedDateTimes(datetimeFormatted);
         reservationNumber = counter;
     }
-    public Reservation(){}
-//    public static void main(String[] args){
-//        Reservation res = new Reservation();
-//        res.datetime = "2024-02-14 1:00";
+//    public static void main(String[] args) throws JsonProcessingException {
+//        String resStr = "{\"username\": \"user1\", \"restaurantName\": \"restaurant1\", \"tableNumber\": 1,\"datetime\": \"2024-02-14 21:00\"}";
+//
+//        ObjectMapper om = new ObjectMapper();
 //        try{
-//            LocalDateTime lt = LocalDateTime.parse("2024-02-26t01:00");
-//            System.out.println(lt.toLocalDate());
-////        res.checkOutdatedDateTimes("2024-02-26 01:00");
-//        }catch (Exception error){
-//            System.out.println(error.getMessage());
+//            Reservation reservation  = om.readValue(resStr, Reservation.class);
+//            System.out.println("good");
 //        }
+//        catch (Exception e){
+//            System.out.println(e.getMessage());
+//        }
+//
 //    }
-    private void checkOutdatedDateTimes(String datetime) throws Exception {
-        String[] dt= datetime.split(" ");
-        if(LocalDate.now().isAfter(LocalDate.parse(dt[0])))
+
+    public void checkSafetyRemoval() throws Exception {
+        LocalDateTime currentDate = LocalDateTime.now();
+        if(currentDate.isAfter(datetimeFormatted)){
+            throw new Exception("Reservation has expired.");
+        }
+    }
+
+    @Getter
+    @Setter
+    static class CancelReservation{
+        public String username;
+        public int reservationNumber;
+    }
+
+    private void checkOutdatedDateTimes(LocalDateTime datetime) throws Exception {
+        if(LocalDateTime.now().isAfter(datetime)) {
             throw new Exception("Date expired!");
-        if(LocalDate.now().isEqual(LocalDate.parse(dt[0])) && LocalTime.now().isAfter(LocalTime.parse(dt[1])))
-            throw new Exception("Time expired!");
+        }
     }
 
     public void checkDateTimeFormat(String datetime) throws Exception {
-        if(datetime.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d \\d\\d:00")){
-            this.datetime = datetime;
-        }else throw new Exception("DateTime format in not correct");
+        if(!datetime.matches("\\d\\d\\d\\d-\\d\\d-\\d\\d \\d\\d:00")){
+            throw new Exception("DateTime format in not correct");
+        }
     }
 }
