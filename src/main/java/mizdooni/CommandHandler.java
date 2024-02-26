@@ -156,6 +156,7 @@ public class CommandHandler {
             String returnedData;
             Restourant relatedRestaurant;
             User relatedUser;
+            Table relatedTable;
 
             switch (this.command){
                 case "addUser":
@@ -226,6 +227,7 @@ public class CommandHandler {
                     Reservation reservation = new Reservation(this.jsonString);
                     relatedRestaurant = findRestaurantByName(reservation.restaurantName);
                     relatedUser = findUserByUserName(reservation.username);
+                    relatedTable = findTableByRestaurantNameAndTableNumber(reservation.restaurantName, reservation.tableNumber);
                     if (relatedUser == null){
                         throw new Exception("Username not found.");
                     } else if (relatedUser.role == User.MANAGER_ROLE) {
@@ -233,9 +235,12 @@ public class CommandHandler {
                     }
                     if (relatedRestaurant == null){
                         throw new Exception("Restaurant name not found.");
-                    }
-                    if (findTableByRestaurantNameAndTableNumber(reservation.restaurantName, reservation.tableNumber) == null){
-                        throw new Exception("Table number already exists.");
+                    } else if (relatedTable == null){
+                        throw new Exception("Table number not found.");
+                    } else if (relatedTable.hasDateTimeConflict(reservation)) {
+                        throw new Exception("This table already reserved");
+                    } else if (!relatedRestaurant.isOpenAt(reservation.datetime)){
+                        throw new Exception("Restaurant doesn't work at this DateTime");
                     }
 
                     reservations.add(reservation);

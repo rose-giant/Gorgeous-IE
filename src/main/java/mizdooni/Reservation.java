@@ -35,15 +35,17 @@ public class Reservation {
         checkDateTimeFormat(reservation.datetime);
         reservationNumber = counter;
     }
-//    public Reservation(){}
-////    public static void main(String[] args){
-////        Reservation res = new Reservation();
-////        res.datetime = "2024-02-14 1:00";
-////        try{
+    public Reservation(){}
+//    public static void main(String[] args){
+//        Reservation res = new Reservation();
+//        res.datetime = "2024-02-14 1:00";
+//        try{
+//            LocalDateTime lt = LocalDateTime.parse("2024-02-26t01:00");
+//            System.out.println(lt.toLocalDate());
 ////        res.checkOutdatedDateTimes("2024-02-26 01:00");
-////        }catch (Exception error){
-////            System.out.println(error.getMessage());
-////        }
+//        }catch (Exception error){
+//            System.out.println(error.getMessage());
+//        }
 //    }
     private void checkOutdatedDateTimes(String datetime) throws Exception {
         String[] dt= datetime.split(" ");
