@@ -1,14 +1,15 @@
 package mizdooni;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class Table {
-    public String tableNumber;
+    public int tableNumber;
 
     public String restaurantName;
 
@@ -17,6 +18,15 @@ public class Table {
     public ArrayList<String> reservedDateTimes;
 
     public int seatsNumber;
+
+    @JsonCreator
+    public Table(@JsonProperty("tableNumber") int tableNumber, @JsonProperty("restaurantName") String restaurantName,
+                       @JsonProperty("managerUsername") String managerUsername, @JsonProperty("seatsNumber") int seatsNumber) {
+        this.managerUsername = managerUsername;
+        this.restaurantName = restaurantName;
+        this.tableNumber = tableNumber;
+        this.seatsNumber  = seatsNumber;
+    }
 
     public Table(String jsonString) throws JsonProcessingException {
         ObjectMapper om = new ObjectMapper();

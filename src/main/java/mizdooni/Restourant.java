@@ -3,6 +3,7 @@ package mizdooni;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 
@@ -144,19 +145,18 @@ public class Restourant {
         Restourant restourant  = om.readValue(jsonString, Restourant.class);
         return restourant;
     }
-//    public static void main(String[] args){
-//        Restourant res = new Restourant();
-//        res.startTime = "00:00";
-//        res.endTime = "02:00";
-//        System.out.println(res.isOpenAt("2024-02-14 03:00"));
-//
-//    }
-    public boolean isOpenAt(String datetime) {
-        String[] dateAndTime = datetime.split(" ");
-        LocalTime time = LocalTime.parse(dateAndTime[1]);
-        LocalTime startTime = LocalTime.parse(this.startTime);
-        LocalTime endTime = LocalTime.parse(this.endTime);
-        if(startTime.isBefore(time) && endTime.isAfter(time)){
+    public static void main(String[] args){
+        Restourant res = new Restourant();
+        res.startTime = "00:00";
+        res.endTime = "02:00";
+        System.out.println(res.isOpenAt(LocalDateTime.parse("2024-02-14 03:00")));
+
+    }
+    public boolean isOpenAt(LocalDateTime datetime) {
+        LocalTime time = datetime.toLocalTime();
+        LocalTime parsedStartTime = LocalTime.parse(startTime);
+        LocalTime parsedEndTime = LocalTime.parse(endTime);
+        if(parsedStartTime.isBefore(time) && parsedEndTime.isAfter(time)){
             return true;
         }else return false;
     }

@@ -1,4 +1,6 @@
 package mizdooni;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class User {
     public ResponseHandler responseHandler;
     public ArrayList<User> users = new ArrayList<>();
     public ArrayList<Reservation> reservations = new ArrayList<>();
+
     public boolean isRoleValid(String role) {
         validRoles.add(MANAGER_ROLE);
         validRoles.add(CLIENT_ROLE);
@@ -140,5 +143,14 @@ public class User {
 
     public void addReservation(Reservation reservation) {
         reservations.add(reservation);
+    }
+
+    public boolean hasReserved(int reservationNumber) {
+        for (Reservation reservation: reservations) {
+            if (reservation.reservationNumber == reservationNumber){
+                return true;
+            }
+        }
+        return false;
     }
 }

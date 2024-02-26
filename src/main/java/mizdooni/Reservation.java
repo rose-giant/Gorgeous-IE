@@ -23,7 +23,7 @@ public class Reservation {
     
     public String datetime;
 
-    private LocalDateTime datetimeFormatted;
+    public LocalDateTime datetimeFormatted;
 
     private static int counter;
 

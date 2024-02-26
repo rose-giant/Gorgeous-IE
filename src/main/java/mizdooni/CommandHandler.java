@@ -83,7 +83,7 @@ public class CommandHandler {
         return null;
     }
 
-    public Table findTableByRestaurantNameAndTableNumber(String restaurantName, String tableNumber) {
+    public Table findTableByRestaurantNameAndTableNumber(String restaurantName, int tableNumber) {
         for(Table tb: tables) {
             if(Objects.equals(tb.restaurantName, restaurantName) && Objects.equals(tb.tableNumber, tableNumber)) {
                 return tb;
@@ -169,6 +169,7 @@ public class CommandHandler {
             Restourant relatedRestaurant;
             User relatedUser;
             Table relatedTable;
+            Reservation relatedReservation;
 
             switch (this.command){
                 case "addUser":
@@ -251,7 +252,8 @@ public class CommandHandler {
                         throw new Exception("Table number not found.");
                     } else if (relatedTable.hasDateTimeConflict(reservation)) {
                         throw new Exception("This table already reserved");
-                    } else if (!relatedRestaurant.isOpenAt(reservation.datetime)){
+                    }
+                    else if (!relatedRestaurant.isOpenAt(reservation.datetimeFormatted)){
                         throw new Exception("Restaurant doesn't work at this DateTime");
                     }
 
@@ -266,13 +268,13 @@ public class CommandHandler {
 
                 case "cancelReservation":
                     Reservation.CancelReservation cr = om.readValue(this.jsonString, Reservation.CancelReservation.class);
-                    Reservation targetReservation = findReservationByNumber(cr.reservationNumber);
-                    if(targetReservation == null){
+                    relatedUser = findUserByUserName(cr.username);
+                    relatedReservation = findReservationByNumber(cr.reservationNumber);
+                    if(!relatedUser.hasReserved(cr.reservationNumber)){
                         throw new Exception("Reservation not found");
-                    }else{
-
                     }
-                    reservations.remove(targetReservation);
+                    relatedReservation.checkSafetyRemoval();
+                    reservations.remove(relatedReservation);
                     returnedData = "Reservation cancelled successfully";
                     this.responseHandler = new ResponseHandler(true, returnedData);
                     break;
