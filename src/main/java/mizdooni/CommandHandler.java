@@ -165,7 +165,7 @@ public class CommandHandler {
             restourant.address = new Address();
             restourant.responseHandler = new ResponseHandler();
             ObjectMapper om = new ObjectMapper();
-            String returnedData;
+            Object returnedData;
             Restourant relatedRestaurant;
             User relatedUser;
             Table relatedTable;
@@ -250,19 +250,17 @@ public class CommandHandler {
                         throw new Exception("Restaurant name not found.");
                     } else if (relatedTable == null){
                         throw new Exception("Table number not found.");
-                    } else if (relatedTable.hasDateTimeConflict(reservation)) {
-                        throw new Exception("This table already reserved");
-                    }
-                    else if (!relatedRestaurant.isOpenAt(reservation.datetimeFormatted)){
+                    } else if (!relatedRestaurant.isOpenAt(reservation.datetimeFormatted)){
                         throw new Exception("Restaurant doesn't work at this DateTime");
                     }
 
+                    relatedTable.addReservation(reservation);
                     reservations.add(reservation);
 
                     //Because we need to handle showReservationHistory command, it's better to add reservation to the ordering user too.
                     relatedUser.addReservation(reservation);
 
-                    returnedData = String.format("{“reservationNumber”: %d}", reservation.reservationNumber);
+                    returnedData = new Reservation.ResNumber(reservation.reservationNumber);
                     this.responseHandler = new ResponseHandler(true, returnedData);
                     break;
 

@@ -3,12 +3,14 @@ package mizdooni;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.Objects;
+
 public class ResponseHandler {
     public boolean responseStatus;
-    public String responseBody;
+    public Object responseBody;
 
     public ResponseHandler(){};
-    public ResponseHandler(boolean status, String body){
+    public ResponseHandler(boolean status, Object body){
         responseStatus = status;
         responseBody = body;
     }

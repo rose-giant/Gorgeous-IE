@@ -78,6 +78,11 @@ public class Reservation {
         public String username;
         public int reservationNumber;
     }
+    static class ResNumber{
+        public int reservationNumber;
+        public ResNumber(int rn){reservationNumber = rn;};
+    }
+
 
     private void checkOutdatedDateTimes(LocalDateTime datetime) throws Exception {
         if(LocalDateTime.now().isAfter(datetime)) {

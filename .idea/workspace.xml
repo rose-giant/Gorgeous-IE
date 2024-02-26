@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="feat: jsonCreator annotation added so ObjectMapper can map just some fields">
+    <list default="true" id="a1100196-ce9e-4911-a66b-ae9c43c85a45" name="Changes" comment="fix: cancelReservation added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/mizdooni/text" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/CommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Restourant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Restourant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Reservation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/ResponseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/ResponseHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/Table.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/Table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mizdooni/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mizdooni/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +101,20 @@
       <recent name="mizdooni" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Reservation">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="mizdooni.Main" />
+      <module name="gorgeousIE1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mizdooni.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Reservation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="mizdooni.Reservation" />
       <module name="gorgeousIE1" />
@@ -147,23 +161,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RestaurantTest.marshalRestaurantJsonString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gorgeousIE1" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="RestaurantTest" />
-      <option name="METHOD_NAME" value="marshalRestaurantJsonString" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Reservation" />
         <item itemvalue="Application.Restourant" />
         <item itemvalue="JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForExistingRestaurant" />
         <item itemvalue="JUnit.CommandHandlerTest.searchRestaurantByNameReturnsCorrectResponseForNoneExistingRestaurant" />
-        <item itemvalue="JUnit.RestaurantTest.marshalRestaurantJsonString" />
       </list>
     </recent_temporary>
   </component>
@@ -444,7 +448,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708943924400</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="fix: cancelReservation added">
+      <option name="closed" value="true" />
+      <created>1708949310557</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1708949310557</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,7 +474,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="feat: Command Caller switch case was implemented" />
     <MESSAGE value="feat: unmarshaling tinto userobject and response generation was added to user class" />
     <MESSAGE value="feat: unmarshaling tinto userobject and response generation unit tests were added to user test suite" />
     <MESSAGE value="feat: addUser case was added to handler" />
@@ -487,6 +498,7 @@
     <MESSAGE value="feat: check reservation time be in working hours of restaurant" />
     <MESSAGE value="fix: add reservation to the ordering user too" />
     <MESSAGE value="feat: jsonCreator annotation added so ObjectMapper can map just some fields" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: jsonCreator annotation added so ObjectMapper can map just some fields" />
+    <MESSAGE value="fix: cancelReservation added" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: cancelReservation added" />
   </component>
 </project>

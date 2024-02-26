@@ -15,7 +15,7 @@ public class Table {
 
     public String managerUsername;
 
-    public ArrayList<String> reservedDateTimes;
+    public ArrayList<String> reservedDateTimes = new ArrayList<>();
 
     public int seatsNumber;
 
@@ -45,4 +45,10 @@ public class Table {
         return false;
     }
 
+    public void addReservation(Reservation reservation) throws Exception {
+        if (hasDateTimeConflict(reservation)) {
+            throw new Exception("This table already reserved");
+        }
+        reservedDateTimes.add(reservation.datetime);
+    }
 }
