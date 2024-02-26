@@ -18,6 +18,16 @@ public class User {
     public String email;
     public Address address;
 
+    @JsonCreator
+    public User(@JsonProperty("role") String role, @JsonProperty("username") String username, @JsonProperty("password") String password,
+                @JsonProperty("email") String email, @JsonProperty("address") Address address){
+        this.role = role;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.address  = address;
+    }
+    public User(){};
     public ResponseHandler responseHandler;
     public ArrayList<User> users = new ArrayList<>();
     public ArrayList<Reservation> reservations = new ArrayList<>();
