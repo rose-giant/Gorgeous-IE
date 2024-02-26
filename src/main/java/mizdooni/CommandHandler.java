@@ -235,6 +235,7 @@ public class CommandHandler {
                     }
 
                     tables.add(table);
+                    relatedRestaurant.addTable(table);
                     returnedData = "Table added successfully.";
                     this.responseHandler = new ResponseHandler(true, returnedData);
                     break;
@@ -256,7 +257,7 @@ public class CommandHandler {
                     } else if (!relatedRestaurant.isOpenAt(reservation.datetimeFormatted)){
                         throw new Exception("Restaurant doesn't work at this DateTime");
                     }
-
+                    relatedRestaurant.reserve(reservation);
                     relatedTable.addReservation(reservation);
                     reservations.add(reservation);
 

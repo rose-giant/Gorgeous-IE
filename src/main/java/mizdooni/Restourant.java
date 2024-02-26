@@ -5,10 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class Restourant {
     public String name;
@@ -25,12 +27,12 @@ public class Restourant {
 
     public void addTable(Table table){
         ArrayList<LocalDateTime> availableTimes = new ArrayList<>();
-        LocalDateTime current = LocalDateTime.parse("2024-02-26t"+startTime);
+        LocalDateTime current = LocalDateTime.parse(LocalDate.now().toString() +'t'+startTime);
         LocalTime startDate = LocalTime.parse(startTime);
         LocalTime endDate = LocalTime.parse(endTime);
         int diff = endDate.getHour() - startDate.getHour();
         for (int i = 0; i < diff; i++) {
-            availableTimes.add(current.plusDays(i));
+            availableTimes.add(current.plusHours(i));
         }
         Table.TableInfo tableInfo = new Table.TableInfo(table.tableNumber, table.seatsNumber,availableTimes);
         tables.add(tableInfo);
@@ -184,14 +186,23 @@ public class Restourant {
         return new AvailableTimes(tables);
     }
 
-    static public class AvailableTimes{
-        ArrayList<Table.TableInfo>availableTables;
+    public void reserve(Reservation reservation) {
+        int tableNum = reservation.tableNumber;
+        for (Table.TableInfo ti: tables) {
+            if(Objects.equals(ti.tableNumber, reservation.tableNumber)){
+                ti.availableDateTimes.remove(reservation.datetime);
+            }
+        }
+    }
+
+    static class AvailableTimes{
+        public ArrayList<Table.TableInfo>availableTables;
         @JsonCreator
         public AvailableTimes(@JsonProperty("availableTables") ArrayList<Table.TableInfo> availableTables) {
             this.availableTables = availableTables;
         }
     }
-    static public class RestaurantName {
+    static class RestaurantName {
         public String restaurantName;
         @JsonCreator
         public RestaurantName(@JsonProperty("restaurantName") String restaurantName) {
