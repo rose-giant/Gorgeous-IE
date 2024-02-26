@@ -268,12 +268,25 @@ public class CommandHandler {
                     Reservation.CancelReservation cr = om.readValue(this.jsonString, Reservation.CancelReservation.class);
                     relatedUser = findUserByUserName(cr.username);
                     relatedReservation = findReservationByNumber(cr.reservationNumber);
+                    relatedTable = findTableByRestaurantNameAndTableNumber(relatedReservation.restaurantName, relatedReservation.tableNumber);
                     if(!relatedUser.hasReserved(cr.reservationNumber)){
                         throw new Exception("Reservation not found");
                     }
                     relatedReservation.checkSafetyRemoval();
+
                     reservations.remove(relatedReservation);
+                    relatedUser.removeReservation(relatedReservation);
+                    relatedTable.removeReservation(relatedReservation);
+
                     returnedData = "Reservation cancelled successfully";
+                    this.responseHandler = new ResponseHandler(true, returnedData);
+                    break;
+
+                case "showReservationHistory":
+                    User.UserName un = om.readValue(this.jsonString, User.UserName.class);
+                    relatedUser = findUserByUserName(un.username);
+
+                    returnedData = relatedUser.getReservationHistory();
                     this.responseHandler = new ResponseHandler(true, returnedData);
                     break;
 

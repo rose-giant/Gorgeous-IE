@@ -163,4 +163,22 @@ public class User {
         }
         return false;
     }
+
+    public void removeReservation(Reservation reservation) {
+        reservations.remove(reservation);
+    }
+
+    public  ReservationList getReservationHistory() {
+        return new ReservationList(reservations);
+    }
+
+    class UserName{
+        public String username;
+        UserName(String un){username = un;};
+    }
+
+    class ReservationList{
+        public ArrayList<Reservation> reservationHistory;
+        public ReservationList(ArrayList<Reservation> rl){reservationHistory = rl;};
+    }
 }
