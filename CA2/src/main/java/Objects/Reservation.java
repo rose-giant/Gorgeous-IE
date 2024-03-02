@@ -1,9 +1,4 @@
-package mizdooni.models;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+package java.Objects;
 import java.time.LocalDateTime;
 
 public class Reservation {

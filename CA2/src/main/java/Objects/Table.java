@@ -1,4 +1,4 @@
-package mizdooni.models;
+package java.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

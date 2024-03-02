@@ -1,4 +1,4 @@
-package mizdooni.models;
+package java.Objects;
 
 public class Address {
     public String city;

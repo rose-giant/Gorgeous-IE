@@ -1,10 +1,4 @@
-package mizdooni.models;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+package java.Objects;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -21,11 +15,11 @@ public class Restourant {
     public Date parsedStartTime;
     public Date parsedEndTIme;
     public String description;
-    public Address address = new Address();
-    public ResponseHandler responseHandler;
-    private ArrayList<Table.TableInfo> tables = new ArrayList<>();
+    public mizdooni.models.Address address = new mizdooni.models.Address();
+    public mizdooni.models.ResponseHandler responseHandler;
+    private ArrayList<mizdooni.models.Table.TableInfo> tables = new ArrayList<>();
 
-    public void addTable(Table table){
+    public void addTable(mizdooni.models.Table table){
         ArrayList<LocalDateTime> availableTimes = new ArrayList<>();
         LocalDateTime current = LocalDateTime.parse(LocalDate.now().toString() +'t'+startTime);
         LocalTime startDate = LocalTime.parse(startTime);

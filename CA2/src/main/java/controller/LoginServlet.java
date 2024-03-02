@@ -1,7 +1,8 @@
-package mizdooni.controller;
-import mizdooni.models.User;
-import mizdooni.models.UserCSVReader;
+package java.controller;
 
+import java.models.UserCSVReader;
+import java.Objects.User;
+import java.models.UserCSVReader;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,10 +16,6 @@ import java.util.Objects;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     public ArrayList<User> users = new ArrayList<>();
-//    public static void main(String[] args) throws ServletException {
-//        LoginServlet loginServlet = new LoginServlet();
-//       // loginServlet.doPost(null,null);
-//    }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
