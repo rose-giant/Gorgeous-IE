@@ -181,7 +181,7 @@ public class User {
         return new ReservationList(resInfo);
     }
 
-    static class UserName{
+    public static class UserName{
         public String username;
         @JsonCreator
         public UserName(@JsonProperty("username") String username) {

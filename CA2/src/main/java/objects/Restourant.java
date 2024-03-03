@@ -195,7 +195,7 @@ public class Restourant {
             this.availableTables = availableTables;
         }
     }
-    static class RestaurantName {
+    public static class RestaurantName {
         public String restaurantName;
         @JsonCreator
         public RestaurantName(@JsonProperty("restaurantName") String restaurantName) {

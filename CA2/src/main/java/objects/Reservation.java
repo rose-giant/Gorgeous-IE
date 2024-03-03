@@ -61,7 +61,7 @@ public class Reservation {
     }
 
 
-    static class CancelReservation{
+    public static class CancelReservation{
         public String username;
         public int reservationNumber;
         @JsonCreator
@@ -70,7 +70,7 @@ public class Reservation {
             this.reservationNumber = reservationNumber;
         }
     }
-    static class ResNumber{
+    public static class ResNumber{
         public int reservationNumber;
         public ResNumber(int rn){reservationNumber = rn;};
     }
