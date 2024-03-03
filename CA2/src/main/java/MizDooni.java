@@ -19,9 +19,9 @@ public class MizDooni {
         reservations = rd.ReadFromFile("reservations", Reservation.class);
     }
 
-//    public addUser(){
-//
-//    }
+    public addUser(){
+
+    }
 }
 //case "addUser":
 //        user.addUserHandler(this.jsonString);
