@@ -17,8 +17,11 @@ public class MizDooni {
         restaurants = rd.ReadFromFile("restaurants", Restourant.class);
         tables = rd.ReadFromFile("tables", Table.class);
         reservations = rd.ReadFromFile("reservations", Reservation.class);
-
     }
+
+//    public addUser(){
+//
+//    }
 }
 //case "addUser":
 //        user.addUserHandler(this.jsonString);
