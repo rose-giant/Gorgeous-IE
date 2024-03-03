@@ -1,4 +1,4 @@
-package java.Objects;
+package objects;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,7 +14,7 @@ public class ResponseHandler {
         responseStatus = status;
         responseBody = body;
     }
-    public String marshalResponse(ResponseHandler responseHandler) throws JsonProcessingException {
+    public String marshalResponse(ResponseHandler responseHandler) throws JsonProcessingException, JsonProcessingException {
         ObjectMapper objectMapper = JsonMapper.builder()
                                     .addModule(new JavaTimeModule())
                                     .build();

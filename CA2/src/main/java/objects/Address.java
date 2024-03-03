@@ -1,4 +1,4 @@
-package java.Objects;
+package objects;
 
 public class Address {
     public String city;

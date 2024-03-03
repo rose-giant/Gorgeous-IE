@@ -1,6 +1,8 @@
-package java.models;
-import java.Objects.Address;
-import java.Objects.User;
+package models;
+
+import objects.Address;
+import objects.User;
+
 import java.io.*;
 import java.util.ArrayList;
 

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %><!DOCTYPE html>
+<%@page import="objects.User" %>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -30,7 +32,7 @@
 <body style="text-align:center">
 
 <h1>Welcome to Mizdooni</h1>
-<form method="post" action="/login">
+<form method="post" action="">
     <label>Username:</label>
     <input name="uesrname" type="text" />
     <br>
@@ -38,6 +40,20 @@
     <input name="password" type="password" />
     <br>
     <button type="submit">Login!</button>
+
+    <%
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+    %>
+
+    <%
+        User user = new User();
+        String a = user.useless("razie");
+    %>
+
+    <h2>
+        <%=a%>
+    </h2>
 </form>
 </body>
 </html>

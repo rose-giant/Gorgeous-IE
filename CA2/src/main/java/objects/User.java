@@ -1,4 +1,10 @@
-package java.Objects;
+package objects;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -135,6 +141,9 @@ public class User {
         this.responseHandler.responseStatus = false;
     }
 
+    public String useless(String name) {
+        return "hello"+name;
+    }
     public void addUserHandler(String jsonString) throws JsonProcessingException {
         User user = unmarshlIntoUser(jsonString);
         user.responseHandler = new ResponseHandler();

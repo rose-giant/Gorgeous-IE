@@ -1,8 +1,8 @@
-package java.controller;
+package controller;
 
-import java.models.UserCSVReader;
-import java.Objects.User;
-import java.models.UserCSVReader;
+import models.UserCSVReader;
+import objects.User;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
