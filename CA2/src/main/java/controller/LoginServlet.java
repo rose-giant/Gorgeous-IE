@@ -22,8 +22,7 @@ public class LoginServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
@@ -56,4 +55,5 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/error");
         }
     }
+
 }
