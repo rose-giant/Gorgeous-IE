@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %><!DOCTYPE html>
-<%@page import="objects.User" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,18 +41,8 @@
     <br>
     <button type="submit">Login!</button>
 
-    <%
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-    %>
-
-    <%
-        User user = new User();
-        String a = user.useless("razie");
-    %>
 
     <h2>
-        <%=a%>
     </h2>
 </form>
 </body>
