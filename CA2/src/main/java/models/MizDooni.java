@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class MizDooni {
+    private static MizDooni instance;
     public ResponseHandler responseHandler = new ResponseHandler();
     public ArrayList<User> users = new ArrayList<User>();
     public ArrayList<Restaurant> restaurants = new ArrayList<>();
@@ -33,6 +34,12 @@ public class MizDooni {
         restaurants = rd.readFromFile(DATABASE_ADDRESS +"restaurants.csv", Restaurant.class);
         tables = rd.readFromFile(DATABASE_ADDRESS +"tables.csv", Table.class);
         reservations = rd.readFromFile(DATABASE_ADDRESS +"reservations.csv", Reservation.class);
+    }
+
+    public static MizDooni getInstance() throws Exception {
+        if(instance == null)
+            instance = new MizDooni();
+        return instance;
     }
 
     public boolean userAlreadyExists(User user) {
@@ -309,6 +316,14 @@ public class MizDooni {
         }
 
         responseHandler = review.responseHandler;
+    }
+
+    public User findUserByUsernameAndPass(String username, String password) {
+        User user = findUserByUserName(username);
+        if(user != null && Objects.equals(user.password, password)){
+            return user;
+        }
+        return null;
     }
 }
 
