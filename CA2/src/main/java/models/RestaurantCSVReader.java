@@ -1,7 +1,7 @@
 package models;
 
 import objects.Address;
-import objects.Restourant;
+import objects.Restaurant;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,14 +9,18 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class RestaurantCSVReader {
-    public static void main(String[] args) {
-        RestaurantCSVReader  csvReader = new RestaurantCSVReader();
-        csvReader.loadRestaurants();
+//    public static void main(String[] args) {
+//        RestaurantCSVReader  csvReader = new RestaurantCSVReader();
+//        csvReader.loadRestaurants();
+//    }
+    public ArrayList<Restaurant> restaurants = new ArrayList<>();
+    public String csvFileName;
+    public Integer fieldNumber = 9;
+
+    public RestaurantCSVReader(String csvFileName) {
+        this.csvFileName = csvFileName;
     }
 
-    public ArrayList<Restourant> restaurants = new ArrayList<>();
-    public String csvFileName = "restaurants.csv";
-    public Integer fieldNumber = 9;
     public void loadRestaurants() {
         InputStream inputStream = UserCSVReader.class.getClassLoader().getResourceAsStream(csvFileName);
         if (inputStream != null) {
@@ -25,7 +29,7 @@ public class RestaurantCSVReader {
                 while ((line = br.readLine()) != null) {
                     String[] values = line.split(",");
                     if (values.length == fieldNumber) {
-                        Restourant obj = new Restourant();
+                        Restaurant obj = new Restaurant();
                         obj.address = new Address();
 
                         obj.name = values[0];
@@ -50,7 +54,7 @@ public class RestaurantCSVReader {
             System.err.println("CSV file not found: " + csvFileName);
         }
 
-        for (Restourant obj : restaurants) {
+        for (Restaurant obj : restaurants) {
             System.out.println(obj.name + ", " + obj.managerUsername + ", " + obj.address.country + ", " + obj.type);
         }
 

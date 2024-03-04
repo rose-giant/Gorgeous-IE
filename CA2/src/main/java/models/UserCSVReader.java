@@ -19,14 +19,14 @@ public class UserCSVReader {
                     String[] values = line.split(",");
                     if (values.length == fieldNumber) {
                         User obj = new User();
-                        Address address = new Address();
-                        obj.address = address;
+
                         obj.username = values[0];
                         obj.password = values[1];
                         obj.role = values[2];
                         obj.email = values[3];
                         obj.address.country = values[4];
                         obj.address.city = values[5];
+
 
                         users.add(obj);
                     } else {

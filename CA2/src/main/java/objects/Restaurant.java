@@ -2,6 +2,7 @@ package objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -12,7 +13,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
-public class Restourant {
+@JsonPropertyOrder({ "name", "managerUsername", "type", "startTime", "endTime", "description", "country", "city", "street"})
+public class Restaurant {
     public String name;
     public String managerUsername;
     public String type;
@@ -21,9 +23,12 @@ public class Restourant {
     public Date parsedStartTime;
     public Date parsedEndTIme;
     public String description;
+    public String country;
+    public String city;
+    public String street;
     public Address address = new Address();
     public ResponseHandler responseHandler;
-    private ArrayList<Table.TableInfo> tables = new ArrayList<>();
+    private final ArrayList<Table.TableInfo> tables = new ArrayList<>();
 
     public void addTable(Table table){
         ArrayList<LocalDateTime> availableTimes = new ArrayList<>();
@@ -140,30 +145,27 @@ public class Restourant {
         }
     }
     public void addRestaurantHandler(String jsonString) throws JsonProcessingException {
-        //Restourant restourant = new Restourant();
-        Restourant restourant = unmarshlIntoRestaurant(jsonString);
-        this.managerUsername = restourant.managerUsername;
-        this.name = restourant.name;
-        this.type = restourant.type;
-        this.startTime = restourant.startTime;
-        this.parsedStartTime = restourant.parsedStartTime;
-        this.endTime = restourant.endTime;
-        this.parsedEndTIme = restourant.parsedEndTIme;
-        this.address = restourant.address;
-        this.description = restourant.description;
+        Restaurant restaurant = unmarshlIntoRestaurant(jsonString);
+        this.managerUsername = restaurant.managerUsername;
+        this.name = restaurant.name;
+        this.type = restaurant.type;
+        this.startTime = restaurant.startTime;
+        this.parsedStartTime = restaurant.parsedStartTime;
+        this.endTime = restaurant.endTime;
+        this.parsedEndTIme = restaurant.parsedEndTIme;
+        this.address = restaurant.address;
+        this.description = restaurant.description;
         addRestaurantResponseGenerator();
     }
 
-    public String marshalRestaurant(Restourant restourant) throws JsonProcessingException {
+    public String marshalRestaurant(Restaurant restaurant) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        String jsonStr = objectMapper.writeValueAsString(restourant);
-        return jsonStr;
+        return objectMapper.writeValueAsString(restaurant);
     }
 
-    public Restourant unmarshlIntoRestaurant(String jsonString) throws JsonProcessingException {
+    public Restaurant unmarshlIntoRestaurant(String jsonString) throws JsonProcessingException {
         ObjectMapper om = new ObjectMapper();
-        Restourant restourant  = om.readValue(jsonString, Restourant.class);
-        return restourant;
+        return om.readValue(jsonString, Restaurant.class);
     }
 
     public boolean isOpenAt(LocalDateTime datetime) {

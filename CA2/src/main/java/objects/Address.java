@@ -5,6 +5,13 @@ public class Address {
     public String country;
     public String street;
 
+    public Address(String city, String country) {
+        this.city = city;
+        this.country = country;
+    }
+
+    public Address(){}
+
     public boolean isCityValid(String city) {
         if (city.isEmpty()) {
             return false;

@@ -5,30 +5,32 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import models.Reader;
 import objects.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class MizDooni {
     public ResponseHandler responseHandler = new ResponseHandler();
     public ArrayList<User> users = new ArrayList<User>();
-    public ArrayList<Restourant> restaurants = new ArrayList<>();
+    public ArrayList<Restaurant> restaurants = new ArrayList<>();
     public ArrayList<Table> tables = new ArrayList<>();
     public ArrayList<Reservation> reservations = new ArrayList<>();
 
     ObjectMapper om = JsonMapper.builder().addModule(new JavaTimeModule()).build();
     Object returnedData;
-    Restourant relatedRestaurant;
+    Restaurant relatedRestaurant;
     User relatedUser;
     Table relatedTable;
     Reservation relatedReservation;
 
+    final static String DATABASE_ADDRESS = "src/main/resources";
 
-    public MizDooni() {
+    public MizDooni() throws IOException {
         Reader rd = new Reader();
-        users = rd.ReadFromFile("users", User.class);
-        restaurants = rd.ReadFromFile("restaurants", Restourant.class);
-        tables = rd.ReadFromFile("tables", Table.class);
-        reservations = rd.ReadFromFile("reservations", Reservation.class);
+        users = rd.readFromFile(DATABASE_ADDRESS + "users.csv", User.class);
+        restaurants = rd.readFromFile(DATABASE_ADDRESS +"restaurants.csv", Restaurant.class);
+        tables = rd.readFromFile(DATABASE_ADDRESS +"tables.csv", Table.class);
+        reservations = rd.readFromFile(DATABASE_ADDRESS +"reservations.csv", Reservation.class);
     }
 
     public boolean userAlreadyExists(User user) {
@@ -37,7 +39,6 @@ public class MizDooni {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -65,8 +66,8 @@ public class MizDooni {
         return isCorrect;
     }
 
-    public Restourant findRestaurantByName(String restaurantName) {
-        for(Restourant rest: restaurants) {
+    public Restaurant findRestaurantByName(String restaurantName) {
+        for(Restaurant rest: restaurants) {
             if(Objects.equals(rest.name, restaurantName)) {
                 return rest;
             }
@@ -125,7 +126,7 @@ public class MizDooni {
 
     public boolean restaurantNameAlreadyExists(String restaurantName) {
         boolean alreadyExists = false;
-        for(Restourant value: restaurants) {
+        for(Restaurant value: restaurants) {
             if(Objects.equals(value.name, restaurantName)) {
                 alreadyExists = true;
                 break;
@@ -135,14 +136,14 @@ public class MizDooni {
     }
 
     public ResponseHandler searchRestaurantByNameHandler(String jsonString) throws JsonProcessingException {
-        Restourant restourant = new Restourant();
-        restourant = restourant.unmarshlIntoRestaurant(jsonString);
+        Restaurant restaurant = new Restaurant();
+        restaurant = restaurant.unmarshlIntoRestaurant(jsonString);
         ResponseHandler responseHandler1 = new ResponseHandler();
         responseHandler1.responseBody = "Restaurant not found.";
         responseHandler1.responseStatus = false;
 
-        for(Restourant value : restaurants) {
-            if (Objects.equals(restourant.name, value.name)) {
+        for(Restaurant value : restaurants) {
+            if (Objects.equals(restaurant.name, value.name)) {
                 responseHandler1.responseBody = value.marshalRestaurant(value);
                 responseHandler1.responseStatus = true;
                 break;
@@ -152,14 +153,14 @@ public class MizDooni {
     }
 
     public ResponseHandler searchRestaurantByTypeHandler(String jsonString) throws JsonProcessingException {
-        Restourant restourant = new Restourant();
-        restourant = restourant.unmarshlIntoRestaurant(jsonString);
+        Restaurant restaurant = new Restaurant();
+        restaurant = restaurant.unmarshlIntoRestaurant(jsonString);
         ResponseHandler responseHandler1 = new ResponseHandler();
         responseHandler1.responseBody = "Restaurant not found.";
         responseHandler1.responseStatus = false;
 
-        for(Restourant value : restaurants) {
-            if (Objects.equals(restourant.type, value.type)) {
+        for(Restaurant value : restaurants) {
+            if (Objects.equals(restaurant.type, value.type)) {
                 responseHandler1.responseBody = value.marshalRestaurant(value);
                 responseHandler1.responseStatus = true;
                 break;
@@ -170,26 +171,26 @@ public class MizDooni {
 
 
     public void addRestaurant(String jsonString) throws JsonProcessingException {
-        Restourant restourant = new Restourant();
-        restourant.addRestaurantHandler(jsonString);
+        Restaurant restaurant = new Restaurant();
+        restaurant.addRestaurantHandler(jsonString);
 
-        if (!restaurantManagerUsernameExists(restourant.managerUsername)) {
-            restourant.handleOuterErrorMessage(" manager username does not exist.");
+        if (!restaurantManagerUsernameExists(restaurant.managerUsername)) {
+            restaurant.handleOuterErrorMessage(" manager username does not exist.");
         }
 
-        if(!userRoleIsManager(restourant.managerUsername)) {
-            restourant.handleOuterErrorMessage(" manager role is not correct.");
+        if(!userRoleIsManager(restaurant.managerUsername)) {
+            restaurant.handleOuterErrorMessage(" manager role is not correct.");
         }
 
-        if(restaurantNameAlreadyExists(restourant.name)) {
-            restourant.handleOuterErrorMessage(" restaurant name is repeated.");
+        if(restaurantNameAlreadyExists(restaurant.name)) {
+            restaurant.handleOuterErrorMessage(" restaurant name is repeated.");
         }
 
-        if (restourant.responseHandler.responseStatus) {
-            restaurants.add(restourant);
+        if (restaurant.responseHandler.responseStatus) {
+            restaurants.add(restaurant);
             System.out.println(restaurants.size());
         }
-        responseHandler = restourant.responseHandler;
+        responseHandler = restaurant.responseHandler;
     }
 
     public void searchRestaurantsByName(String jsonString) throws JsonProcessingException {
@@ -278,7 +279,7 @@ public class MizDooni {
     }
 
     public void showAvailableTables(String jsonString) throws Exception {
-        Restourant.RestaurantName rn = om.readValue(jsonString, Restourant.RestaurantName.class);
+        Restaurant.RestaurantName rn = om.readValue(jsonString, Restaurant.RestaurantName.class);
         relatedRestaurant = findRestaurantByName(rn.restaurantName);
 
         if (relatedRestaurant == null) {
