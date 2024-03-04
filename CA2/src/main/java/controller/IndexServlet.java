@@ -1,6 +1,5 @@
 package controller;
 
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,12 +8,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("")
+@WebServlet("/index")
 public class IndexServlet extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
-        requestDispatcher.forward(request, response);
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect("http://localhost:8080/login");
     }
-
 }

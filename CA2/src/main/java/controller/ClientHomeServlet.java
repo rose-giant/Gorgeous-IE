@@ -9,12 +9,15 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/error")
-public class ErrorServlet extends HttpServlet {
+@WebServlet("/client_home")
+public class ClientHomeServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("error.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("client_home.jsp");
         requestDispatcher.forward(request, response);
+    }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String username = request.getParameter("username");
     }
 }
