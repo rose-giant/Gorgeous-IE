@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.jsefa.csv.annotation.CsvDataType;
 import org.jsefa.csv.annotation.CsvField;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -26,6 +27,9 @@ public class User {
     public String city;
     public String country;
     public Address address;
+    public ResponseHandler responseHandler;
+    public ArrayList<User> users = new ArrayList<>();
+    public ArrayList<Reservation> reservations = new ArrayList<>();
     @JsonCreator
     public User(@JsonProperty("role") String role, @JsonProperty("username") String username,
                 @JsonProperty("password") String password, @JsonProperty("email") String email
@@ -41,10 +45,6 @@ public class User {
         this.address = new Address(city, country);
     }
     public User(){};
-
-    public ResponseHandler responseHandler;
-    public ArrayList<User> users = new ArrayList<>();
-    public ArrayList<Reservation> reservations = new ArrayList<>();
 
     public boolean isRoleValid(String role) {
         validRoles.add(MANAGER_ROLE);
@@ -191,6 +191,20 @@ public class User {
             resInfo.add(new Reservation.ReservationInfo(res.restaurantName, res.reservationNumber, res.tableNumber, res.datetime));
         }
         return new ReservationList(resInfo);
+    }
+
+    public boolean hasExperienced(String restaurantName) {
+        Reservation reservation = findReservationByRestaurantName(restaurantName);
+        return reservation != null && reservation.datetimeFormatted.isBefore(LocalDateTime.now());
+    }
+
+    private Reservation findReservationByRestaurantName(String restaurantName) {
+        for (Reservation res:reservations) {
+            if(Objects.equals(res.restaurantName, restaurantName)){
+                return res;
+            }
+        }
+        return null;
     }
 
     public static class UserName{

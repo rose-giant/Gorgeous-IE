@@ -29,6 +29,7 @@ public class Restaurant {
     public Address address = new Address();
     public ResponseHandler responseHandler;
     private final ArrayList<Table.TableInfo> tables = new ArrayList<>();
+    public ArrayList<Review> reviews = new ArrayList<>();
 
     public void addTable(Table table){
         ArrayList<LocalDateTime> availableTimes = new ArrayList<>();
@@ -43,6 +44,21 @@ public class Restaurant {
         tables.add(tableInfo);
     }
 
+    public void addReview(Review review){
+        Review prevReview = findReviewByUsername(review.username);
+        if(prevReview != null){
+            reviews.remove(prevReview);
+        }
+        reviews.add(review);
+    }
+    public Review findReviewByUsername(String username){
+        for (Review rv:reviews) {
+            if(Objects.equals(rv.username, username)){
+                return rv;
+            }
+        }
+        return null;
+    }
 
     public boolean isRestaurantNameValid(String name) {
         if (name.isEmpty()) {

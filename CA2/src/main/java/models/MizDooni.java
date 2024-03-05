@@ -197,7 +197,6 @@ public class MizDooni {
 
         if (restaurant.responseHandler.responseStatus) {
             restaurants.add(restaurant);
-            System.out.println(restaurants.size());
         }
         responseHandler = restaurant.responseHandler;
     }
@@ -301,20 +300,24 @@ public class MizDooni {
     public void addReview(String jsonString) throws JsonProcessingException {
         Review review = new Review();
         review.addReviewHandler(jsonString);
-        User user1 = new User();
-        user1.username = review.username;
-        if(!userAlreadyExists(user1)) {
-        review.handleOuterErrorMessage(" username does not exist.");
+        relatedUser = findUserByUserName(review.username);
+        if(!userAlreadyExists(relatedUser)) {
+            review.handleOuterErrorMessage(" username does not exist.");
         }
 
         if(userRoleIsManager(review.username)) {
-        review.handleOuterErrorMessage(" username role is not client.");
+            review.handleOuterErrorMessage(" username role is not client.");
         }
 
         if(!restaurantNameAlreadyExists(review.restaurantName)) {
-        review.handleOuterErrorMessage(" restaurant name does not exist.");
+            review.handleOuterErrorMessage(" restaurant name does not exist.");
         }
 
+        if(!relatedUser.hasExperienced(review.restaurantName)){
+            review.handleOuterErrorMessage(" You are not allowed to comment on this restaurant.");
+        }
+
+        relatedRestaurant.addReview(review);
         responseHandler = review.responseHandler;
     }
 
