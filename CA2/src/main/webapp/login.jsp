@@ -34,13 +34,12 @@
 <h1>Welcome to Mizdooni</h1>
 <form method="post" action="">
     <label>Username:</label>
-    <input name="uesrname" type="text" />
+    <input name="username" type="text" />
     <br>
     <label>Password:</label>
     <input name="password" type="password" />
     <br>
     <button type="submit">Login!</button>
-
 
     <h2>
     </h2>

@@ -1,55 +1,63 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: razie
+  Date: 3/4/24
+  Time: 12:38 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <title>Restaurant</title>
-  </head>
-  <body>
-    <p id="username">username: ali <a href="/">Home</a> <a href="/" style="color: red">Log Out</a></p>
-    <br>
-    <h2>Restaurant Info:</h2>
+</head>
+<body>
+<p id="username">username: ali <a href="/">Home</a> <a href="/" style="color: red">Log Out</a></p>
+<br>
+<h2>Restaurant Info:</h2>
+<ul>
+    <li id="id">Id: 1</li>
+    <li id="name">Name: Fast Food</li>
+    <li id="type">Type: Italian</li>
+    <li id="time">Time: 08:00 - 23:00</li>
+    <li id="rate">Scores:</li>
     <ul>
-      <li id="id">Id: 1</li>
-        <li id="name">Name: Fast Food</li>
-        <li id="type">Type: Italian</li>
-        <li id="time">Time: 08:00 - 23:00</li>
-        <li id="rate">Scores:</li>
-        <ul>
-          <li>Food: 3.45</li>
-          <li>Service: 2.5</li>
-          <li>Ambiance: 4.59</li>
-          <li>Overall: 4.1</li>
-        </ul>
-        <li id="address">Address: North Kargar, Tehran, Iran</li>
-        <li id="description">Description: Best food you can eat. Best Italian food</li>
+        <li>Food: 3.45</li>
+        <li>Service: 2.5</li>
+        <li>Ambiance: 4.59</li>
+        <li>Overall: 4.1</li>
     </ul>
+    <li id="address">Address: North Kargar, Tehran, Iran</li>
+    <li id="description">Description: Best food you can eat. Best Italian food</li>
+</ul>
 
 
-    <table border="1" cellpadding="10">
-      <tr>
-          <td>
-              <label>Reserve Table:</label>
-              <form action="" method="post">
+<table border="1" cellpadding="10">
+    <tr>
+        <td>
+            <label>Reserve Table:</label>
+            <form action="" method="post">
                 <label>Table:</label>
                 <select id="table_number" name="table_number">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
                 </select>
                 <label>Date & Time:</label>
                 <input type="datetime-local" id="date_time" name="date_time">
                 <br>
                 <button type="submit" name="action" value="reserve">Reserve</button>
-              </form>
-          </td>
-      </tr>
-  </table>
+            </form>
+        </td>
+    </tr>
+</table>
 
-    <table border="1" cellpadding="10">
-      <tr>
-          <td>
-              <label>Feedback:</label>
-              <form action="" method="post">                
+<table border="1" cellpadding="10">
+    <tr>
+        <td>
+            <label>Feedback:</label>
+            <form action="" method="post">
                 <label>Food Rate:</label>
                 <input type="number" id="food_rate" name="food_rate" step="0.1" min="0" max="5">
                 <label>Service Rate:</label>
@@ -64,20 +72,20 @@
                 <!-- <input type="textarea" name="comment" value="" /> -->
                 <br>
                 <button type="submit" name="action" value="feedback">Submit</button>
-              </form>
-          </td>
-      </tr>
-  </table>
-
-    
+            </form>
+        </td>
+    </tr>
+</table>
 
 
-    <br>
-    
-    <br/>
-    <table style="width: 100%; text-align: center;" border="1">
-      <caption><h2>Feedbacks</h2></caption>
-      <tr>
+
+
+<br>
+
+<br/>
+<table style="width: 100%; text-align: center;" border="1">
+    <caption><h2>Feedbacks</h2></caption>
+    <tr>
         <th>Username</th>
         <th>Comment</th>
         <th>Date</th>
@@ -85,8 +93,8 @@
         <th>Service Rate</th>
         <th>Ambiance Rate</th>
         <th>Overall Rate</th>
-      </tr>
-      <tr>
+    </tr>
+    <tr>
         <td>user1</td>
         <td>Food was not bad</td>
         <td>2022-07-25</td>
@@ -94,9 +102,9 @@
         <td>3</td>
         <td>4.5</td>
         <td>4</td>
-      </tr>
-    </table>
-    <br><br>
-    
-  </body>
+    </tr>
+</table>
+<br><br>
+
+</body>
 </html>

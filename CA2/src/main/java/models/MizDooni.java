@@ -26,14 +26,32 @@ public class MizDooni {
     Table relatedTable;
     Reservation relatedReservation;
 
-    final static String DATABASE_ADDRESS = "src/main/resources";
+    final static String DATABASE_ADDRESS = "";
 
     public MizDooni() throws IOException {
         Reader rd = new Reader();
-        users = rd.readFromFile(DATABASE_ADDRESS + "users.csv", User.class);
-        restaurants = rd.readFromFile(DATABASE_ADDRESS +"restaurants.csv", Restaurant.class);
-        tables = rd.readFromFile(DATABASE_ADDRESS +"tables.csv", Table.class);
-        reservations = rd.readFromFile(DATABASE_ADDRESS +"reservations.csv", Reservation.class);
+        //users = rd.readFromFile(DATABASE_ADDRESS + "users.csv", User.class);
+        users = new ArrayList<>();
+        User user = new User();
+        user.username = "razi";
+        user.password = "bazi";
+        user.role = "client";
+        user.address = new Address();
+        user.responseHandler = new ResponseHandler();
+
+        User user1 = new User();
+        user1.username = "rose";
+        user1.password = "pose";
+        user1.role = "manager";
+        user1.address = new Address();
+        user1.responseHandler = new ResponseHandler();
+
+        users.add(user);
+        users.add(user1);
+//
+//        restaurants = rd.readFromFile(DATABASE_ADDRESS +"restaurants.csv", Restaurant.class);
+//        tables = rd.readFromFile(DATABASE_ADDRESS +"tables.csv", Table.class);
+//        reservations = rd.readFromFile(DATABASE_ADDRESS +"reservations.csv", Reservation.class);
     }
 
     public static MizDooni getInstance() throws Exception {
@@ -43,8 +61,10 @@ public class MizDooni {
     }
 
     public boolean userAlreadyExists(User user) {
+        System.out.println(user.username + ", "+user.password);
         for(User value: users) {
-            if (Objects.equals(user.username, value.username) || Objects.equals(user.email, value.email)) {
+            System.out.println(value.username + " and "+value.password);
+            if (Objects.equals(user.username, value.username) && Objects.equals(user.password, value.password)) {
                 return true;
             }
         }

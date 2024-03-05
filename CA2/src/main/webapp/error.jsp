@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    String username = request.getParameter("username");
+    String username = (String)request.getSession().getAttribute("username");
 %>
 
 <!DOCTYPE html>
