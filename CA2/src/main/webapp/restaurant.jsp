@@ -13,7 +13,7 @@
     <title>Restaurant</title>
 </head>
 <body>
-<p id="username">username: ali <a href="/">Home</a> <a href="/" style="color: red">Log Out</a></p>
+<p id="username">username: ali <a href="/">Home</a> <a href="logout.jsp" style="color: red">Log Out</a></p>
 <br>
 <h2>Restaurant Info:</h2>
 <ul>

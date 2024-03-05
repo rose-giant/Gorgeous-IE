@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: razie
-  Date: 3/4/24
-  Time: 12:37 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +6,10 @@
     <title>Restaurants</title>
 </head>
 <body>
-<p id="username">username: ali <a href="/">Home</a> <a href="/" style="color: red">Log Out</a></p>
+<%
+    String username = (String)request.getSession().getAttribute("username");
+%>
+<p id="username">username: <%=username%> <a href="/">Home</a> <a href="logout.jsp" style="color: red">Log Out</a></p>
 <br><br>
 <form action="" method="POST">
     <label>Search:</label>

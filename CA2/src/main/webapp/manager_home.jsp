@@ -7,7 +7,7 @@
 <%
     String username = (String)request.getSession().getAttribute("username");
 %>
-<h1>Welcome <%=username%> <a href="/" style="color: red">Log Out</a></h1>
+<h1>Welcome <%=username%> <a href="logout.jsp" style="color: red">Log Out</a></h1>
 
 <h2>Your Restaurant Information:</h2>
 <ul>

@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
             if (user != null) {
 
                 if (Objects.equals(user.role, MANAGER_ROLE)) {
-                    response.sendRedirect("/manager_home.jsp");
+                    response.sendRedirect("/manager_home");
                 }
                 else if (Objects.equals(user.role, CLIENT_ROLE)) {
                     response.sendRedirect("/client_home");
