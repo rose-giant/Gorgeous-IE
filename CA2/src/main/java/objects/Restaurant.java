@@ -29,21 +29,23 @@ public class Restaurant {
 
     public Address address = new Address();
     public ResponseHandler responseHandler;
-    private final ArrayList<Table.TableInfo> tables = new ArrayList<>();
+    private final ArrayList<Table> tables = new ArrayList<>();
     public ArrayList<Review> reviews = new ArrayList<>();
-    public MeanScores means = new MeanScores();
-
+    public MeanScores means = new MeanScores(0.0, 0.0,0.0, 0.0);
+    @JsonCreator
+    public Restaurant(@JsonProperty("name")String name,@JsonProperty("type") String type,
+                      @JsonProperty("startTime") String startTime, @JsonProperty("endTime") String endTime,
+                      @JsonProperty("description") String description,@JsonProperty("address") Address address) {
+        this.name = name;
+        this.type = type;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.description = description;
+        this.address = address;
+    }
+    public Restaurant(){};
     public void addTable(Table table){
-        ArrayList<LocalDateTime> availableTimes = new ArrayList<>();
-        LocalDateTime current = LocalDateTime.parse(LocalDate.now().toString() +'t'+startTime);
-        LocalTime startDate = LocalTime.parse(startTime);
-        LocalTime endDate = LocalTime.parse(endTime);
-        int diff = endDate.getHour() - startDate.getHour();
-        for (int i = 0; i < diff; i++) {
-            availableTimes.add(current.plusHours(i));
-        }
-        Table.TableInfo tableInfo = new Table.TableInfo(table.tableNumber, table.seatsNumber,availableTimes);
-        tables.add(tableInfo);
+        tables.add(table);
     }
 
     public void addReview(Review review){
@@ -52,8 +54,9 @@ public class Restaurant {
             reviews.remove(prevReview);
         }
         reviews.add(review);
-        means.
+        means.updateMeans(review);
     }
+
     public Review findReviewByUsername(String username){
         for (Review rv:reviews) {
             if(Objects.equals(rv.username, username)){
@@ -197,31 +200,65 @@ public class Restaurant {
     }
 
     public Object getAvailableTables() {
-        return new AvailableTimes(tables);
+        ArrayList<Table.TableInfo> ATT = new ArrayList<>();
+        LocalDateTime current = LocalDateTime.parse(LocalDate.now().toString() +'t'+startTime);
+        LocalTime startTime = LocalTime.parse(this.startTime);
+        LocalTime endTime = LocalTime.parse(this.endTime);
+        int diff = endTime.getHour() - startTime.getHour();
+        ArrayList<LocalDateTime> availableTimes;
+        for (Table table:tables) {
+            availableTimes = new ArrayList<>();
+            for (int i = 0; i < diff; i++) {
+                LocalDateTime newDT = current.plusHours(i);
+                if (!table.hasReservationAt(newDT)) {
+                    availableTimes.add(newDT);
+                }
+            }
+            Table.TableInfo newTime = new Table.TableInfo(table.tableNumber, table.seatsNumber, availableTimes);
+            ATT.add(newTime);
+        }
+        return new AvailableTableTimes(ATT);
     }
 
-    public void reserve(Reservation reservation) {
+    public void reserve(Reservation reservation) throws Exception {
         int tableNum = reservation.tableNumber;
-        for (Table.TableInfo ti: tables) {
-            if(Objects.equals(ti.tableNumber, reservation.tableNumber)){
-                ti.availableDateTimes.remove(reservation.datetime);
+        for (Table table: tables) {
+            if(table.tableNumber == reservation.tableNumber){
+                table.reservedDateTimes.add(reservation.datetimeFormatted);
+                return;
             }
         }
+        throw new Exception("Table number not found.");
     }
 
-    static class AvailableTimes{
+    public Table findTableByNumber(int tableNumber) {
+        for(Table tb: tables) {
+            if(Objects.equals(tb.tableNumber, tableNumber)) {
+                return tb;
+            }
+        }
+        return null;
+    }
+
+    public void removeReservation(Reservation reservation) {
+        Table table = findTableByNumber(reservation.tableNumber);
+        table.removeReservation(reservation);
+    }
+
+    public static class AvailableTableTimes{
         public ArrayList<Table.TableInfo>availableTables;
+
         @JsonCreator
-        public AvailableTimes(@JsonProperty("availableTables") ArrayList<Table.TableInfo> availableTables) {
+        public AvailableTableTimes(@JsonProperty("availableTables") ArrayList<Table.TableInfo> availableTables){
             this.availableTables = availableTables;
         }
+
     }
     public static class RestaurantName {
         public String restaurantName;
         @JsonCreator
         public RestaurantName(@JsonProperty("restaurantName") String restaurantName) {
             this.restaurantName = restaurantName;
-        }
-
     }
+}
 }
