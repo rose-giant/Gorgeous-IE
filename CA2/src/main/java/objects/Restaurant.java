@@ -31,7 +31,7 @@ public class Restaurant {
     public ResponseHandler responseHandler;
     private final ArrayList<Table.TableInfo> tables = new ArrayList<>();
     public ArrayList<Review> reviews = new ArrayList<>();
-    public MeanScore means = new ArrayList<>();
+    public MeanScores means = new MeanScores();
 
     public void addTable(Table table){
         ArrayList<LocalDateTime> availableTimes = new ArrayList<>();
@@ -52,6 +52,7 @@ public class Restaurant {
             reviews.remove(prevReview);
         }
         reviews.add(review);
+        means.
     }
     public Review findReviewByUsername(String username){
         for (Review rv:reviews) {
