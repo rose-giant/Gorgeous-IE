@@ -26,10 +26,12 @@ public class Restaurant {
     public String country;
     public String city;
     public String street;
+
     public Address address = new Address();
     public ResponseHandler responseHandler;
     private final ArrayList<Table.TableInfo> tables = new ArrayList<>();
     public ArrayList<Review> reviews = new ArrayList<>();
+    public MeanScore means = new ArrayList<>();
 
     public void addTable(Table table){
         ArrayList<LocalDateTime> availableTimes = new ArrayList<>();
