@@ -16,7 +16,7 @@ public class Table {
 
     public String managerUsername;
 
-    public ArrayList<String> reservedDateTimes = new ArrayList<>();
+    public ArrayList<LocalDateTime> reservedDateTimes = new ArrayList<>();
 
     public int seatsNumber;
 
@@ -38,8 +38,8 @@ public class Table {
     }
 
     public boolean hasDateTimeConflict(Reservation reservation) {
-        for(String rs: reservedDateTimes) {
-            if(Objects.equals(rs, reservation.datetime)) {
+        for(LocalDateTime rs: reservedDateTimes) {
+            if(Objects.equals(rs, reservation.datetimeFormatted)) {
                 return true;
             }
         }
@@ -50,11 +50,20 @@ public class Table {
         if (hasDateTimeConflict(reservation)) {
             throw new Exception("This table is already reserved");
         }
-        reservedDateTimes.add(reservation.datetime);
+        reservedDateTimes.add(reservation.datetimeFormatted);
     }
 
     public void removeReservation(Reservation reservation) {
-        reservedDateTimes.remove(reservation.datetime);
+        reservedDateTimes.remove(reservation.datetimeFormatted);
+    }
+
+    public boolean hasReservationAt(LocalDateTime newDT) {
+        for (LocalDateTime reserved:reservedDateTimes) {
+            if(reserved == newDT){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static class TableInfo{

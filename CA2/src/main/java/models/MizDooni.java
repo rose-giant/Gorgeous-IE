@@ -11,14 +11,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+import static models.Addresses.*;
+
 public class MizDooni {
     private static MizDooni instance;
     public ResponseHandler responseHandler = new ResponseHandler();
     public ArrayList<User> users = new ArrayList<User>();
     public ArrayList<Restaurant> restaurants = new ArrayList<>();
-    public ArrayList<Table> tables = new ArrayList<>();
-    public ArrayList<Reservation> reservations = new ArrayList<>();
-
     ObjectMapper om = JsonMapper.builder().addModule(new JavaTimeModule()).build();
     Object returnedData;
     Restaurant relatedRestaurant;
@@ -26,30 +25,11 @@ public class MizDooni {
     Table relatedTable;
     Reservation relatedReservation;
 
-    final static String DATABASE_ADDRESS = "";
-
     public MizDooni() throws IOException {
         Reader rd = new Reader();
-        //users = rd.readFromFile(DATABASE_ADDRESS + "users.csv", User.class);
-        users = new ArrayList<>();
-        User user = new User();
-        user.username = "razi";
-        user.password = "bazi";
-        user.role = "client";
-        user.address = new Address();
-        user.responseHandler = new ResponseHandler();
+        users = rd.readFromFile(USERS_CSV, User.class);
+        restaurants = rd.readFromFile(RESTAURANTS_CSV, Restaurant.class);
 
-        User user1 = new User();
-        user1.username = "rose";
-        user1.password = "pose";
-        user1.role = "manager";
-        user1.address = new Address();
-        user1.responseHandler = new ResponseHandler();
-
-        users.add(user);
-        users.add(user1);
-//
-//        restaurants = rd.readFromFile(DATABASE_ADDRESS +"restaurants.csv", Restaurant.class);
 //        tables = rd.readFromFile(DATABASE_ADDRESS +"tables.csv", Table.class);
 //        reservations = rd.readFromFile(DATABASE_ADDRESS +"reservations.csv", Reservation.class);
     }
@@ -104,15 +84,6 @@ public class MizDooni {
         return null;
     }
 
-    public Table findTableByRestaurantNameAndTableNumber(String restaurantName, int tableNumber) {
-        for(Table tb: tables) {
-            if(Objects.equals(tb.restaurantName, restaurantName) && Objects.equals(tb.tableNumber, tableNumber)) {
-                return tb;
-            }
-        }
-        return null;
-    }
-
     public User findUserByUserName(String userName) {
         for(User user: users) {
             if(Objects.equals(user.username, userName)) {
@@ -120,25 +91,6 @@ public class MizDooni {
             }
         }
         return null;
-    }
-
-    private Reservation findReservationByNumber(int reservationNumber) {
-        for(Reservation res: reservations) {
-            if(Objects.equals(res.reservationNumber, reservationNumber)) {
-                return res;
-            }
-        }
-        return null;
-    }
-
-    public ArrayList<Table> findTablesByRestaurantName(String restaurantName) {
-        ArrayList<Table> wantedTables = new ArrayList<>();
-        for(Table tb: tables) {
-            if(Objects.equals(tb.restaurantName, restaurantName)) {
-                wantedTables.add(tb);
-            }
-        }
-        return wantedTables;
     }
 
     public void addUser(String jsonString) throws JsonProcessingException {
@@ -235,17 +187,16 @@ public class MizDooni {
         relatedUser = findUserByUserName(table.managerUsername);
         if (relatedUser == null){
             throw new Exception("Manager username not found.");
-        } else if (Objects.equals(relatedUser.role, User.CLIENT_ROLE)) {
+        } else if (Objects.equals(relatedUser.role, User.CLIENT_ROLE) ||
+                !Objects.equals(relatedRestaurant.managerUsername, table.managerUsername)) {
             throw new Exception("This user is not allowed to add a table.");
         }
         if (relatedRestaurant == null){
             throw new Exception("Restaurant name not found.");
-        }
-        if (findTableByRestaurantNameAndTableNumber(table.restaurantName, table.tableNumber) != null){
+        }else if(relatedRestaurant.findTableByNumber(table.tableNumber) != null){
             throw new Exception("Table number already exists.");
         }
 
-        tables.add(table);
         relatedRestaurant.addTable(table);
         returnedData = "Table added successfully.";
         responseHandler = new ResponseHandler(true, returnedData);
@@ -255,7 +206,6 @@ public class MizDooni {
         Reservation reservation = new Reservation(jsonString);
         relatedRestaurant = findRestaurantByName(reservation.restaurantName);
         relatedUser = findUserByUserName(reservation.username);
-        relatedTable = findTableByRestaurantNameAndTableNumber(reservation.restaurantName, reservation.tableNumber);
         if (relatedUser == null){
             throw new Exception("Username not found.");
         } else if (Objects.equals(relatedUser.role, User.MANAGER_ROLE)) {
@@ -263,15 +213,10 @@ public class MizDooni {
         }
         if (relatedRestaurant == null){
             throw new Exception("Restaurant name not found.");
-        } else if (relatedTable == null){
-            throw new Exception("Table number not found.");
         } else if (!relatedRestaurant.isOpenAt(reservation.datetimeFormatted)){
             throw new Exception("Restaurant doesn't work at this DateTime");
         }
         relatedRestaurant.reserve(reservation);
-        relatedTable.addReservation(reservation);
-        reservations.add(reservation);
-
         //Because we need to handle showReservationHistory command, it's better to add reservation to the ordering user too.
         relatedUser.addReservation(reservation);
 
@@ -283,16 +228,15 @@ public class MizDooni {
     public void cancelReservation(String jsonString) throws Exception {
         Reservation.CancelReservation cr = om.readValue(jsonString, Reservation.CancelReservation.class);
         relatedUser = findUserByUserName(cr.username);
-        relatedReservation = findReservationByNumber(cr.reservationNumber);
-        if(!relatedUser.hasReserved(cr.reservationNumber)){
+        relatedReservation = relatedUser.findReservationByNumber(cr.reservationNumber);
+        if(relatedReservation == null){
             throw new Exception("Reservation not found");
         }
-        relatedTable = findTableByRestaurantNameAndTableNumber(relatedReservation.restaurantName, relatedReservation.tableNumber);
+        relatedRestaurant = findRestaurantByName(relatedReservation.restaurantName);
         relatedReservation.checkSafetyRemoval();
 
-        reservations.remove(relatedReservation);
         relatedUser.removeReservation(relatedReservation);
-        relatedTable.removeReservation(relatedReservation);
+        relatedRestaurant.removeReservation(relatedReservation);
 
         returnedData = "Reservation cancelled successfully";
         responseHandler = new ResponseHandler(true, returnedData);

@@ -14,6 +14,9 @@ import objects.User;
 import java.io.IOException;
 import java.util.Objects;
 
+import static objects.User.CLIENT_ROLE;
+import static objects.User.MANAGER_ROLE;
+
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -29,21 +32,16 @@ public class LoginServlet extends HttpServlet {
         request.getSession().setAttribute("username", username);
         request.getSession().setAttribute("password", password);
 
-        MizDooni mizDooni = new MizDooni();
-        User user = new User();
-        user.username = username;
-        user.password = password;
-        user.address = new Address();
-        user.responseHandler = new ResponseHandler();
 
         try {
-            if (mizDooni.userAlreadyExists(user)) {
-                user.role = mizDooni.findUserByUserName(username).role;
+            MizDooni mizDooni = MizDooni.getInstance();
+            User user = mizDooni.findUserByUsernameAndPass(username, password);
+            if (user != null) {
 
-                if (Objects.equals(user.role, "manager")) {
+                if (Objects.equals(user.role, MANAGER_ROLE)) {
                     response.sendRedirect("/manager_home.jsp");
                 }
-                else if (Objects.equals(user.role, "client")) {
+                else if (Objects.equals(user.role, CLIENT_ROLE)) {
                     response.sendRedirect("/client_home");
                 }
 

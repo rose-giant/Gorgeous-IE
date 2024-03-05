@@ -43,6 +43,7 @@ public class User {
         this.city = city;
         this.country = country;
         this.address = new Address(city, country);
+        this.responseHandler = new ResponseHandler();
     }
     public User(){};
 
@@ -196,6 +197,16 @@ public class User {
     public boolean hasExperienced(String restaurantName) {
         Reservation reservation = findReservationByRestaurantName(restaurantName);
         return reservation != null && reservation.datetimeFormatted.isBefore(LocalDateTime.now());
+    }
+
+
+    public Reservation findReservationByNumber(int reservationNumber) {
+        for(Reservation res: reservations) {
+            if(Objects.equals(res.reservationNumber, reservationNumber)) {
+                return res;
+            }
+        }
+        return null;
     }
 
     private Reservation findReservationByRestaurantName(String restaurantName) {

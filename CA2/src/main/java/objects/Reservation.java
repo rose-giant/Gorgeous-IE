@@ -22,6 +22,7 @@ public class Reservation {
         this.restaurantName = restaurantName;
         this.tableNumber = tableNumber;
         this.datetime  = datetime;
+        this.datetimeFormatted = LocalDateTime.parse(datetime.replace(' ', 't'));
     }
 
     public Reservation(String jsonString) throws Exception {

@@ -1,6 +1,5 @@
 package models;
 
-import objects.Address;
 import objects.User;
 
 import java.io.*;
