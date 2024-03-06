@@ -17,6 +17,7 @@ public class MizDooni {
     private static MizDooni instance;
     public ResponseHandler responseHandler = new ResponseHandler();
     public ArrayList<User> users = new ArrayList<User>();
+    public ArrayList<Review> reviews = new ArrayList<>();
     public ArrayList<Restaurant> restaurants = new ArrayList<>();
     ObjectMapper om = JsonMapper.builder().addModule(new JavaTimeModule()).build();
     Object returnedData;
@@ -26,9 +27,41 @@ public class MizDooni {
     Reservation relatedReservation;
 
     public MizDooni() throws IOException {
-        Reader rd = new Reader();
-        users = rd.readFromFile(USERS_CSV, User.class);
-        restaurants = rd.readFromFile(RESTAURANTS_CSV, Restaurant.class);
+        //Reader rd = new Reader();
+        //users = rd.readFromFile(USERS_CSV, User.class);
+        User user = new User();
+        user.username = "razi";
+        user.password = "razi";
+        user.role = "client";
+        user.address = new Address();
+        user.responseHandler = new ResponseHandler();
+
+        User user1 = new User();
+        user1.username = "razi2";
+        user1.password = "razi2";
+        user1.role = "client";
+        user1.address = new Address();
+        user1.responseHandler = new ResponseHandler();
+        users.add(user1);
+        System.out.println(users.get(0).username);
+        //restaurants = rd.readFromFile(RESTAURANTS_CSV, Restaurant.class);
+        Restaurant restaurant = new Restaurant();
+        restaurant.name = "r1";
+        restaurant.address.city = "milan";
+        restaurant.type = "italian";
+        restaurant.startTime = "1:00";
+        restaurant.endTime = "12:00";
+        restaurants.add(restaurant);
+
+        Restaurant restaurant1 = new Restaurant();
+        restaurant1.name = "r2";
+        restaurant1.address.city = "milan";
+        restaurant1.type = "italian";
+        restaurant1.startTime = "21:00";
+        restaurant1.endTime = "22:00";
+        restaurants.add(restaurant1);
+
+        System.out.println(restaurants.get(0).name);
 
 //        tables = rd.readFromFile(DATABASE_ADDRESS +"tables.csv", Table.class);
 //        reservations = rd.readFromFile(DATABASE_ADDRESS +"reservations.csv", Reservation.class);
@@ -49,6 +82,53 @@ public class MizDooni {
             }
         }
         return false;
+    }
+
+    public String createHTMLForRestaurantsList() {
+        String html = "";
+        for (Restaurant r : restaurants) {
+            getRestaurantScores(r.name);
+            int index = restaurants.indexOf(r);
+            html += "<tr>\n" +
+                    "        <th>" + index +"</th>\n" +
+                    "        <th>" + r.name + "</th>\n" +
+                    "        <th>" + r.address.city + "</th>\n" +
+                    "        <th>" + r.type + "</th>\n" +
+                    "        <th>" + r.startTime + " - " + r.endTime + "</th>\n" +
+                    "        <th>"+ relatedRestaurantOverall +"</th>\n" +
+                    "        <th>"+ relatedRestaurantFood +"</th>\n" +
+                    "        <th>" + relatedRestaurantAmbiance + "</th>\n" +
+                    "        <th>" + relatedRestaurantService + "</th>\n" +
+                    "    </tr>";
+        }
+
+        System.out.println("html is " + html);
+        return html;
+    }
+
+    public double relatedRestaurantOverall;
+    public double relatedRestaurantAmbiance;
+    public double relatedRestaurantFood;
+    public double relatedRestaurantService;
+
+    public void getRestaurantScores(String restaurantName) {
+        double overallSum = 0;
+        double ambianceSum = 0;
+        double foodSum = 0;
+        double serviceSum = 0;
+        for (Review r : reviews) {
+            if(Objects.equals(r.restaurantName, restaurantName)) {
+                overallSum += r.overall;
+                ambianceSum += r.ambianceRate;
+                foodSum += r.foodRate;
+                serviceSum += r.serviceRate;
+            }
+        }
+
+        relatedRestaurantOverall = (overallSum) / reviews.size();
+        relatedRestaurantAmbiance = (ambianceSum) / reviews.size();
+        relatedRestaurantFood = (foodSum) / reviews.size();
+        relatedRestaurantService = (serviceSum) / reviews.size();
     }
 
     public boolean restaurantManagerUsernameExists(String managerUsername) {
@@ -282,6 +362,7 @@ public class MizDooni {
         }
 
         relatedRestaurant.addReview(review);
+        reviews.add(review);
         responseHandler = review.responseHandler;
     }
 

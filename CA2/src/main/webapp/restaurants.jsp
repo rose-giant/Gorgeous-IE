@@ -1,3 +1,6 @@
+<%@ page import="models.MizDooni" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="objects.Restaurant" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,28 +40,33 @@
         <th>Ambiance Score</th>
         <th>Overall Score</th>
     </tr>
-    <tr>
-        <td>1</td>
-        <td><a href="/restaurants/1">Fast Food</a></td>
-        <td>Tehran</td>
-        <td>Italian</td>
-        <td>8:00 - 23:00</td>
-        <td>3.45</td>
-        <td>4.45</td>
-        <td>3.5</td>
-        <td>4.75</td>
-    </tr>
-    <tr>
-        <td>14</td>
-        <td><a href="/restaurants/14">Akbar Agha</a></td>
-        <td>Esfahan</td>
-        <td>Iranian</td>
-        <td>8:00 - 22:30</td>
-        <td>2.45</td>
-        <td>3.45</td>
-        <td>4.5</td>
-        <td>4.75</td>
-    </tr>
+    <%
+        MizDooni mizdooni = new MizDooni();
+    %>
+    <%=mizdooni.createHTMLForRestaurantsList()%>
+
+<%--    <tr>--%>
+<%--        <td>1</td>--%>
+<%--        <td><a href="/restaurants/1">Fast Food</a></td>--%>
+<%--        <td>Tehran</td>--%>
+<%--        <td>Italian</td>--%>
+<%--        <td>8:00 - 23:00</td>--%>
+<%--        <td>3.45</td>--%>
+<%--        <td>4.45</td>--%>
+<%--        <td>3.5</td>--%>
+<%--        <td>4.75</td>--%>
+<%--    </tr>--%>
+<%--    <tr>--%>
+<%--        <td>14</td>--%>
+<%--        <td><a href="/restaurants/14">Akbar Agha</a></td>--%>
+<%--        <td>Esfahan</td>--%>
+<%--        <td>Iranian</td>--%>
+<%--        <td>8:00 - 22:30</td>--%>
+<%--        <td>2.45</td>--%>
+<%--        <td>3.45</td>--%>
+<%--        <td>4.5</td>--%>
+<%--        <td>4.75</td>--%>
+<%--    </tr>--%>
 </table>
 </body>
 </html>
