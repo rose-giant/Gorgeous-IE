@@ -1,11 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: razie
-  Date: 3/4/24
-  Time: 12:38 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="models.MizDooni" %>
+<%@ page import="objects.Restaurant" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,22 +11,29 @@
 <body>
 <p id="username">username: ali <a href="/">Home</a> <a href="logout.jsp" style="color: red">Log Out</a></p>
 <br>
+<%
+    String restaurantName = request.getParameter("restaurant");
+    request.setAttribute("restaurant", restaurantName);
+    MizDooni mizDooni = new MizDooni();
+    Restaurant restaurant = mizDooni.findRestaurantByName(restaurantName);
+    //System.out.println("one rest is " + restaurant.name);
+%>
 <h2>Restaurant Info:</h2>
-<ul>
-    <li id="id">Id: 1</li>
-    <li id="name">Name: Fast Food</li>
-    <li id="type">Type: Italian</li>
-    <li id="time">Time: 08:00 - 23:00</li>
-    <li id="rate">Scores:</li>
-    <ul>
-        <li>Food: 3.45</li>
-        <li>Service: 2.5</li>
-        <li>Ambiance: 4.59</li>
-        <li>Overall: 4.1</li>
-    </ul>
-    <li id="address">Address: North Kargar, Tehran, Iran</li>
-    <li id="description">Description: Best food you can eat. Best Italian food</li>
-</ul>
+<%--<ul>--%>
+<%--    <li id="id">Id: <%=restaurant.id%></li>--%>
+<%--    <li id="name">Name: <%=restaurant.name%></li>--%>
+<%--    <li id="type">Type: <%=restaurant.type%></li>--%>
+<%--    <li id="time">Time: <%=restaurant.startTime%> - <%=restaurant.endTime%></li>--%>
+<%--    <li id="rate">Scores:</li>--%>
+<%--    <ul>--%>
+<%--        <li>Food: 3.45</li>--%>
+<%--        <li>Service: 2.5</li>--%>
+<%--        <li>Ambiance: 4.59</li>--%>
+<%--        <li>Overall: 4.1</li>--%>
+<%--    </ul>--%>
+<%--    <li id="address">Address: <%=restaurant.address.street%>, <%=restaurant.address.city%>, <%=restaurant.address.country%></li>--%>
+<%--    <li id="description"><%=restaurant.description%></li>--%>
+<%--</ul>--%>
 
 
 <table border="1" cellpadding="10">

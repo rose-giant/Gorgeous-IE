@@ -1,0 +1,48 @@
+User user = new User();
+        user.username = "razi";
+        user.password = "razi";
+        user.role = "client";
+        user.address = new Address();
+        user.responseHandler = new ResponseHandler();
+
+        User user1 = new User();
+        user1.username = "razi2";
+        user1.password = "razi2";
+        user1.role = "client";
+        user1.address = new Address();
+        user1.responseHandler = new ResponseHandler();
+        users.add(user1);
+        //restaurants = rd.readFromFile(RESTAURANTS_CSV, Restaurant.class);
+        Restaurant restaurant = new Restaurant();
+        restaurant.name = "r1";
+        restaurant.address.city = "milan";
+        restaurant.type = "italian";
+        restaurant.startTime = "1:00";
+        restaurant.endTime = "12:00";
+        restaurant.id = "11";
+        restaurants.add(restaurant);
+
+        Restaurant restaurant1 = new Restaurant();
+        restaurant1.name = "r2";
+        restaurant1.address.city = "milan";
+        restaurant1.type = "italian";
+        restaurant1.startTime = "21:00";
+        restaurant1.endTime = "22:00";
+        restaurant1.id = "31";
+        restaurants.add(restaurant1);
+
+        Review review = new Review();
+        review.restaurantName = "r1";
+        review.overall = 2.2;
+        review.ambianceRate = 4.4;
+        review.foodRate = 3.5;
+        review.serviceRate = 1.9;
+        reviews.add(review);
+
+        Review review2 = new Review();
+        review2.restaurantName = "r1";
+        review2.overall = 8.2;
+        review2.ambianceRate = 6.4;
+        review2.foodRate = 9.5;
+        review2.serviceRate = 4.9;
+        reviews.add(review2);

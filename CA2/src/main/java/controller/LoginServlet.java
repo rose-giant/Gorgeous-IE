@@ -23,6 +23,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
         requestDispatcher.forward(request, response);
+        MizDooni mizDooni = new MizDooni();
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -32,20 +33,25 @@ public class LoginServlet extends HttpServlet {
         request.getSession().setAttribute("username", username);
         request.getSession().setAttribute("password", password);
 
-
         try {
-            MizDooni mizDooni = MizDooni.getInstance();
-            User user = mizDooni.findUserByUsernameAndPass(username, password);
-            if (user != null) {
+            MizDooni mizDooni = new MizDooni();
+            User user = new User();
+            user.address = new Address();
+            user.responseHandler = new ResponseHandler();
+            user = mizDooni.findUserByUsernameAndPass(username, password);
 
-                if (Objects.equals(user.role, MANAGER_ROLE)) {
-                    response.sendRedirect("/manager_home");
-                }
-                else if (Objects.equals(user.role, CLIENT_ROLE)) {
-                    response.sendRedirect("/client_home");
-                }
+            mizDooni.saveActiveUser(user);
+            if (Objects.equals(user.role, "manager")) {
+                System.out.println(2);
+                response.sendRedirect("/manager_home");
+            }
+            else if (Objects.equals(user.role, "client")) {
+                System.out.println(3);
+                response.sendRedirect("/client_home");
+            }
 
-            } else {
+            else {
+                System.out.println(4);
                 response.sendRedirect("/error");
             }
 

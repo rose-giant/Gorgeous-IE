@@ -16,6 +16,7 @@ import java.util.Objects;
 @JsonPropertyOrder({ "name", "managerUsername", "type", "startTime", "endTime", "description", "country", "city", "street"})
 public class Restaurant {
     public String name;
+    public String id;
     public String managerUsername;
     public String type;
     public String startTime;

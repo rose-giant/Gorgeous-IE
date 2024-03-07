@@ -10,6 +10,7 @@ import objects.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.SplittableRandom;
 
 import static models.Addresses.*;
 
@@ -25,44 +26,12 @@ public class MizDooni {
     User relatedUser;
     Table relatedTable;
     Reservation relatedReservation;
+    Restaurant currentRestaurant = new Restaurant();
 
     public MizDooni() throws IOException {
-        //Reader rd = new Reader();
-        //users = rd.readFromFile(USERS_CSV, User.class);
-        User user = new User();
-        user.username = "razi";
-        user.password = "razi";
-        user.role = "client";
-        user.address = new Address();
-        user.responseHandler = new ResponseHandler();
-
-        User user1 = new User();
-        user1.username = "razi2";
-        user1.password = "razi2";
-        user1.role = "client";
-        user1.address = new Address();
-        user1.responseHandler = new ResponseHandler();
-        users.add(user1);
-        System.out.println(users.get(0).username);
-        //restaurants = rd.readFromFile(RESTAURANTS_CSV, Restaurant.class);
-        Restaurant restaurant = new Restaurant();
-        restaurant.name = "r1";
-        restaurant.address.city = "milan";
-        restaurant.type = "italian";
-        restaurant.startTime = "1:00";
-        restaurant.endTime = "12:00";
-        restaurants.add(restaurant);
-
-        Restaurant restaurant1 = new Restaurant();
-        restaurant1.name = "r2";
-        restaurant1.address.city = "milan";
-        restaurant1.type = "italian";
-        restaurant1.startTime = "21:00";
-        restaurant1.endTime = "22:00";
-        restaurants.add(restaurant1);
-
-        System.out.println(restaurants.get(0).name);
-
+        Reader rd = new Reader();
+        this.users = rd.readUsersFromFile(USERS_CSV);
+        this.restaurants = rd.readRestaurantsFromFile(RESTAURANTS_CSV);
 //        tables = rd.readFromFile(DATABASE_ADDRESS +"tables.csv", Table.class);
 //        reservations = rd.readFromFile(DATABASE_ADDRESS +"reservations.csv", Reservation.class);
     }
@@ -84,14 +53,47 @@ public class MizDooni {
         return false;
     }
 
-    public String createHTMLForRestaurantsList() {
+    public ArrayList<Restaurant> getRestaurantsByName(String search) {
+        ArrayList<Restaurant> restaurants1 = new ArrayList<>();
+            for (Restaurant r : restaurants) {
+                if (r.name.contains(search)) {
+                    restaurants1.add(r);
+                }
+            }
+
+            return restaurants1;
+    }
+
+    public ArrayList<Restaurant> filterRestaurants(String filter, String search) {
+        ArrayList<Restaurant> restaurants1 = new ArrayList<>();
+        switch (filter) {
+            case "search_by_type":
+
+                break;
+
+            case "search_by_name":
+                restaurants1 = getRestaurantsByName(search);
+                break;
+
+            case "search_by_city":
+                break;
+
+            default:
+                restaurants1 = restaurants;
+        }
+
+        return restaurants1;
+    }
+
+    public String createHTMLForRestaurantsList(String filter, String search) {
+        System.out.println("mizdooni says filter is " + filter + " and search is " + search);
+        ArrayList<Restaurant> filteredRestaurants = filterRestaurants(filter, search);
         String html = "";
-        for (Restaurant r : restaurants) {
+        for (Restaurant r : filteredRestaurants) {
             getRestaurantScores(r.name);
-            int index = restaurants.indexOf(r);
             html += "<tr>\n" +
-                    "        <th>" + index +"</th>\n" +
-                    "        <th>" + r.name + "</th>\n" +
+                    "        <th>" + r.id +"</th>\n" +
+                    "        <th>" + "<a href=" +"restaurant?" + r.name+ ">" + r.name + "</a>" + "</th>\n" +
                     "        <th>" + r.address.city + "</th>\n" +
                     "        <th>" + r.type + "</th>\n" +
                     "        <th>" + r.startTime + " - " + r.endTime + "</th>\n" +
@@ -101,8 +103,7 @@ public class MizDooni {
                     "        <th>" + relatedRestaurantService + "</th>\n" +
                     "    </tr>";
         }
-
-        System.out.println("html is " + html);
+//<a href="/error">hi</a>
         return html;
     }
 
@@ -156,8 +157,11 @@ public class MizDooni {
     }
 
     public Restaurant findRestaurantByName(String restaurantName) {
+        System.out.println("req name is " + restaurantName);
         for(Restaurant rest: restaurants) {
+            System.out.println("iterate" + rest.name);
             if(Objects.equals(rest.name, restaurantName)) {
+                System.out.println("it is " + rest.name);
                 return rest;
             }
         }
@@ -364,6 +368,16 @@ public class MizDooni {
         relatedRestaurant.addReview(review);
         reviews.add(review);
         responseHandler = review.responseHandler;
+    }
+
+    public void saveActiveUser(User user) {
+        Writer writer = new Writer();
+        writer.writeUser(user);
+    }
+
+    public void saveActiveRestaurant(Restaurant restaurant) {
+        Writer writer = new Writer();
+        writer.writeRestaurant(restaurant);
     }
 
     public User findUserByUsernameAndPass(String username, String password) {
