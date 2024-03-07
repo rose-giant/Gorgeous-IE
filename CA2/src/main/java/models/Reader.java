@@ -1,9 +1,6 @@
 package models;
 
-import objects.Address;
-import objects.ResponseHandler;
-import objects.Restaurant;
-import objects.User;
+import objects.*;
 
 
 import java.io.*;
@@ -40,7 +37,7 @@ public class Reader {
         try (BufferedReader br = new BufferedReader(new FileReader(fileAddress))) {
             while ((line = br.readLine()) != null) {
                 String[] restaurantData = line.split(csvSplitBy);
-                if (restaurantData.length == 9) {
+                if (restaurantData.length == 10) {
 
                     Restaurant restaurant = new Restaurant();
                     restaurant.responseHandler = new ResponseHandler();
@@ -54,6 +51,7 @@ public class Reader {
                     restaurant.country = restaurantData[6];
                     restaurant.city = restaurantData[7];
                     restaurant.street = restaurantData[8];
+                    restaurant.id = restaurantData[9];
                     restaurantList.add(restaurant);
                 } else {
                     System.out.println("Invalid data: " + line);
@@ -63,8 +61,42 @@ public class Reader {
             e.printStackTrace();
         }
 
-        System.out.println(restaurantList.get(0).name + restaurantList.get(0).city);
         return restaurantList;
+    }
+
+    public ArrayList<Review> readReviewsFromFile(String fileAddress) throws IOException {
+        String line;
+        String csvSplitBy = ",";
+        ArrayList<Review> reviews = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileAddress))) {
+            while ((line = br.readLine()) != null) {
+                String[] restaurantData = line.split(csvSplitBy);
+                if (restaurantData.length == 8) {
+
+                    Review review = new Review();
+                    review.responseHandler = new ResponseHandler();
+
+                    review.restaurantName = restaurantData[0];
+                    review.username = restaurantData[1];
+                    review.reviewDate = restaurantData[2];
+                    review.comment = restaurantData[3];
+                    review.overall = Double.parseDouble(restaurantData[4]);
+                    review.foodRate = Double.parseDouble(restaurantData[5]);
+                    review.ambianceRate = Double.parseDouble(restaurantData[6]);
+                    review.serviceRate = Double.parseDouble(restaurantData[7]);
+
+
+                    reviews.add(review);
+                } else {
+                    System.out.println("Invalid data: " + line);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return reviews;
     }
 
 //    public static void main(String[] args) throws IOException {

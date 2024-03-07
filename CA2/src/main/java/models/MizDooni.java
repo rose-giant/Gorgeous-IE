@@ -32,7 +32,7 @@ public class MizDooni {
         Reader rd = new Reader();
         this.users = rd.readUsersFromFile(USERS_CSV);
         this.restaurants = rd.readRestaurantsFromFile(RESTAURANTS_CSV);
-        System.out.println(restaurants.get(0).address.city);
+        this.reviews = rd.readReviewsFromFile(REVIEWS_CSV);
     }
 
     public static MizDooni getInstance() throws Exception {
@@ -87,7 +87,6 @@ public class MizDooni {
     public String createHTMLForRestaurantsList(String filter, String search) {
        // System.out.println("mizdooni says filter is " + filter + " and search is " + search);
         ArrayList<Restaurant> filteredRestaurants = this.restaurants;
-        System.out.println(2222 + this.restaurants.get(0).address.city);
         String html = "";
         for (Restaurant r : filteredRestaurants) {
             r.address = new Address();
@@ -96,7 +95,7 @@ public class MizDooni {
             getRestaurantScores(r.name);
             html += "<tr>\n" +
                     "        <th>" + r.id +"</th>\n" +
-                    "        <th>" + "<a href=" +"restaurant?" + r.name+ ">" + r.name + "</a>" + "</th>\n" +
+                    "        <th>" + "<a href=" +"restaurant/" + r.name+ ">" + r.name + "</a>" + "</th>\n" +
                     "        <th>" + r.city + "</th>\n" +
                     "        <th>" + r.type + "</th>\n" +
                     "        <th>" + r.startTime + " - " + r.endTime + "</th>\n" +
@@ -106,6 +105,26 @@ public class MizDooni {
                     "        <th>" + relatedRestaurantService + "</th>\n" +
                     "    </tr>";
         }
+        return html;
+    }
+
+    public String createHtmlForRestaurantReviews(String name) {
+        String html = "";
+        for (Review r : reviews) {
+            if (Objects.equals(name, r.restaurantName)) {
+                html += "<tr>\n" +
+                        "        <td>"+ r.username +"</td>\n" +
+                        "        <td>"+ r.comment +"</td>\n" +
+                        "        <td>"+ r.reviewDate +"</td>\n" +
+                        "        <td>"+ r.foodRate +"</td>\n" +
+                        "        <td>"+ r.serviceRate +"</td>\n" +
+                        "        <td>"+ r.ambianceRate +"</td>\n" +
+                        "        <td>"+ r.overall +"</td>\n" +
+                        "    </tr>";
+            }
+
+        }
+
         return html;
     }
 
@@ -119,19 +138,21 @@ public class MizDooni {
         double ambianceSum = 0;
         double foodSum = 0;
         double serviceSum = 0;
+        int num = 0;
         for (Review r : reviews) {
             if(Objects.equals(r.restaurantName, restaurantName)) {
                 overallSum += r.overall;
                 ambianceSum += r.ambianceRate;
                 foodSum += r.foodRate;
                 serviceSum += r.serviceRate;
+                num++;
             }
         }
 
-        relatedRestaurantOverall = (overallSum) / reviews.size();
-        relatedRestaurantAmbiance = (ambianceSum) / reviews.size();
-        relatedRestaurantFood = (foodSum) / reviews.size();
-        relatedRestaurantService = (serviceSum) / reviews.size();
+        relatedRestaurantOverall = (overallSum) / num;
+        relatedRestaurantAmbiance = (ambianceSum) / num;
+        relatedRestaurantFood = (foodSum) / num;
+        relatedRestaurantService = (serviceSum) / num;
     }
 
     public boolean restaurantManagerUsernameExists(String managerUsername) {
@@ -161,9 +182,7 @@ public class MizDooni {
     public Restaurant findRestaurantByName(String restaurantName) {
         System.out.println("req name is " + restaurantName);
         for(Restaurant rest: restaurants) {
-            System.out.println("iterate" + rest.name);
             if(Objects.equals(rest.name, restaurantName)) {
-                System.out.println("it is " + rest.name);
                 return rest;
             }
         }

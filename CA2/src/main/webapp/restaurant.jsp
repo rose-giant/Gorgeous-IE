@@ -12,28 +12,28 @@
 <p id="username">username: ali <a href="/">Home</a> <a href="logout.jsp" style="color: red">Log Out</a></p>
 <br>
 <%
-    String restaurantName = request.getParameter("restaurant");
-    request.setAttribute("restaurant", restaurantName);
+    String p = (String) request.getAttribute("restaurant");
+    System.out.println("in jsp it is "+ p);
     MizDooni mizDooni = new MizDooni();
-    Restaurant restaurant = mizDooni.findRestaurantByName(restaurantName);
-    //System.out.println("one rest is " + restaurant.name);
+    Restaurant restaurant = mizDooni.findRestaurantByName(p);
+    String reviewsHtml = mizDooni.createHtmlForRestaurantReviews(p);
 %>
 <h2>Restaurant Info:</h2>
-<%--<ul>--%>
-<%--    <li id="id">Id: <%=restaurant.id%></li>--%>
-<%--    <li id="name">Name: <%=restaurant.name%></li>--%>
-<%--    <li id="type">Type: <%=restaurant.type%></li>--%>
-<%--    <li id="time">Time: <%=restaurant.startTime%> - <%=restaurant.endTime%></li>--%>
-<%--    <li id="rate">Scores:</li>--%>
-<%--    <ul>--%>
-<%--        <li>Food: 3.45</li>--%>
-<%--        <li>Service: 2.5</li>--%>
-<%--        <li>Ambiance: 4.59</li>--%>
-<%--        <li>Overall: 4.1</li>--%>
-<%--    </ul>--%>
-<%--    <li id="address">Address: <%=restaurant.address.street%>, <%=restaurant.address.city%>, <%=restaurant.address.country%></li>--%>
-<%--    <li id="description"><%=restaurant.description%></li>--%>
-<%--</ul>--%>
+<ul>
+    <li id="id">Id: <%=restaurant.id%></li>
+    <li id="name">Name: <%=restaurant.name%></li>
+    <li id="type">Type: <%=restaurant.type%></li>
+    <li id="time">Time: <%=restaurant.startTime%> - <%=restaurant.endTime%></li>
+    <li id="rate">Scores:</li>
+    <ul>
+        <li>Food: 3.45</li>
+        <li>Service: 2.5</li>
+        <li>Ambiance: 4.59</li>
+        <li>Overall: 4.1</li>
+    </ul>
+    <li id="address">Address: <%=restaurant.street%>, <%=restaurant.city%>, <%=restaurant.country%></li>
+    <li id="description"><%=restaurant.description%></li>
+</ul>
 
 
 <table border="1" cellpadding="10">
@@ -97,15 +97,7 @@
         <th>Ambiance Rate</th>
         <th>Overall Rate</th>
     </tr>
-    <tr>
-        <td>user1</td>
-        <td>Food was not bad</td>
-        <td>2022-07-25</td>
-        <td>4.5</td>
-        <td>3</td>
-        <td>4.5</td>
-        <td>4</td>
-    </tr>
+    <%=reviewsHtml%>
 </table>
 <br><br>
 

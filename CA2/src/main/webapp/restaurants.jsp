@@ -36,7 +36,6 @@
 
     MizDooni mizDooni = new MizDooni();
     String restaurantsHtml = mizDooni.createHTMLForRestaurantsList(action, search);
-    System.out.println("filtered data is " + restaurantsHtml);
 %>
 
 <br><br>
