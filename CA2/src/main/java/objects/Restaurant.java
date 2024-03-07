@@ -27,7 +27,6 @@ public class Restaurant {
     public String country;
     public String city;
     public String street;
-
     public Address address = new Address();
     public ResponseHandler responseHandler;
     private final ArrayList<Table> tables = new ArrayList<>();

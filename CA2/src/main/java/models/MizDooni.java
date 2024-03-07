@@ -32,8 +32,7 @@ public class MizDooni {
         Reader rd = new Reader();
         this.users = rd.readUsersFromFile(USERS_CSV);
         this.restaurants = rd.readRestaurantsFromFile(RESTAURANTS_CSV);
-//        tables = rd.readFromFile(DATABASE_ADDRESS +"tables.csv", Table.class);
-//        reservations = rd.readFromFile(DATABASE_ADDRESS +"reservations.csv", Reservation.class);
+        System.out.println(restaurants.get(0).address.city);
     }
 
     public static MizDooni getInstance() throws Exception {
@@ -86,15 +85,19 @@ public class MizDooni {
     }
 
     public String createHTMLForRestaurantsList(String filter, String search) {
-        System.out.println("mizdooni says filter is " + filter + " and search is " + search);
-        ArrayList<Restaurant> filteredRestaurants = filterRestaurants(filter, search);
+       // System.out.println("mizdooni says filter is " + filter + " and search is " + search);
+        ArrayList<Restaurant> filteredRestaurants = this.restaurants;
+        System.out.println(2222 + this.restaurants.get(0).address.city);
         String html = "";
         for (Restaurant r : filteredRestaurants) {
+            r.address = new Address();
+            r.responseHandler = new ResponseHandler();
+
             getRestaurantScores(r.name);
             html += "<tr>\n" +
                     "        <th>" + r.id +"</th>\n" +
                     "        <th>" + "<a href=" +"restaurant?" + r.name+ ">" + r.name + "</a>" + "</th>\n" +
-                    "        <th>" + r.address.city + "</th>\n" +
+                    "        <th>" + r.city + "</th>\n" +
                     "        <th>" + r.type + "</th>\n" +
                     "        <th>" + r.startTime + " - " + r.endTime + "</th>\n" +
                     "        <th>"+ relatedRestaurantOverall +"</th>\n" +
@@ -103,7 +106,6 @@ public class MizDooni {
                     "        <th>" + relatedRestaurantService + "</th>\n" +
                     "    </tr>";
         }
-//<a href="/error">hi</a>
         return html;
     }
 

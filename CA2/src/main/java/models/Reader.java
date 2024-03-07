@@ -1,5 +1,7 @@
 package models;
 
+import objects.Address;
+import objects.ResponseHandler;
 import objects.Restaurant;
 import objects.User;
 
@@ -39,17 +41,19 @@ public class Reader {
             while ((line = br.readLine()) != null) {
                 String[] restaurantData = line.split(csvSplitBy);
                 if (restaurantData.length == 9) {
+
                     Restaurant restaurant = new Restaurant();
+                    restaurant.responseHandler = new ResponseHandler();
+
                     restaurant.name = restaurantData[0];
                     restaurant.managerUsername = restaurantData[1];
+                    restaurant.type = restaurantData[2];
                     restaurant.startTime = restaurantData[3];
                     restaurant.endTime = restaurantData[4];
-                    restaurant.type = restaurantData[5];
-                    restaurant.description = restaurantData[6];
-                    restaurant.country = restaurantData[7];
-                    restaurant.city = restaurantData[8];
-                    restaurant.street = restaurantData[2];
-
+                    restaurant.description = restaurantData[5];
+                    restaurant.country = restaurantData[6];
+                    restaurant.city = restaurantData[7];
+                    restaurant.street = restaurantData[8];
                     restaurantList.add(restaurant);
                 } else {
                     System.out.println("Invalid data: " + line);
@@ -58,6 +62,8 @@ public class Reader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        System.out.println(restaurantList.get(0).name + restaurantList.get(0).city);
         return restaurantList;
     }
 
