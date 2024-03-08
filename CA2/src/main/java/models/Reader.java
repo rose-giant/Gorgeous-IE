@@ -128,6 +128,32 @@ public class Reader {
         return reservations;
     }
 
+    public ArrayList<Table> readTablesFromFile(String filePath) {
+        String line;
+        String csvSplitBy = ",";
+        ArrayList<Table> tables = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(csvSplitBy);
+                if (data.length == 4) {
+                    Table table = new Table();
+                    table.restaurantName = data[0];
+                    table.managerUsername = data[1];
+                    table.tableNumber = Integer.parseInt(data[2]);
+                    table.seatsNumber = Integer.parseInt(data[3]);
+                    tables.add(table);
+                } else {
+                    System.out.println("Invalid data: " + line);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return tables;
+    }
+
     public String getActive(String filePath) throws IOException {
         String firstLine = null;
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {

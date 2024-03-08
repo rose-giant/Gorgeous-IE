@@ -1,3 +1,6 @@
+<%@ page import="models.MizDooni" %>
+<%@ page import="models.Reader" %>
+<%@ page import="objects.Restaurant" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en"><head>
     <meta charset="UTF-8">
@@ -9,21 +12,28 @@
 %>
 <h1>Welcome <%=username%> <a href="logout.jsp" style="color: red">Log Out</a></h1>
 
+<%
+    MizDooni mizDooni = new MizDooni();
+    Restaurant restaurant = mizDooni.findRestaurantByManager(username);
+    if (restaurant == null) {
+        request.setAttribute("error", "you don't have any restaurants");
+        response.sendRedirect("/error");
+    }
+
+    String tableHtml = mizDooni.createHTMLForTables(restaurant);
+%>
+
 <h2>Your Restaurant Information:</h2>
 <ul>
-    <li id="id">Id: 1</li>
-    <li id="name">Name: Fast Food</li>
-    <li id="type">Type: Italian</li>
-    <li id="time">Time: 08:00 - 23:00</li>
-    <li id="description">Description: "Best food you can eat"</li>
-    <li id="address">Address: North Kargar, Tehran, Iran</li>
+    <li id="id">Id: <%=restaurant.id%></li>
+    <li id="name">Name: <%=restaurant.name%></li>
+    <li id="type">Type: <%=restaurant.type%></li>
+    <li id="time">Time: <%=restaurant.startTime%> - <%=restaurant.endTime%></li>
+    <li id="description">Description: <%=restaurant.description%></li>
+    <li id="address">Address: <%=restaurant.street%>, <%=restaurant.city%>, <%=restaurant.country%></li>
     <li id="tables">Tables:</li>
     <ul>
-        <li>table1</li>
-        <li>table2</li>
-        <li>table3</li>
-        <li>table4</li>
-        <li>table5</li>
+        <%=tableHtml%>
     </ul>
 </ul>
 

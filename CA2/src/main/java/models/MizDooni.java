@@ -4,12 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import models.Reader;
 import objects.*;
-
-import javax.swing.plaf.PanelUI;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
@@ -22,6 +17,7 @@ public class MizDooni {
     public ArrayList<Review> reviews = new ArrayList<>();
     public ArrayList<Restaurant> restaurants = new ArrayList<>();
     public ArrayList<Reservation> reservations = new ArrayList<>();
+    public ArrayList<Table> tables = new ArrayList<>();
     ObjectMapper om = JsonMapper.builder().addModule(new JavaTimeModule()).build();
     Object returnedData;
     Restaurant relatedRestaurant;
@@ -37,6 +33,18 @@ public class MizDooni {
         this.reviews = rd.readReviewsFromFile(REVIEWS_CSV);
         removeRedundantReviews();
         this.reservations = rd.readReservationsFromFile(RESERVATIONS_CSV);
+        this.tables = rd.readTablesFromFile(TABLES_CSV);
+    }
+
+    public void addTable(Table table) {
+        this.tables.add(table);
+        String tableString = table.restaurantName+","+table.managerUsername+","+table.tableNumber+","+table.seatsNumber+"\n";
+        Writer writer = new Writer();
+        try {
+            writer.writeReview(TABLES_CSV, tableString);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public ArrayList<Reservation> getUserReservations(String username) {
@@ -94,9 +102,8 @@ public class MizDooni {
     }
 
     public boolean userAlreadyExists(User user) {
-        System.out.println(user.username + ", "+user.password);
+        //System.out.println(user.username + ", "+user.password);
         for(User value: users) {
-            System.out.println(value.username + " and "+value.password);
             if (Objects.equals(user.username, value.username) && Objects.equals(user.password, value.password)) {
                 return true;
             }
@@ -139,7 +146,6 @@ public class MizDooni {
 
     public ArrayList<Restaurant> sortRestaurantsByScore() {
         ArrayList<Restaurant> restaurants1 = new ArrayList<>();
-       // reviews.sort(Comparator.comparing(Review::));
         return  restaurants1;
     }
 
@@ -154,8 +160,20 @@ public class MizDooni {
         };
     }
 
+    public String createHTMLForTables(Restaurant restaurant) {
+        String html = "";
+        System.out.println(restaurant.name+restaurant.managerUsername);
+        for (Table t : tables) {
+            if(Objects.equals(t.managerUsername, restaurant.managerUsername)) {
+                html += "<li>"+ "table#"+ String.valueOf(t.tableNumber) +"</li>";
+            }
+        }
+
+        return html;
+    }
+
     public String createHTMLForRestaurantsList(String filter, String search) {
-        System.out.println("mizDooni says filter is " + filter + " and search is " + search);
+       // System.out.println("mizDooni says filter is " + filter + " and search is " + search);
         ArrayList<Restaurant> filteredRestaurants = filterRestaurants(filter, search);
         String html = "";
         for (Restaurant r : filteredRestaurants) {
@@ -258,6 +276,16 @@ public class MizDooni {
         return null;
     }
 
+    public Restaurant findRestaurantByManager(String managerUsername) {
+        for(Restaurant rest: restaurants) {
+            System.out.println(rest.name);
+            if(Objects.equals(rest.managerUsername, managerUsername)) {
+                return rest;
+            }
+        }
+        return null;
+    }
+
     public User findUserByUserName(String userName) {
         for(User user: users) {
             if(Objects.equals(user.username, userName)) {
@@ -353,71 +381,6 @@ public class MizDooni {
 
     public void searchRestaurantsByType(String jsonString) throws JsonProcessingException {
         responseHandler = searchRestaurantByTypeHandler(jsonString);
-    }
-
-    public void addTable(String jsonString) throws Exception {
-        Table table = new Table(jsonString);
-        relatedRestaurant = findRestaurantByName(table.restaurantName);
-        relatedUser = findUserByUserName(table.managerUsername);
-        if (relatedUser == null){
-            throw new Exception("Manager username not found.");
-        } else if (Objects.equals(relatedUser.role, User.CLIENT_ROLE) ||
-                !Objects.equals(relatedRestaurant.managerUsername, table.managerUsername)) {
-            throw new Exception("This user is not allowed to add a table.");
-        }
-        if (relatedRestaurant == null){
-            throw new Exception("Restaurant name not found.");
-        }else if(relatedRestaurant.findTableByNumber(table.tableNumber) != null){
-            throw new Exception("Table number already exists.");
-        }
-
-        relatedRestaurant.addTable(table);
-        returnedData = "Table added successfully.";
-        responseHandler = new ResponseHandler(true, returnedData);
-    }
-
-    public void showReservationHistory(String jsonString) throws JsonProcessingException {
-        User.UserName un = om.readValue(jsonString, User.UserName.class);
-        relatedUser = findUserByUserName(un.username);
-
-        returnedData = relatedUser.getReservationHistory();
-        responseHandler = new ResponseHandler(true, returnedData);
-    }
-
-    public void showAvailableTables(String jsonString) throws Exception {
-        Restaurant.RestaurantName rn = om.readValue(jsonString, Restaurant.RestaurantName.class);
-        relatedRestaurant = findRestaurantByName(rn.restaurantName);
-
-        if (relatedRestaurant == null) {
-            throw new Exception("Restaurant name not found.");
-        }
-        returnedData = relatedRestaurant.getAvailableTables();
-        this.responseHandler = new ResponseHandler(true, returnedData);
-    }
-
-    public void addReview(String jsonString) throws JsonProcessingException {
-        Review review = new Review();
-        review.addReviewHandler(jsonString);
-        relatedUser = findUserByUserName(review.username);
-        if(!userAlreadyExists(relatedUser)) {
-            review.handleOuterErrorMessage(" username does not exist.");
-        }
-
-        if(userRoleIsManager(review.username)) {
-            review.handleOuterErrorMessage(" username role is not client.");
-        }
-
-        if(!restaurantNameAlreadyExists(review.restaurantName)) {
-            review.handleOuterErrorMessage(" restaurant name does not exist.");
-        }
-
-        if(!relatedUser.hasExperienced(review.restaurantName)){
-            review.handleOuterErrorMessage(" You are not allowed to comment on this restaurant.");
-        }
-
-        relatedRestaurant.addReview(review);
-        reviews.add(review);
-        responseHandler = review.responseHandler;
     }
 
     public void saveActiveUser(User user) {

@@ -11,31 +11,10 @@ import java.util.Objects;
 
 public class Table {
     public int tableNumber;
-
     public String restaurantName;
-
     public String managerUsername;
-
     public ArrayList<LocalDateTime> reservedDateTimes = new ArrayList<>();
-
     public int seatsNumber;
-
-    @JsonCreator
-    public Table(@JsonProperty("tableNumber") int tableNumber, @JsonProperty("restaurantName") String restaurantName,
-                       @JsonProperty("managerUsername") String managerUsername, @JsonProperty("seatsNumber") int seatsNumber) {
-        this.managerUsername = managerUsername;
-        this.restaurantName = restaurantName;
-        this.tableNumber = tableNumber;
-        this.seatsNumber  = seatsNumber;
-    }
-
-    public Table(String jsonString) throws JsonProcessingException {
-        ObjectMapper om = new ObjectMapper();
-        Table table  = om.readValue(jsonString, Table.class);
-        tableNumber = table.tableNumber;
-        restaurantName = table.restaurantName;
-        managerUsername = table.managerUsername;
-    }
 
     public boolean hasDateTimeConflict(Reservation reservation) {
         for(LocalDateTime rs: reservedDateTimes) {
