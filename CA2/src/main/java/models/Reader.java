@@ -71,21 +71,20 @@ public class Reader {
 
         try (BufferedReader br = new BufferedReader(new FileReader(fileAddress))) {
             while ((line = br.readLine()) != null) {
-                String[] restaurantData = line.split(csvSplitBy);
-                if (restaurantData.length == 8) {
+                String[] reviewData = line.split(csvSplitBy);
+                if (reviewData.length == 8) {
 
                     Review review = new Review();
                     review.responseHandler = new ResponseHandler();
 
-                    review.restaurantName = restaurantData[0];
-                    review.username = restaurantData[1];
-                    review.reviewDate = restaurantData[2];
-                    review.comment = restaurantData[3];
-                    review.overall = Double.parseDouble(restaurantData[4]);
-                    review.foodRate = Double.parseDouble(restaurantData[5]);
-                    review.ambianceRate = Double.parseDouble(restaurantData[6]);
-                    review.serviceRate = Double.parseDouble(restaurantData[7]);
-
+                    review.restaurantName = reviewData[0];
+                    review.username = reviewData[1];
+                    review.reviewDate = reviewData[2];
+                    review.comment = reviewData[3];
+                    review.overall = Double.parseDouble(reviewData[4]);
+                    review.foodRate = Double.parseDouble(reviewData[5]);
+                    review.ambianceRate = Double.parseDouble(reviewData[6]);
+                    review.serviceRate = Double.parseDouble(reviewData[7]);
 
                     reviews.add(review);
                 } else {
@@ -99,6 +98,13 @@ public class Reader {
         return reviews;
     }
 
+    public String getActive(String filePath) throws IOException {
+        String firstLine = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            firstLine = br.readLine();
+        }
+        return firstLine;
+    }
 //    public static void main(String[] args) throws IOException {
 //        Reader  csvReader = new Reader();
 //        ArrayList<User> users;

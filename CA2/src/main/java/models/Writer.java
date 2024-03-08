@@ -5,9 +5,7 @@ import objects.ResponseHandler;
 import objects.Restaurant;
 import objects.User;
 
-import java.io.FileWriter;
-import java.io.BufferedWriter;
-import java.io.IOException;
+import java.io.*;
 
 import static models.Addresses.CURRENT_RESTAURANT_ADDRESS;
 import static models.Addresses.CURRENT_USER_ADDRESS;
@@ -57,6 +55,26 @@ public class Writer {
             bufferedWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void writeReview(String filePath, String content) throws IOException {
+        StringBuilder fileContents = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                fileContents.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        fileContents.insert(0, content);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(fileContents.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -15,15 +15,14 @@ import java.io.IOException;
 public class RestaurantServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String restaurantName = new String();
         String pathInfo = request.getPathInfo();
         String[] pathComponents = pathInfo.split("/");
         if (pathComponents.length >= 2) {
             restaurantName = pathComponents[1];
-            System.out.println("Restaurant name: " + restaurantName);
         } else {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().println("No restaurant name provided in the URL");
+            response.sendRedirect("/error");
         }
 
         request.setAttribute("restaurant", restaurantName);
@@ -33,8 +32,5 @@ public class RestaurantServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
-        String search = request.getParameter("search");
-
     }
 }

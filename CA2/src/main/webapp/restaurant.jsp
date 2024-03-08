@@ -1,5 +1,6 @@
 <%@ page import="models.MizDooni" %>
 <%@ page import="objects.Restaurant" %>
+<%@ page import="objects.Review" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -13,9 +14,9 @@
 <br>
 <%
     String p = (String) request.getAttribute("restaurant");
-    System.out.println("in jsp it is "+ p);
     MizDooni mizDooni = new MizDooni();
     Restaurant restaurant = mizDooni.findRestaurantByName(p);
+    mizDooni.saveActiveRestaurant(restaurant);
     String reviewsHtml = mizDooni.createHtmlForRestaurantReviews(p);
 %>
 <h2>Restaurant Info:</h2>
@@ -60,7 +61,7 @@
     <tr>
         <td>
             <label>Feedback:</label>
-            <form action="" method="post">
+            <form action="${pageContext.request.contextPath}/feedback" method="post">
                 <label>Food Rate:</label>
                 <input type="number" id="food_rate" name="food_rate" step="0.1" min="0" max="5">
                 <label>Service Rate:</label>
@@ -72,7 +73,7 @@
                 <br>
                 <label>Comment:</label>
                 <textarea name="comment"  id="" cols="30" rows="5" placeholder="Enter your comment"></textarea>
-                <!-- <input type="textarea" name="comment" value="" /> -->
+
                 <br>
                 <button type="submit" name="action" value="feedback">Submit</button>
             </form>
@@ -80,7 +81,22 @@
     </tr>
 </table>
 
-
+<%--<%--%>
+<%--    Double foodRate = Double.parseDouble(request.getParameter("food_rate"));--%>
+<%--    Double serviceRate = Double.parseDouble(request.getParameter("service_rate"));--%>
+<%--    Double ambianceRate = Double.parseDouble(request.getParameter("ambiance_rate"));--%>
+<%--    Double overallRate = Double.parseDouble(request.getParameter("overall_rate"));--%>
+<%--    String restaurantName = mizDooni.getCurrentRestaurant();--%>
+<%--    String username = mizDooni.getActiveUser();--%>
+<%--    Review review = new Review();--%>
+<%--    review.restaurantName = restaurantName;--%>
+<%--    review.username = username;--%>
+<%--    review.foodRate = foodRate;--%>
+<%--    review.serviceRate = serviceRate;--%>
+<%--    review.ambianceRate = ambianceRate;--%>
+<%--    review.overall = overallRate;--%>
+<%--    mizDooni.reviews.add(review);--%>
+<%--%>--%>
 
 
 <br>

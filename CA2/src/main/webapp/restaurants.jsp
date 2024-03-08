@@ -13,15 +13,15 @@
 %>
 <p id="username">username: <%=username%> <a href="/">Home</a> <a href="logout.jsp" style="color: red">Log Out</a></p>
 <br><br>
-<form action="" method="POST">
+<form action="${pageContext.request.contextPath}/filterRestaurants" method="POST">
     <label>Search:</label>
     <input type="text" name="search" value="">
     <button type="submit" name="action" value="search_by_type">Search By Type</button>
     <button type="submit" name="action" value="search_by_name">Search By Name</button>
     <button type="submit" name="action" value="search_by_city">Search By City</button>
-    <button type="reset" name="action" value="clear">Clear Search</button>
+    <button type="submit" name="action" value="clear" onclick="location.reload();" >Clear Search</button>
     <br><br>
-    <button type="submit">sort by score</button>
+    <button type="submit" name="action" value="sort_by_score">sort by score</button>
 </form>
 
 <%

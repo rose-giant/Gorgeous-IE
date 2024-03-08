@@ -7,10 +7,10 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import models.Reader;
 import objects.*;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.SplittableRandom;
+import java.util.*;
 
 import static models.Addresses.*;
 
@@ -33,6 +33,7 @@ public class MizDooni {
         this.users = rd.readUsersFromFile(USERS_CSV);
         this.restaurants = rd.readRestaurantsFromFile(RESTAURANTS_CSV);
         this.reviews = rd.readReviewsFromFile(REVIEWS_CSV);
+        removeRedundantReviews();
     }
 
     public static MizDooni getInstance() throws Exception {
@@ -63,30 +64,48 @@ public class MizDooni {
             return restaurants1;
     }
 
-    public ArrayList<Restaurant> filterRestaurants(String filter, String search) {
+    public ArrayList<Restaurant> getRestaurantsByType(String search) {
         ArrayList<Restaurant> restaurants1 = new ArrayList<>();
-        switch (filter) {
-            case "search_by_type":
-
-                break;
-
-            case "search_by_name":
-                restaurants1 = getRestaurantsByName(search);
-                break;
-
-            case "search_by_city":
-                break;
-
-            default:
-                restaurants1 = restaurants;
+        for (Restaurant r : restaurants) {
+            if (Objects.equals(r.type, search)) {
+                restaurants1.add(r);
+            }
         }
 
         return restaurants1;
     }
 
+    public ArrayList<Restaurant> getRestaurantsByCity(String search) {
+        ArrayList<Restaurant> restaurants1 = new ArrayList<>();
+        for (Restaurant r : restaurants) {
+            if (Objects.equals(r.city, search)) {
+                restaurants1.add(r);
+            }
+        }
+
+        return restaurants1;
+    }
+
+    public ArrayList<Restaurant> sortRestaurantsByScore() {
+        ArrayList<Restaurant> restaurants1 = new ArrayList<>();
+       // reviews.sort(Comparator.comparing(Review::));
+        return  restaurants1;
+    }
+
+    public ArrayList<Restaurant> filterRestaurants(String filter, String search) {
+
+        return switch (filter) {
+            case "search_by_type" -> getRestaurantsByType(search);
+            case "search_by_name" -> getRestaurantsByName(search);
+            case "search_by_city" -> getRestaurantsByCity(search);
+            case "sort_by_score" ->  sortRestaurantsByScore();
+            default -> restaurants;
+        };
+    }
+
     public String createHTMLForRestaurantsList(String filter, String search) {
-       // System.out.println("mizdooni says filter is " + filter + " and search is " + search);
-        ArrayList<Restaurant> filteredRestaurants = this.restaurants;
+        System.out.println("mizDooni says filter is " + filter + " and search is " + search);
+        ArrayList<Restaurant> filteredRestaurants = filterRestaurants(filter, search);
         String html = "";
         for (Restaurant r : filteredRestaurants) {
             r.address = new Address();
@@ -122,7 +141,6 @@ public class MizDooni {
                         "        <td>"+ r.overall +"</td>\n" +
                         "    </tr>";
             }
-
         }
 
         return html;
@@ -180,7 +198,7 @@ public class MizDooni {
     }
 
     public Restaurant findRestaurantByName(String restaurantName) {
-        System.out.println("req name is " + restaurantName);
+       // System.out.println("req name is " + restaurantName);
         for(Restaurant rest: restaurants) {
             if(Objects.equals(rest.name, restaurantName)) {
                 return rest;
@@ -394,6 +412,58 @@ public class MizDooni {
     public void saveActiveUser(User user) {
         Writer writer = new Writer();
         writer.writeUser(user);
+    }
+
+    public void saveReview(Review review) {
+        Writer writer = new Writer();
+        Date date = new Date();
+        String reviewString = review.restaurantName+","+review.username+","+
+                date+","+review.comment+","+review.foodRate+","+
+                review.serviceRate+","+review.ambianceRate+","+review.overall +"\n";
+
+        try {
+            writer.writeReview(REVIEWS_CSV, reviewString);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        removeRedundantReviews();
+    }
+
+    public void removeRedundantReviews() {
+        Set<String> uniqueUsernames = new HashSet<>();
+        Iterator<Review> iterator = reviews.iterator();
+
+        while (iterator.hasNext()) {
+            Review review = iterator.next();
+            if (!uniqueUsernames.add(review.username)) {
+                iterator.remove();
+            }
+        }
+    }
+
+    public String getActiveUser() {
+        Reader reader = new Reader();
+        String username = "";
+        try {
+            username = reader.getActive(CURRENT_USER_ADDRESS);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return username;
+    }
+
+    public String getCurrentRestaurant() {
+        Reader reader = new Reader();
+        String restaurantName = "";
+        try {
+            restaurantName = reader.getActive(CURRENT_RESTAURANT_ADDRESS);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return restaurantName;
     }
 
     public void saveActiveRestaurant(Restaurant restaurant) {

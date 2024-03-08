@@ -9,22 +9,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import models.MizDooni;
 
 import java.io.IOException;
-
-@WebServlet("/restaurants")
-public class RestaurantsServlet extends HttpServlet {
-    public String restaurantsHtml = "";
+@WebServlet("/filterRestaurants")
+public class RestaurantFilterServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        MizDooni mizDooni = new MizDooni();
-        //restaurantsHtml = mizDooni.createHTMLForRestaurantsList(action, search);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("restaurants.jsp");
-        requestDispatcher.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        System.out.println("in filtering...");
         String action = request.getParameter("action");
         String search = request.getParameter("search");
         if (action == null || search == null) {
@@ -32,7 +26,9 @@ public class RestaurantsServlet extends HttpServlet {
             search = "";
         }
 
-        request.setAttribute("action", action);
-        request.setAttribute("search", search);
-    }
-}
+        System.out.println(1+action);
+        System.out.println(2+search);
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("restaurants.jsp");
+        requestDispatcher.forward(request, response);
+    }}
