@@ -98,6 +98,36 @@ public class Reader {
         return reviews;
     }
 
+    public ArrayList<Reservation> readReservationsFromFile(String fileAddress) throws IOException {
+        String line;
+        String csvSplitBy = ",";
+        ArrayList<Reservation> reservations = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(fileAddress))) {
+            while ((line = br.readLine()) != null) {
+                String[] restaurantData = line.split(csvSplitBy);
+                if (restaurantData.length == 5) {
+
+                    Reservation reservation = new Reservation();
+
+                    reservation.username = restaurantData[0];
+                    reservation.reservationNumber = Integer.parseInt(restaurantData[1]);
+                    reservation.restaurantName = restaurantData[2];
+                    reservation.tableNumber = Integer.parseInt(restaurantData[3]);
+                    reservation.datetime = restaurantData[4];
+
+                    reservations.add(reservation);
+                } else {
+                    System.out.println("Invalid data: " + line);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return reservations;
+    }
+
     public String getActive(String filePath) throws IOException {
         String firstLine = null;
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {

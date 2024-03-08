@@ -7,6 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import models.Reader;
 import objects.*;
 
+import javax.swing.plaf.PanelUI;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class MizDooni {
     public ArrayList<User> users = new ArrayList<User>();
     public ArrayList<Review> reviews = new ArrayList<>();
     public ArrayList<Restaurant> restaurants = new ArrayList<>();
+    public ArrayList<Reservation> reservations = new ArrayList<>();
     ObjectMapper om = JsonMapper.builder().addModule(new JavaTimeModule()).build();
     Object returnedData;
     Restaurant relatedRestaurant;
@@ -34,6 +36,55 @@ public class MizDooni {
         this.restaurants = rd.readRestaurantsFromFile(RESTAURANTS_CSV);
         this.reviews = rd.readReviewsFromFile(REVIEWS_CSV);
         removeRedundantReviews();
+        this.reservations = rd.readReservationsFromFile(RESERVATIONS_CSV);
+    }
+
+    public ArrayList<Reservation> getUserReservations(String username) {
+        ArrayList<Reservation> reservations1 = new ArrayList<>();
+        for(Reservation r : reservations) {
+            if (Objects.equals(r.username, username)) {
+
+                reservations1.add(r);
+            }
+        }
+
+        return reservations1;
+    }
+
+    public String createHtmlForUserReservations(ArrayList<Reservation> reservations2) {
+        String html = "";
+        for (Reservation r : reservations2) {
+            html += "<tr><td>"+ r.reservationNumber +"</td>\n" +
+                    "<td><a href=\"/restaurant/" + r.restaurantName+"\"" + "</a>" + r.restaurantName + "</td>\n"+
+                    "<td>"+ r.tableNumber +"</td>\n" +
+                    "<td>"+ r.datetime +"</td>"+
+                    "<td>\n" +
+                    "            <form action=\"/reservations\" method=\"POST\">\n" +
+                    "                <button type=\"submit\" name=\"action\" value=\""+ r.reservationNumber +"\">Cancel This</button>\n" +
+                    "            </form>\n" +
+                    "        </td> </tr>"
+            ;
+        }
+
+        return html;
+    }
+
+    public void addReservation(Reservation reservation) {
+        Writer writer = new Writer();
+        String reservation1 = reservation.username+","+
+                reservation.reservationNumber+","+reservation.restaurantName+","+
+                reservation.tableNumber+","+reservation.datetime+"\n";
+
+        try {
+            writer.writeReview(RESERVATIONS_CSV, reservation1);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void cancelReservation(String reservationNumber) {
+        Writer writer = new Writer();
+        writer.removeReservationFromFile(reservationNumber, RESERVATIONS_CSV);
     }
 
     public static MizDooni getInstance() throws Exception {
@@ -322,46 +373,6 @@ public class MizDooni {
 
         relatedRestaurant.addTable(table);
         returnedData = "Table added successfully.";
-        responseHandler = new ResponseHandler(true, returnedData);
-    }
-
-    public void reserveTable(String jsonString) throws Exception {
-        Reservation reservation = new Reservation(jsonString);
-        relatedRestaurant = findRestaurantByName(reservation.restaurantName);
-        relatedUser = findUserByUserName(reservation.username);
-        if (relatedUser == null){
-            throw new Exception("Username not found.");
-        } else if (Objects.equals(relatedUser.role, User.MANAGER_ROLE)) {
-            throw new Exception("This user is not allowed to reserve a table.");
-        }
-        if (relatedRestaurant == null){
-            throw new Exception("Restaurant name not found.");
-        } else if (!relatedRestaurant.isOpenAt(reservation.datetimeFormatted)){
-            throw new Exception("Restaurant doesn't work at this DateTime");
-        }
-        relatedRestaurant.reserve(reservation);
-        //Because we need to handle showReservationHistory command, it's better to add reservation to the ordering user too.
-        relatedUser.addReservation(reservation);
-
-        returnedData = new Reservation.ResNumber(reservation.reservationNumber);
-        this.responseHandler = new ResponseHandler(true, returnedData);
-
-    }
-
-    public void cancelReservation(String jsonString) throws Exception {
-        Reservation.CancelReservation cr = om.readValue(jsonString, Reservation.CancelReservation.class);
-        relatedUser = findUserByUserName(cr.username);
-        relatedReservation = relatedUser.findReservationByNumber(cr.reservationNumber);
-        if(relatedReservation == null){
-            throw new Exception("Reservation not found");
-        }
-        relatedRestaurant = findRestaurantByName(relatedReservation.restaurantName);
-        relatedReservation.checkSafetyRemoval();
-
-        relatedUser.removeReservation(relatedReservation);
-        relatedRestaurant.removeReservation(relatedReservation);
-
-        returnedData = "Reservation cancelled successfully";
         responseHandler = new ResponseHandler(true, returnedData);
     }
 

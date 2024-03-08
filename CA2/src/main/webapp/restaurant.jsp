@@ -10,15 +10,17 @@
     <title>Restaurant</title>
 </head>
 <body>
-<p id="username">username: ali <a href="/">Home</a> <a href="logout.jsp" style="color: red">Log Out</a></p>
-<br>
 <%
     String p = (String) request.getAttribute("restaurant");
     MizDooni mizDooni = new MizDooni();
     Restaurant restaurant = mizDooni.findRestaurantByName(p);
     mizDooni.saveActiveRestaurant(restaurant);
+    String username = mizDooni.getActiveUser();
     String reviewsHtml = mizDooni.createHtmlForRestaurantReviews(p);
 %>
+<p id="username">username: <%=username%> <a href="/">Home</a> <a href="logout.jsp" style="color: red">Log Out</a></p>
+<br>
+
 <h2>Restaurant Info:</h2>
 <ul>
     <li id="id">Id: <%=restaurant.id%></li>
@@ -41,7 +43,7 @@
     <tr>
         <td>
             <label>Reserve Table:</label>
-            <form action="" method="post">
+            <form action="${pageContext.request.contextPath}/addReservation" method="post">
                 <label>Table:</label>
                 <select id="table_number" name="table_number">
                     <option value="1">1</option>

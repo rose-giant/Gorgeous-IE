@@ -7,8 +7,7 @@ import objects.User;
 
 import java.io.*;
 
-import static models.Addresses.CURRENT_RESTAURANT_ADDRESS;
-import static models.Addresses.CURRENT_USER_ADDRESS;
+import static models.Addresses.*;
 
 public class Writer {
 
@@ -73,6 +72,37 @@ public class Writer {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(fileContents.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeReservationFromFile(String reservationNumber, String filePath) {
+        File inputFile = new File(filePath);
+        File tempFile = new File(BASE_PATH+"temp.txt");
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
+            String currentLine;
+
+            while ((currentLine = reader.readLine()) != null) {
+                String[] attributes = currentLine.split(",");
+                if (!attributes[1].equals(reservationNumber)) {
+                    writer.write(currentLine + System.getProperty("line.separator"));
+                }
+            }
+            writer.close();
+            reader.close();
+
+            if (!inputFile.delete()) {
+                System.out.println("Could not delete file");
+                return;
+            }
+
+            if (!tempFile.renameTo(inputFile)) {
+                System.out.println("Could not rename file");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
