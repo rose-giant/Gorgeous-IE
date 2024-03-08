@@ -83,24 +83,6 @@
     </tr>
 </table>
 
-<%--<%--%>
-<%--    Double foodRate = Double.parseDouble(request.getParameter("food_rate"));--%>
-<%--    Double serviceRate = Double.parseDouble(request.getParameter("service_rate"));--%>
-<%--    Double ambianceRate = Double.parseDouble(request.getParameter("ambiance_rate"));--%>
-<%--    Double overallRate = Double.parseDouble(request.getParameter("overall_rate"));--%>
-<%--    String restaurantName = mizDooni.getCurrentRestaurant();--%>
-<%--    String username = mizDooni.getActiveUser();--%>
-<%--    Review review = new Review();--%>
-<%--    review.restaurantName = restaurantName;--%>
-<%--    review.username = username;--%>
-<%--    review.foodRate = foodRate;--%>
-<%--    review.serviceRate = serviceRate;--%>
-<%--    review.ambianceRate = ambianceRate;--%>
-<%--    review.overall = overallRate;--%>
-<%--    mizDooni.reviews.add(review);--%>
-<%--%>--%>
-
-
 <br>
 
 <br/>
