@@ -11,6 +11,9 @@
     <title>400 Error</title>
 </head>
 <body style="text-align:center">
-<h1>400<br>No user with username <%=username%> exists</h1>
+<%
+    String errorMessage = (String) request.getSession().getAttribute("error");
+%>
+<h1><%=errorMessage%></h1>
 </body>
 </html>

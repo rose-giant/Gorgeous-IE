@@ -15,23 +15,31 @@ import java.io.IOException;
 public class AddReservationServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String tableNumber = request.getParameter("table_number");
-        String reservationDate = request.getParameter("date_time");
+            throws IOException {
         MizDooni mizDooni = new MizDooni();
-        Reservation reservation = new Reservation();
-        reservation.datetime = reservationDate;
-        reservation.tableNumber = Integer.parseInt(tableNumber);
-        reservation.username = mizDooni.getActiveUser();
-        reservation.restaurantName = mizDooni.getCurrentRestaurant();
-        Random random = new Random();
-        reservation.reservationNumber = random.nextInt(100);
-        mizDooni.addReservation(reservation);
+        String username = mizDooni.getActiveUser();
+        if(username == null) {
+            request.getSession().setAttribute("error", "no user exists");
+            response.sendRedirect("/error");
+        }
 
-        response.sendRedirect("reservations.jsp");
+        else {
+            String tableNumber = request.getParameter("table_number");
+            String reservationDate = request.getParameter("date_time");
+
+            Reservation reservation = new Reservation();
+            reservation.datetime = reservationDate;
+            reservation.tableNumber = Integer.parseInt(tableNumber);
+            reservation.username = username;
+            reservation.restaurantName = mizDooni.getCurrentRestaurant();
+            Random random = new Random();
+            reservation.reservationNumber = random.nextInt(100);
+            mizDooni.addReservation(reservation);
+
+            response.sendRedirect("reservations.jsp");
+        }
     }
 }

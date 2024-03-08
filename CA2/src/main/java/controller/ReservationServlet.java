@@ -21,12 +21,18 @@ public class ReservationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("reservations.jsp");
-        requestDispatcher.forward(request, response);
-
         MizDooni mizDooni = new MizDooni();
         String username = mizDooni.getActiveUser();
-        request.setAttribute("username", username);
-        System.out.println("user is "+ username);
+
+        if(username == null) {
+            request.getSession().setAttribute("error", "no user exists");
+            response.sendRedirect("/error");
+        }
+
+        else {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("reservations.jsp");
+            requestDispatcher.forward(request, response);
+            request.setAttribute("username", username);
+        }
     }
 }

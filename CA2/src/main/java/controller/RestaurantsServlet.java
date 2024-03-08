@@ -12,27 +12,34 @@ import java.io.IOException;
 
 @WebServlet("/restaurants")
 public class RestaurantsServlet extends HttpServlet {
-    public String restaurantsHtml = "";
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        MizDooni mizDooni = new MizDooni();
-        //restaurantsHtml = mizDooni.createHTMLForRestaurantsList(action, search);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("restaurants.jsp");
         requestDispatcher.forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
 
-        String action = request.getParameter("action");
-        String search = request.getParameter("search");
-        if (action == null || search == null) {
-            action = "";
-            search = "";
+        MizDooni mizDooni = new MizDooni();
+        String username = mizDooni.getActiveUser();
+
+        if(username == null) {
+            request.getSession().setAttribute("error", "no user exists");
+            response.sendRedirect("/error");
         }
 
-        request.setAttribute("action", action);
-        request.setAttribute("search", search);
+        else {
+            String action = request.getParameter("action");
+            String search = request.getParameter("search");
+            if (action == null || search == null) {
+                action = "";
+                search = "";
+            }
+
+            request.setAttribute("action", action);
+            request.setAttribute("search", search);
+        }
     }
 }

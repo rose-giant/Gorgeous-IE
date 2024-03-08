@@ -108,6 +108,17 @@ public class Writer {
         }
     }
 
+    public void resetFile(String filePath) {
+        File file = new File(filePath);
+        try {
+            FileWriter writer = new FileWriter(file, false);
+            writer.close();
+            System.out.println("Content removed successfully from " + filePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         User user = new User();
         user.username = "rose";

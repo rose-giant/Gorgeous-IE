@@ -47,6 +47,12 @@ public class MizDooni {
         }
     }
 
+    public void restartMizdooni() {
+        Writer writer = new Writer();
+        writer.resetFile(CURRENT_USER_ADDRESS);
+        writer.resetFile(CURRENT_RESTAURANT_ADDRESS);
+    }
+
     public ArrayList<Reservation> getUserReservations(String username) {
         ArrayList<Reservation> reservations1 = new ArrayList<>();
         for(Reservation r : reservations) {
@@ -169,6 +175,19 @@ public class MizDooni {
             }
         }
 
+        return html;
+    }
+
+    public String createHtmlForTableOptions(Restaurant restaurant) {
+        String html = "";
+        for (Table t : tables) {
+            System.out.println(t.tableNumber);
+            if(Objects.equals(t.restaurantName, restaurant.name)) {
+                html += "<option value=\"\">"+ t.tableNumber +"</option>";
+            }
+        }
+
+        System.out.println("table options are " + html);
         return html;
     }
 

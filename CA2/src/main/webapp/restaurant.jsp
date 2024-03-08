@@ -17,8 +17,9 @@
     mizDooni.saveActiveRestaurant(restaurant);
     String username = mizDooni.getActiveUser();
     String reviewsHtml = mizDooni.createHtmlForRestaurantReviews(p);
+    String tableString = mizDooni.createHtmlForTableOptions(restaurant);
 %>
-<p id="username">username: <%=username%> <a href="/">Home</a> <a href="logout.jsp" style="color: red">Log Out</a></p>
+<p id="username">username: <%=username%> <a href="${pageContext.request.contextPath}/client_home">Home</a> <a href="${pageContext.request.contextPath}/logout" style="color: red">Log Out</a></p>
 <br>
 
 <h2>Restaurant Info:</h2>
@@ -38,7 +39,6 @@
     <li id="description"><%=restaurant.description%></li>
 </ul>
 
-
 <table border="1" cellpadding="10">
     <tr>
         <td>
@@ -46,9 +46,7 @@
             <form action="${pageContext.request.contextPath}/addReservation" method="post">
                 <label>Table:</label>
                 <select id="table_number" name="table_number">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
+                    <%=tableString%>
                 </select>
                 <label>Date & Time:</label>
                 <input type="datetime-local" id="date_time" name="date_time">

@@ -32,7 +32,7 @@
 <body style="text-align:center">
 
 <h1>Welcome to Mizdooni</h1>
-<form method="post" action="">
+<form method="post" action="/login">
     <label>Username:</label>
     <input name="username" type="text" />
     <br>

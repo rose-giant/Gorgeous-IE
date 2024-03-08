@@ -22,15 +22,12 @@ public class RestaurantServlet extends HttpServlet {
         if (pathComponents.length >= 2) {
             restaurantName = pathComponents[1];
         } else {
+            request.getSession().setAttribute("error", "no restaurant exists");
             response.sendRedirect("/error");
         }
 
         request.setAttribute("restaurant", restaurantName);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/restaurant.jsp");
         requestDispatcher.forward(request, response);
-    }
-
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
     }
 }

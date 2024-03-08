@@ -24,71 +24,78 @@ public class AddFeedbackServlet extends HttpServlet {
             throws ServletException, IOException {
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         MizDooni mizDooni = new MizDooni();
-        mizDooni.removeRedundantReviews();
-
-        double foodRate = Double.parseDouble(request.getParameter("food_rate"));
-        double serviceRate = Double.parseDouble(request.getParameter("service_rate"));
-        double ambianceRate = Double.parseDouble(request.getParameter("ambiance_rate"));
-        double overallRate = Double.parseDouble(request.getParameter("overall_rate"));
-        String comment = request.getParameter("comment");
-
-        String restaurantName = mizDooni.getCurrentRestaurant();
         String username = mizDooni.getActiveUser();
-        Reservation reservation = new Reservation();
-        boolean isAllowed = false;
-
-        for (Reservation r : mizDooni.reservations) {
-            if (Objects.equals(r.username, username) && Objects.equals(r.restaurantName, restaurantName)) {
-                reservation = r;
-                isAllowed = true;
-                break;
-            }
-        }
-
-        if (!isAllowed) {
-            request.setAttribute("error", "you haven't even reserved!");
-            response.sendRedirect("http://localhost:8080/error");
-        }
-
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-        String now = dateFormat.format(new Date());
-
-        boolean isAllowed2 = false;
-        try {
-            Date date1 = dateFormat.parse(reservation.datetime);
-            Date date2 = dateFormat.parse(now);
-
-            if (date1.compareTo(date2) <= 0) {
-                isAllowed2 = true;
-            } else if (date1.compareTo(date2) > 0) {
-
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        if(!isAllowed2) {
-            request.setAttribute("error", "you haven't even come to our restaurant yet!");
+        if (username == null) {
+            request.getSession().setAttribute("error", "no user exists");
             response.sendRedirect("/error");
         }
 
         else {
-            Review review = new Review();
-            review.restaurantName = restaurantName;
-            review.username = username;
-            review.foodRate = foodRate;
-            review.serviceRate = serviceRate;
-            review.ambianceRate = ambianceRate;
-            review.overall = overallRate;
-            review.comment = comment;
-            mizDooni.reviews.add(review);
-            mizDooni.saveReview(review);
+            mizDooni.removeRedundantReviews();
 
-            response.sendRedirect("http://localhost:8080/restaurant/"+restaurantName);
+            double foodRate = Double.parseDouble(request.getParameter("food_rate"));
+            double serviceRate = Double.parseDouble(request.getParameter("service_rate"));
+            double ambianceRate = Double.parseDouble(request.getParameter("ambiance_rate"));
+            double overallRate = Double.parseDouble(request.getParameter("overall_rate"));
+            String comment = request.getParameter("comment");
+
+            String restaurantName = mizDooni.getCurrentRestaurant();
+
+            Reservation reservation = new Reservation();
+            boolean isAllowed = false;
+
+            for (Reservation r : mizDooni.reservations) {
+                if (Objects.equals(r.username, username) && Objects.equals(r.restaurantName, restaurantName)) {
+                    reservation = r;
+                    isAllowed = true;
+                    break;
+                }
+            }
+
+            if (!isAllowed) {
+                request.getSession().setAttribute("error", "you haven't even reserved!");
+                response.sendRedirect("/error");
+            }
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+            String now = dateFormat.format(new Date());
+
+            boolean isAllowed2 = false;
+            try {
+                Date date1 = dateFormat.parse(reservation.datetime);
+                Date date2 = dateFormat.parse(now);
+
+                if (date1.compareTo(date2) <= 0) {
+                    isAllowed2 = true;
+                } else if (date1.compareTo(date2) > 0) {
+
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            if(!isAllowed2) {
+                request.getSession().setAttribute("error", "you haven't even come to our restaurant yet!");
+                response.sendRedirect("/error");
+            }
+
+            else {
+                Review review = new Review();
+                review.restaurantName = restaurantName;
+                review.username = username;
+                review.foodRate = foodRate;
+                review.serviceRate = serviceRate;
+                review.ambianceRate = ambianceRate;
+                review.overall = overallRate;
+                review.comment = comment;
+                mizDooni.reviews.add(review);
+                mizDooni.saveReview(review);
+
+                response.sendRedirect("/restaurant/"+restaurantName);
+            }
         }
     }
 }

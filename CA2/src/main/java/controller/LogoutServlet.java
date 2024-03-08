@@ -6,17 +6,20 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import models.MizDooni;
+import objects.Table;
 
 import java.io.IOException;
 
-@WebServlet("/client_home")
-public class ClientHomeServlet extends HttpServlet {
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("client_home.jsp");
-        requestDispatcher.forward(request, response);
-    }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
+        MizDooni mizDooni = new MizDooni();
+        mizDooni.restartMizdooni();
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("logout.jsp");
+        requestDispatcher.forward(request, response);
     }
 }

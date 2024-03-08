@@ -18,17 +18,18 @@ public class RestaurantFilterServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("in filtering...");
-        String action = request.getParameter("action");
-        String search = request.getParameter("search");
-        if (action == null || search == null) {
-            action = "";
-            search = "";
+
+        MizDooni mizDooni = new MizDooni();
+        String username = mizDooni.getActiveUser();
+
+        if(username == null) {
+            request.getSession().setAttribute("error", "no user exists");
+            response.sendRedirect("/error");
         }
 
-        System.out.println(1+action);
-        System.out.println(2+search);
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("restaurants.jsp");
-        requestDispatcher.forward(request, response);
-    }}
+        else {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("restaurants.jsp");
+            requestDispatcher.forward(request, response);
+        }
+    }
+}

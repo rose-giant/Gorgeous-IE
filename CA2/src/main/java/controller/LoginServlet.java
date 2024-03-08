@@ -23,7 +23,6 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
         requestDispatcher.forward(request, response);
-        MizDooni mizDooni = new MizDooni();
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -51,11 +50,12 @@ public class LoginServlet extends HttpServlet {
             }
 
             else {
-                System.out.println(4);
+                request.getSession().setAttribute("error", "no user exists");
                 response.sendRedirect("/error");
             }
 
         } catch (Exception e) {
+            request.getSession().setAttribute("error", "no user exists");
             response.sendRedirect("/error");
         }
     }

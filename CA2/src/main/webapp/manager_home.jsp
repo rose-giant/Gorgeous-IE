@@ -10,7 +10,7 @@
 <%
     String username = (String)request.getSession().getAttribute("username");
 %>
-<h1>Welcome <%=username%> <a href="logout.jsp" style="color: red">Log Out</a></h1>
+<h1>Welcome <%=username%> <a href="/logout" style="color: red">Log Out</a></h1>
 
 <%
     MizDooni mizDooni = new MizDooni();
@@ -20,7 +20,7 @@
         response.sendRedirect("/error");
     }
 
-    String tableHtml = mizDooni.createHTMLForTables(restaurant);
+    String tableHtml = mizDooni.createHTMLForTableOption(restaurant);
 %>
 
 <h2>Your Restaurant Information:</h2>

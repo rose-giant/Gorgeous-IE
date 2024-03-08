@@ -11,7 +11,7 @@
 <%
     String username = (String) request.getSession().getAttribute("username");
 %>
-<p id="username">username: <%=username%> <a href="/">Home</a> <a href="logout.jsp" style="color: red">Log Out</a></p>
+<p id="username">username: <%=username%> <a href="${pageContext.request.contextPath}/client_home">Home</a> <a href="${pageContext.request.contextPath}/logout" style="color: red">Log Out</a></p>
 <br><br>
 <form action="${pageContext.request.contextPath}/filterRestaurants" method="POST">
     <label>Search:</label>
