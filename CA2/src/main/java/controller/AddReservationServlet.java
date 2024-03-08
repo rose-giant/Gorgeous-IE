@@ -29,16 +29,15 @@ public class AddReservationServlet extends HttpServlet {
         else {
             String tableNumber = request.getParameter("table_number");
             String reservationDate = request.getParameter("date_time");
-
             Reservation reservation = new Reservation();
             reservation.datetime = reservationDate;
             reservation.tableNumber = Integer.parseInt(tableNumber);
+            System.out.println(tableNumber );
             reservation.username = username;
             reservation.restaurantName = mizDooni.getCurrentRestaurant();
             Random random = new Random();
-            reservation.reservationNumber = random.nextInt(100);
+            reservation.reservationNumber = random.nextInt(1000);
             mizDooni.addReservation(reservation);
-
             response.sendRedirect("reservations.jsp");
         }
     }

@@ -75,21 +75,6 @@ public class Review {
         }
         return responseHandler1;
     }
-
-    public void addReviewHandler(String jsonString) throws JsonProcessingException {
-        this.unmarshalFromJson(jsonString);
-        this.responseHandler = this.responseGenerator();
-    }
-
-    public void handleOuterErrorMessage(String errorMessage) {
-        if (this.responseHandler.responseStatus) {
-            this.responseHandler.responseBody = errorMessage;
-        } else {
-            this.responseHandler.responseBody += errorMessage;
-        }
-
-        this.responseHandler.responseStatus = false;
-    }
 }
 
 

@@ -16,22 +16,6 @@ public class Table {
     public ArrayList<LocalDateTime> reservedDateTimes = new ArrayList<>();
     public int seatsNumber;
 
-    public boolean hasDateTimeConflict(Reservation reservation) {
-        for(LocalDateTime rs: reservedDateTimes) {
-            if(Objects.equals(rs, reservation.datetimeFormatted)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void addReservation(Reservation reservation) throws Exception {
-        if (hasDateTimeConflict(reservation)) {
-            throw new Exception("This table is already reserved");
-        }
-        reservedDateTimes.add(reservation.datetimeFormatted);
-    }
-
     public void removeReservation(Reservation reservation) {
         reservedDateTimes.remove(reservation.datetimeFormatted);
     }

@@ -14,11 +14,4 @@ public class ResponseHandler {
         responseStatus = status;
         responseBody = body;
     }
-    public String marshalResponse(ResponseHandler responseHandler) throws JsonProcessingException, JsonProcessingException {
-        ObjectMapper objectMapper = JsonMapper.builder()
-                                    .addModule(new JavaTimeModule())
-                                    .build();
-        String jsonStr = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseHandler);
-        return jsonStr;
-    }
 }

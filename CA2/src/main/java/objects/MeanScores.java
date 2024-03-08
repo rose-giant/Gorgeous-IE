@@ -18,12 +18,4 @@ public class MeanScores {
         this.meanOverall = meanOverall;
         this.numberOfReviews = 0;
     }
-
-    public void updateMeans(Review newReview){
-        meanService = numberOfReviews * meanService + newReview.serviceRate;
-        meanFood = numberOfReviews * meanFood + newReview.foodRate;
-        meanAmbiance = numberOfReviews * meanAmbiance + newReview.ambianceRate;
-        meanOverall = numberOfReviews * meanOverall + newReview.overall;
-        numberOfReviews += 1;
-    }
 }

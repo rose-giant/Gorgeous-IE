@@ -19,12 +19,6 @@ public class MizDooni {
     public ArrayList<Reservation> reservations = new ArrayList<>();
     public ArrayList<Table> tables = new ArrayList<>();
     ObjectMapper om = JsonMapper.builder().addModule(new JavaTimeModule()).build();
-    Object returnedData;
-    Restaurant relatedRestaurant;
-    User relatedUser;
-    Table relatedTable;
-    Reservation relatedReservation;
-    Restaurant currentRestaurant = new Restaurant();
 
     public MizDooni() throws IOException {
         Reader rd = new Reader();
@@ -84,10 +78,13 @@ public class MizDooni {
     }
 
     public void addReservation(Reservation reservation) {
+        System.out.println("3333333");
         Writer writer = new Writer();
         String reservation1 = reservation.username+","+
                 reservation.reservationNumber+","+reservation.restaurantName+","+
                 reservation.tableNumber+","+reservation.datetime+"\n";
+
+        System.out.println("in add "+ reservation1);
 
         try {
             writer.writeReview(RESERVATIONS_CSV, reservation1);
@@ -108,7 +105,6 @@ public class MizDooni {
     }
 
     public boolean userAlreadyExists(User user) {
-        //System.out.println(user.username + ", "+user.password);
         for(User value: users) {
             if (Objects.equals(user.username, value.username) && Objects.equals(user.password, value.password)) {
                 return true;
@@ -152,6 +148,7 @@ public class MizDooni {
 
     public ArrayList<Restaurant> sortRestaurantsByScore() {
         ArrayList<Restaurant> restaurants1 = new ArrayList<>();
+        //sort not complete yet
         return  restaurants1;
     }
 
@@ -183,16 +180,14 @@ public class MizDooni {
         for (Table t : tables) {
             System.out.println(t.tableNumber);
             if(Objects.equals(t.restaurantName, restaurant.name)) {
-                html += "<option value=\"\">"+ t.tableNumber +"</option>";
+                html += "<option value=3>"+ t.tableNumber +"</option>";
             }
         }
 
-        System.out.println("table options are " + html);
         return html;
     }
 
     public String createHTMLForRestaurantsList(String filter, String search) {
-       // System.out.println("mizDooni says filter is " + filter + " and search is " + search);
         ArrayList<Restaurant> filteredRestaurants = filterRestaurants(filter, search);
         String html = "";
         for (Restaurant r : filteredRestaurants) {
@@ -314,18 +309,6 @@ public class MizDooni {
         return null;
     }
 
-    public void addUser(String jsonString) throws JsonProcessingException {
-        User user = new User();
-        user.addUserHandler(jsonString);
-        if(userAlreadyExists(user)) {
-        user.handleRepeatedUser();
-        }
-        if (user.responseHandler.responseStatus) {
-        users.add(user);
-        }
-        responseHandler = user.responseHandler;
-    }
-
     public boolean restaurantNameAlreadyExists(String restaurantName) {
         boolean alreadyExists = false;
         for(Restaurant value: restaurants) {
@@ -369,37 +352,6 @@ public class MizDooni {
             }
         }
         return responseHandler1;
-    }
-
-
-    public void addRestaurant(String jsonString) throws JsonProcessingException {
-        Restaurant restaurant = new Restaurant();
-        restaurant.addRestaurantHandler(jsonString);
-
-        if (!restaurantManagerUsernameExists(restaurant.managerUsername)) {
-            restaurant.handleOuterErrorMessage(" manager username does not exist.");
-        }
-
-        if(!userRoleIsManager(restaurant.managerUsername)) {
-            restaurant.handleOuterErrorMessage(" manager role is not correct.");
-        }
-
-        if(restaurantNameAlreadyExists(restaurant.name)) {
-            restaurant.handleOuterErrorMessage(" restaurant name is repeated.");
-        }
-
-        if (restaurant.responseHandler.responseStatus) {
-            restaurants.add(restaurant);
-        }
-        responseHandler = restaurant.responseHandler;
-    }
-
-    public void searchRestaurantsByName(String jsonString) throws JsonProcessingException {
-        responseHandler = searchRestaurantByNameHandler(jsonString);
-    }
-
-    public void searchRestaurantsByType(String jsonString) throws JsonProcessingException {
-        responseHandler = searchRestaurantByTypeHandler(jsonString);
     }
 
     public void saveActiveUser(User user) {
@@ -456,6 +408,7 @@ public class MizDooni {
             throw new RuntimeException(e);
         }
 
+        System.out.println("rest name is "+restaurantName);
         return restaurantName;
     }
 

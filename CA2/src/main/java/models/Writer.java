@@ -118,24 +118,4 @@ public class Writer {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) {
-        User user = new User();
-        user.username = "rose";
-        user.address = new Address();
-        user.responseHandler = new ResponseHandler();
-        writeUser(user);
-
-        User user1 = new User();
-        user1.username = "j";
-        user1.address = new Address();
-        user1.responseHandler = new ResponseHandler();
-        writeUser(user1);
-
-        Restaurant r = new Restaurant();
-        r.name = "charstoon";
-        r.address = new Address();
-        r.responseHandler = new ResponseHandler();
-        writeRestaurant(r);
-    }
 }

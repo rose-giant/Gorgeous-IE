@@ -20,7 +20,7 @@
         response.sendRedirect("/error");
     }
 
-    String tableHtml = mizDooni.createHTMLForTableOption(restaurant);
+    String tableHtml = mizDooni.createHTMLForTables(restaurant);
 %>
 
 <h2>Your Restaurant Information:</h2>

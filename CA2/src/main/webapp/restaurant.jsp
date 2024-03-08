@@ -43,7 +43,7 @@
     <tr>
         <td>
             <label>Reserve Table:</label>
-            <form action="${pageContext.request.contextPath}/addReservation" method="post">
+            <form action="/addReservation" method="post">
                 <label>Table:</label>
                 <select id="table_number" name="table_number">
                     <%=tableString%>

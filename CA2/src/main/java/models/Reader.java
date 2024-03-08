@@ -161,16 +161,6 @@ public class Reader {
         }
         return firstLine;
     }
-//    public static void main(String[] args) throws IOException {
-//        Reader  csvReader = new Reader();
-//        ArrayList<User> users;
-//        users = csvReader.readFromFile("src/main/resources/users.csv", User.class);
-//        System.out.println(users.size());
-//        System.out.println(users.get(0).username);
-//        System.out.println(users.get(1).password);
-//        System.out.println(users.get(0).role);
-//
-//    }
 }
 
 
