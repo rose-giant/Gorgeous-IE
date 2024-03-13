@@ -4,7 +4,12 @@
     --peach-color: #ED3545;
     --grey: #e9e9e9;
     --font: "Spline Sans", sans-serif;
-  }
+    font-family: var(--font);
+}
+
+body {
+    overflow-x: auto;
+}
 
 nav {
     width: 100vw;
@@ -72,4 +77,51 @@ nav {
         }
     }
     
+}
+
+.hero {
+    width: 100vw;
+    height: 900px;
+    object-position: center;
+    display: block;
+    align-items: center;
+    justify-content: center;
+
+    .cover {
+        width: inherit;
+        height:inherit;
+        object-fit: cover;
+        position: absolute;
+    }
+
+    .inner-main {
+        width: 50%;
+        background-color: aqua;
+        position: relative;
+        align-items: center;
+        justify-content: space-around;
+
+        .bottom-nav {
+            align-items: center;
+            justify-content: center;
+
+            form {
+                display: flex;
+
+                * {
+                    padding-inline: 16px;
+                    padding-block: 8px;
+                    margin: 12px;
+                    border-radius: 12px;
+                    border: none;
+                }
+
+                .search-btn{
+                    background-color: var(--peach-color);
+                    color: white;
+                    padding-inline: 20px;                    
+                }
+            }
+        }
+    }
 }
