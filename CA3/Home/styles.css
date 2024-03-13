@@ -95,18 +95,28 @@ nav {
     }
 
     .inner-main {
-        width: 50%;
-        background-color: aqua;
+        width: 35%;
         position: relative;
-        align-items: center;
-        justify-content: space-around;
+        top: 200px;
+        left: 12%;
+      
+
+        .logo {
+            width: 360px;
+            height: 305px;
+            display: block;
+            margin: auto;
+        }
 
         .bottom-nav {
+            margin-top: 5%;
             align-items: center;
             justify-content: center;
 
             form {
                 display: flex;
+                align-items: center;
+                justify-content: space-around;
 
                 * {
                     padding-inline: 16px;
@@ -116,7 +126,19 @@ nav {
                     border: none;
                 }
 
+                input {
+                    width: 253px;
+                    height: 40px;
+                }
+
+                select {
+                    width: 117px;
+                    height: 40px;
+                }
+
                 .search-btn{
+                    height: 40px;
+                    width: 117px;
                     background-color: var(--peach-color);
                     color: white;
                     padding-inline: 20px;                    
@@ -125,3 +147,38 @@ nav {
         }
     }
 }
+
+@media screen and (max-width: 698px) {
+    .hero {
+        .cover {
+            object-position:right;
+            height: 400px;
+        }
+
+        .inner-main {
+            width: 100%;
+            height: fit-content;
+            display: block;
+            margin: auto;
+            position: relative;
+            left: 0;
+            top: 0;
+
+            .logo {
+                display: none;
+            }
+
+            .bottom-nav {
+                margin: auto;
+                display: block;
+            
+                form {
+                    align-items: center;
+                    justify-content: space-evenly;
+                    display: block;
+                    padding-top: 80px;
+                }
+            }
+        }
+    }
+} 
