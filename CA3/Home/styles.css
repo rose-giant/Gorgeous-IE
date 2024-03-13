@@ -6,6 +6,8 @@
     --black-like: #303030;
     --font: "Spline Sans", sans-serif;
     font-family: var(--font);
+    margin: auto;
+    padding: 0;
 }
 
 body {
@@ -20,36 +22,36 @@ nav {
     border: var(--grey);
     border-width: 1px;
     border-style: solid;
-}
 
-.navbar-brand {
-    display: flex;
-    width: 40%;
+    .navbar-brand {
+        display: flex;
+        width: 40%;
+        
+    }
     
-}
-
-.logo {
-    width: 103px;
-    height: 85px;
-}
-
-.nav-title {
-    font-family: var(--font);
-    font-size: 18px;
-    color: var(--peach-color);
-    margin-top: 28px;
-    margin-left: 24px;
-}
-
-.nav-right {
-    margin-right: 32px;
-
-    button {
-        background-color: var(--peach-color);
-        border-radius: 12px;
-        padding-inline: 18px;
-        padding-block: 10px;
-        color: white;
+    .logo {
+        width: 103px;
+        height: 85px;
+    }
+    
+    .nav-title {
+        font-family: var(--font);
+        font-size: 18px;
+        color: var(--peach-color);
+        margin-top: 28px;
+        margin-left: 24px;
+    }
+    
+    .nav-right {
+        margin-right: 32px;
+    
+        button {
+            background-color: var(--peach-color);
+            border-radius: 12px;
+            padding-inline: 18px;
+            padding-block: 10px;
+            color: white;
+        }
     }
 }
 
@@ -96,7 +98,7 @@ nav {
     }
 
     .inner-main {
-        width: 35%;
+        width: 40%;
         position: relative;
         top: 200px;
         left: 12%;
@@ -115,6 +117,7 @@ nav {
             justify-content: center;
 
             form {
+                flex-wrap: wrap;
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
@@ -314,5 +317,18 @@ nav {
             margin: auto;
             width: 80%;
         }
+    }
+}
+
+footer {
+    height: 45px;
+    background-color: var(--peach-color);
+    padding-top: 12px;
+
+    .content {
+        text-align: center;
+        color: white;
+        font-weight: 700;
+        font-size: 14px;
     }
 }
