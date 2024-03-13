@@ -3,6 +3,7 @@
 :root {
     --peach-color: #ED3545;
     --grey: #e9e9e9;
+    --black-like: #303030;
     --font: "Spline Sans", sans-serif;
     font-family: var(--font);
 }
@@ -181,4 +182,137 @@ nav {
             }
         }
     }
-} 
+}
+
+.top-restaurants {
+    width: 80%;
+    margin: auto;
+    margin-top: 2%;
+
+    .top-title {
+        color: var(--black-like);
+        font-size: 16px;
+        padding-left: 3%;
+        padding-bottom: .8%;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+        width: 100%;
+        flex-wrap:wrap;
+        margin: auto;
+
+        li {
+            margin-inline: 12px;
+            margin-block: 16px;
+            border: solid --grey 8px;
+            
+            .card {
+                border-radius: 12px;
+                width: 202px;
+                height: 270px;
+
+                .body {
+
+                    img {
+                        border-top-left-radius: 12px;
+                        border-top-right-radius: 12px;
+                        width: 200px;
+                        height: 144px;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+
+                .footer {
+                    width: inherit;
+                    padding: 16px;
+
+                    .place {
+
+                        .location {
+                            display: flex;
+                            padding-block: 1px;
+
+                            img {
+                                width: 1px;
+                                height: 1px;
+                            }
+                        }
+                    }
+
+                    * {
+                        font-size: 10px;
+                        margin: 0;
+                    }
+
+                    .title {
+                        font-size: 14px;
+                        color: var(--black-like);
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 698px) {
+    .top-title {
+        text-align: center;
+    }
+}
+
+.about {
+    width: 84%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 2%;
+
+    img {
+        width: 474px;
+        height: 439px;
+    }
+
+    .content {
+        width: 45%;
+        margin-top: .4%;
+
+        .title {
+            color: var(--peach-color);
+            font-size: 24px;
+        }
+
+        .text {
+            color: var(--black-like);
+
+            span {
+                color: var(--peach-color);
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 698px) {
+    .about {
+        width: 100%;
+        margin: auto;
+        display: block;
+
+        img {
+            display: block;
+            margin: auto;
+            width: 90%;
+        }
+
+        .content {
+            text-align: start;
+            margin: auto;
+            width: 80%;
+        }
+    }
+}
