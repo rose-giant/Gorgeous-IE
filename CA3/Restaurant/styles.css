@@ -3,7 +3,9 @@
 :root {
     --peach-color: #ED3545;
     --grey: #e9e9e9;
+    --very-light-grey: #F5F5F5;
     --black-like: #303030;
+    --green: #2B9407;
     --light-gray:#7E7E7E;
     --font: "Spline Sans", sans-serif;
     font-family: var(--font);
@@ -57,7 +59,7 @@ nav {
 }
 
 .contain {
-    width: 75%;
+    width: 80%;
     position: relative;
     top: 64px;
     margin: auto;
@@ -66,15 +68,15 @@ nav {
     justify-content: space-between;
 
     .card {
-        width: 698px;
+        width: 50%;
         border-top-left-radius: 12px;
         border-top-right-radius: 12px;
     
         .body {
             width: inherit;
-    
+
             img {
-                width: inherit;
+                width: 200%;
                 height: 306px;
                 object-fit: cover;
                 object-position: center;
@@ -82,26 +84,41 @@ nav {
                 border-top-left-radius: 12px;
                 border-top-right-radius: 12px;
             }
-    
+
             .sub {
-                width: inherit;
+                width: 200%;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 padding-inline: 4%;
                 padding-block: 2%;
-                
-                background-color: red;
+
+                .title {
+                    background-color: rgba(white, white, white, 0.01);
+                    color: var(--black-like);
+                    font-size: 48px;
+                    font-size: 600;
+                }
+            }
+
+            button {
+                border: none;
+                width: 90px;
+                height: 33px;
+                background-color: var(--green);
+                color: white;
+                border-radius: 12px;
             }
         }
     
         .footer {
             padding: 2%;
-    
+            
             .detailed-info {
                 display: flex;
                 align-items: start;
                 justify-content: space-between;
+                padding-right: 15%;
             }
     
             .location {
@@ -117,10 +134,10 @@ nav {
     }
     
     .reserve {
-        width: 55%;
+        width: 60%;
         padding-left: 5%;
         position: relative;
-        bottom: 140px;
+        bottom: 110px;
 
         * {
             padding-block: 1%;
@@ -136,10 +153,26 @@ nav {
         form {
             .top {
                 padding-left: 5%;
+
+                select {
+                    border: none;
+                    padding-inline: 18px;
+                    padding-block: 8px;
+                    border-radius: 8px;
+                    margin-inline: 8px;
+                }
+
+                input {
+                    border: none;
+                    background-color: var(--very-light-grey);
+                    padding-inline: 18px;
+                    padding-block: 8px;
+                    border-radius: 8px;
+                    margin-inline: 8px;
+                }
             }
 
             .bottom {
-
                 display: block;
 
                 .title {
@@ -159,7 +192,7 @@ nav {
                             height: 40px;
                             border-radius: 12px;
                             border: none;
-                            border: solid 2px #ED3545;
+                            border: solid 1px #ED3545;
                             margin-inline: 4px;
                             margin-block: 8px;
                             background-color: white;
@@ -173,8 +206,33 @@ nav {
                     padding-left: 5%;
                     color: var(--peach-color);
                 }
+
+                .completet {
+                    width: 90%;
+                    display: block;
+                    margin: auto;
+                    border: none;
+                    background-color: var(--peach-color);
+                    color: white;
+                    border-radius: 12px;
+                    padding-inline: 16px;
+                    padding-block: 8px;
+                }
             }
         }
     }
 }
 
+.review-sec {
+    margin-top: 200px;
+    .overview {
+        .left {
+
+            .title {
+                font-size: 22px;
+                width: 400;
+                color: var(--black-like);
+            }
+        }
+    }
+}

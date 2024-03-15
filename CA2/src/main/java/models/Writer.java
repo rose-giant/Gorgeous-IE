@@ -58,6 +58,7 @@ public class Writer {
     }
 
     public void writeReview(String filePath, String content) throws IOException {
+        System.out.println(content);
         StringBuilder fileContents = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;

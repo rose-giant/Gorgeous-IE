@@ -24,6 +24,8 @@ public class Restaurant {
     public String description;
     public String country;
     public String city;
+
+    public double overall;
     public String street;
     public Address address = new Address();
     public ResponseHandler responseHandler;
