@@ -20,6 +20,7 @@
         response.sendRedirect("/error");
     }
 
+    assert restaurant != null;
     String tableHtml = mizDooni.createHTMLForTables(restaurant);
 %>
 
