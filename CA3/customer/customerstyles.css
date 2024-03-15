@@ -1,17 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap');
 
-/*:root {*/
-/*    --peach-color: #ED3545;*/
-/*    --grey: #e9e9e9;*/
-/*    --black-like: #303030;*/
-/*    --green: #2B9407;*/
-/*    --unable: #D4D4D4;*/
-/*    --font: "Spline Sans", sans-serif;*/
-/*    font-family: var(--font);*/
-/*    margin: auto;*/
-/*    padding: 0;*/
-/*}*/
-
 body {
     overflow-x: auto;
 }
