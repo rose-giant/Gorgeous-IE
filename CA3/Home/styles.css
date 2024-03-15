@@ -4,10 +4,12 @@
     --peach-color: #ED3545;
     --grey: #e9e9e9;
     --black-like: #303030;
+    --green: #2B9407;
     --font: "Spline Sans", sans-serif;
     font-family: var(--font);
     margin: auto;
     padding: 0;
+
 }
 
 body {
@@ -45,7 +47,7 @@ nav {
     .nav-right {
         margin-right: 32px;
     
-        button {
+        &button {
             background-color: var(--peach-color);
             border-radius: 12px;
             padding-inline: 18px;
@@ -58,7 +60,7 @@ nav {
 @media screen and (max-width: 698px) {
     nav {
         .navbar-brand{
-            img {
+            &img {
              width: 60px;
              height: 55px;
             }
@@ -69,14 +71,14 @@ nav {
         }
 
         .nav-right {
-            button {
+            &button {
                 text-align: center;
                 font-size: 10px;
                 width: 100px;
-                height: 250x;
+                height: 250px;
             }
 
-            margin-right: 0px;
+            margin-right: 0;
         }
     }
     
@@ -116,7 +118,7 @@ nav {
             align-items: center;
             justify-content: center;
 
-            form {
+            &form {
                 flex-wrap: wrap;
                 display: flex;
                 align-items: center;
@@ -130,12 +132,12 @@ nav {
                     border: none;
                 }
 
-                input {
+                &input {
                     width: 253px;
                     height: 40px;
                 }
 
-                select {
+                &select {
                     width: 117px;
                     height: 40px;
                 }
@@ -176,7 +178,7 @@ nav {
                 margin: auto;
                 display: block;
             
-                form {
+                &form {
                     align-items: center;
                     justify-content: space-evenly;
                     display: block;
@@ -199,17 +201,17 @@ nav {
         padding-bottom: .8%;
     }
 
-    ul {
+    & ul {
         list-style: none;
         display: flex;
         width: 100%;
         flex-wrap:wrap;
         margin: auto;
 
-        li {
+        & li {
             margin-inline: 12px;
             margin-block: 16px;
-            border: solid --grey 8px;
+            border: solid var(--grey) 8px;
             
             .card {
                 border-radius: 12px;
@@ -218,7 +220,7 @@ nav {
 
                 .body {
 
-                    img {
+                    &img {
                         border-top-left-radius: 12px;
                         border-top-right-radius: 12px;
                         width: 200px;
@@ -238,7 +240,7 @@ nav {
                             display: flex;
                             padding-block: 1px;
 
-                            img {
+                            &img {
                                 width: 1px;
                                 height: 1px;
                             }
@@ -275,7 +277,7 @@ nav {
     justify-content: space-evenly;
     padding-top: 2%;
 
-    img {
+    &img {
         width: 474px;
         height: 439px;
     }
@@ -292,7 +294,7 @@ nav {
         .text {
             color: var(--black-like);
 
-            span {
+            &span {
                 color: var(--peach-color);
             }
         }
@@ -306,7 +308,7 @@ nav {
         margin: auto;
         display: block;
 
-        img {
+        &img {
             display: block;
             margin: auto;
             width: 90%;

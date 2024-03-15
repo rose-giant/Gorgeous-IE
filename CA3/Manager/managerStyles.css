@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap');
+
+body {
+    overflow-x: auto;
+}
+
+.restaurants{
+    margin-top: 4%;
+
+    .table{
+        width: 40%;
+        border-bottom: 1px solid var(--unable);
+        .td{
+            padding: 10px;
+        }
+
+    }
+
+}

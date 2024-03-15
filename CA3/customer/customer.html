@@ -6,7 +6,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="./customerstyles.css">
-        <title>Mizdooni</title>
+        <link rel="stylesheet" href="../globalStyles.css">
+        <title>Customer</title>
     </head>
 <body>
     <nav class="navbar px-5 py-2">
@@ -21,21 +22,18 @@
         </div>
 
         <div class="nav-right">
-            <button class="btn nav-btn">Reserve Now!</button>
+            <p class="inline">Welcome, Parna!</p>
+            <button class="btn">My Reservations</button>
         </div>
 
     </nav>
 
     <section class="container">
-        <div class="notif">
+        <div class="inline-cell notif">
             <div class="content">
-                <p class="text">
-                    Your reservations are also emailed to  
-                </p>
-    
-                <p class="email">
-                    &nbsp; Tom_holland@ut.ac.ir
-                </p>
+                <p class="text">Your reservations are also emailed to </p>
+                &nbsp
+                <a class="red" href="mailto:Tom_holland@ut.ac.ir"> Tom_holland@ut.ac.ir </a>
             </div>
            
             <p class="address">
@@ -44,34 +42,59 @@
         </div>
 
         <div class="reservations">
-            <table class="table table-border">
+            <table class="table center">
                 <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">First</th>
-                      <th scope="col">Last</th>
-                      <th scope="col">Handle</th>
+                    <tr class="header">
+                      <th colspan="5">My Reservations</th>
                     </tr>
-                  </thead>
-                  <tbody>
+                </thead>
+                <tbody>
                     <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob</td>
-                      <td>Thornton</td>
-                      <td>@fat</td>
+                      <td class="green">2024-06-22 16:00</td>
+                      <td>
+                          <a class="red" href="customer.html">Ali Daei Dizy</a>
+                      </td>
+                      <td class="green">Table-12</td>
+                      <td class="green">4 Seats</td>
+                      <td>
+                          <a class="red" href="customer.html">Cancel</a>
+                      </td>
                     </tr>
                     <tr>
-                      <th scope="row">3</th>
-                      <td colspan="2">Larry the Bird</td>
-                      <td>@twitter</td>
+                        <td class="gray">2024-02-22 16:00</td>
+                        <td>
+                            <a class="red" href="customer.html">Ali Daei Dizy</a>
+                        </td>
+                        <td class="gray">Table-12</td>
+                        <td class="gray">4 Seats</td>
+                        <td>
+                            <a class="red" href="customer.html">Add Comment</a>
+                        </td>
                     </tr>
-                  </tbody>
+                    <tr>
+                        <td class="gray">2024-02-22 16:00</td>
+                        <td>
+                            <a class="red" href="customer.html">Ali Daei Dizy</a>
+                        </td>
+                        <td class="gray">Table-12</td>
+                        <td class="gray">4 Seats</td>
+                        <td>
+                            <a class="red" href="customer.html">Add Comment</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="gray">2024-02-22 16:00</td>
+                        <td>
+                            <a class="red" href="customer.html">Ali Daei Dizy</a>
+                        </td>
+                        <td class="gray">Table-12</td>
+                        <td class="gray">4 Seats</td>
+                        <td>
+                            <a class="red" href="customer.html">Add Comment</a>
+                        </td>
+                    </tr>
+
+                </tbody>
             </table>
         </div>
     </section>
