@@ -18,7 +18,6 @@ public class MizDooni {
     public ArrayList<Restaurant> restaurants = new ArrayList<>();
     public ArrayList<Reservation> reservations = new ArrayList<>();
     public ArrayList<Table> tables = new ArrayList<>();
-    ObjectMapper om = JsonMapper.builder().addModule(new JavaTimeModule()).build();
 
     public MizDooni() throws IOException {
         Reader rd = new Reader();
@@ -98,21 +97,6 @@ public class MizDooni {
         writer.removeReservationFromFile(reservationNumber, RESERVATIONS_CSV);
     }
 
-    public static MizDooni getInstance() throws Exception {
-        if(instance == null)
-            instance = new MizDooni();
-        return instance;
-    }
-
-    public boolean userAlreadyExists(User user) {
-        for(User value: users) {
-            if (Objects.equals(user.username, value.username) && Objects.equals(user.password, value.password)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public ArrayList<Restaurant> getRestaurantsByName(String search) {
         ArrayList<Restaurant> restaurants1 = new ArrayList<>();
             for (Restaurant r : restaurants) {
@@ -147,9 +131,19 @@ public class MizDooni {
     }
 
     public ArrayList<Restaurant> sortRestaurantsByScore() {
-        ArrayList<Restaurant> restaurants1 = new ArrayList<>();
-        //sort not complete yet
-        return  restaurants1;
+        for (Restaurant r : restaurants) {
+            r.overall = getRestaurantOverallScore(r.name);
+        }
+
+        for (int i = 0 ; i < restaurants.size() ; i++) {
+            for (int j = 0 ; j < restaurants.size() ; j++) {
+                if(restaurants.get(i).overall < restaurants.get(j).overall) {
+                    Collections.swap(restaurants, i, j);
+                }
+            }
+        }
+
+        return  restaurants;
     }
 
     public ArrayList<Restaurant> filterRestaurants(String filter, String search) {
@@ -165,9 +159,9 @@ public class MizDooni {
 
     public String createHTMLForTables(Restaurant restaurant) {
         String html = "";
-        System.out.println(restaurant.name+restaurant.managerUsername);
+
         for (Table t : tables) {
-            if(Objects.equals(t.managerUsername, restaurant.managerUsername)) {
+            if(Objects.equals(t.restaurantName, restaurant.name)) {
                 html += "<li>"+ "table#"+ String.valueOf(t.tableNumber) +"</li>";
             }
         }
@@ -256,28 +250,18 @@ public class MizDooni {
         relatedRestaurantService = (serviceSum) / num;
     }
 
-    public boolean restaurantManagerUsernameExists(String managerUsername) {
-        boolean exists = false;
-        for(User value: users) {
-            if (Objects.equals(managerUsername, value.username)) {
-                exists = true;
-                break;
+    public double getRestaurantOverallScore(String restaurantName) {
+        double overallScore;
+        double sum = 0;
+        int size = 0;
+        for (Review r : reviews) {
+            if (Objects.equals(r.restaurantName, restaurantName)) {
+                sum += r.overall;
+                size ++;
             }
         }
-        return exists;
-    }
 
-    public boolean userRoleIsManager(String managerUsername) {
-        boolean isCorrect = false;
-        for(User value: users) {
-            if (Objects.equals(managerUsername, value.username)) {
-                if (Objects.equals(value.role, User.MANAGER_ROLE)) {
-                    isCorrect = true;
-                    break;
-                }
-            }
-        }
-        return isCorrect;
+        return sum / size;
     }
 
     public Restaurant findRestaurantByName(String restaurantName) {
@@ -309,51 +293,6 @@ public class MizDooni {
         return null;
     }
 
-    public boolean restaurantNameAlreadyExists(String restaurantName) {
-        boolean alreadyExists = false;
-        for(Restaurant value: restaurants) {
-            if(Objects.equals(value.name, restaurantName)) {
-                alreadyExists = true;
-                break;
-            }
-        }
-        return alreadyExists;
-    }
-
-    public ResponseHandler searchRestaurantByNameHandler(String jsonString) throws JsonProcessingException {
-        Restaurant restaurant = new Restaurant();
-        restaurant = restaurant.unmarshlIntoRestaurant(jsonString);
-        ResponseHandler responseHandler1 = new ResponseHandler();
-        responseHandler1.responseBody = "Restaurant not found.";
-        responseHandler1.responseStatus = false;
-
-        for(Restaurant value : restaurants) {
-            if (Objects.equals(restaurant.name, value.name)) {
-                responseHandler1.responseBody = value.marshalRestaurant(value);
-                responseHandler1.responseStatus = true;
-                break;
-            }
-        }
-        return responseHandler1;
-    }
-
-    public ResponseHandler searchRestaurantByTypeHandler(String jsonString) throws JsonProcessingException {
-        Restaurant restaurant = new Restaurant();
-        restaurant = restaurant.unmarshlIntoRestaurant(jsonString);
-        ResponseHandler responseHandler1 = new ResponseHandler();
-        responseHandler1.responseBody = "Restaurant not found.";
-        responseHandler1.responseStatus = false;
-
-        for(Restaurant value : restaurants) {
-            if (Objects.equals(restaurant.type, value.type)) {
-                responseHandler1.responseBody = value.marshalRestaurant(value);
-                responseHandler1.responseStatus = true;
-                break;
-            }
-        }
-        return responseHandler1;
-    }
-
     public void saveActiveUser(User user) {
         Writer writer = new Writer();
         writer.writeUser(user);
@@ -377,11 +316,12 @@ public class MizDooni {
 
     public void removeRedundantReviews() {
         Set<String> uniqueUsernames = new HashSet<>();
+        Set<String> uniqueRestaurant = new HashSet<>();
         Iterator<Review> iterator = reviews.iterator();
 
         while (iterator.hasNext()) {
             Review review = iterator.next();
-            if (!uniqueUsernames.add(review.username)) {
+            if (!uniqueUsernames.add(review.username) && !uniqueRestaurant.add(review.restaurantName)) {
                 iterator.remove();
             }
         }

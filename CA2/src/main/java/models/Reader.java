@@ -76,7 +76,6 @@ public class Reader {
 
                     Review review = new Review();
                     review.responseHandler = new ResponseHandler();
-
                     review.restaurantName = reviewData[0];
                     review.username = reviewData[1];
                     review.reviewDate = reviewData[2];
@@ -85,7 +84,6 @@ public class Reader {
                     review.foodRate = Double.parseDouble(reviewData[5]);
                     review.ambianceRate = Double.parseDouble(reviewData[6]);
                     review.serviceRate = Double.parseDouble(reviewData[7]);
-
                     reviews.add(review);
                 } else {
                     System.out.println("Invalid data: " + line);

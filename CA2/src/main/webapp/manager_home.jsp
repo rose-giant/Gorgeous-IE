@@ -15,12 +15,13 @@
 <%
     MizDooni mizDooni = new MizDooni();
     Restaurant restaurant = mizDooni.findRestaurantByManager(username);
+
     if (restaurant == null) {
         request.setAttribute("error", "you don't have any restaurants");
         response.sendRedirect("/error");
     }
 
-    assert restaurant != null;
+    mizDooni.saveActiveRestaurant(restaurant);
     String tableHtml = mizDooni.createHTMLForTables(restaurant);
 %>
 
