@@ -135,13 +135,14 @@ nav {
 footer {
     height: 45px;
     background-color: var(--peach-color);
-    padding-top: 12px;
 
     .content {
         text-align: center;
         color: white;
         font-weight: 700;
         font-size: 14px;
+        position: relative;
+        top: 12px;
     }
 }
 
