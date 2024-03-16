@@ -35,7 +35,7 @@
             align-items: center;
             justify-content: center;
 
-            .form {
+            form {
                 flex-wrap: wrap;
                 display: flex;
                 align-items: center;
@@ -49,12 +49,12 @@
                     border: none;
                 }
 
-                .input {
+                input {
                     width: 253px;
                     height: 40px;
                 }
 
-                .select {
+                select {
                     width: 117px;
                     height: 40px;
                 }
@@ -95,7 +95,7 @@
                 margin: auto;
                 display: block;
 
-                .form {
+                form {
                     align-items: center;
                     justify-content: space-evenly;
                     display: block;
