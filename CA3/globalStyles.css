@@ -1,6 +1,7 @@
 
 :root {
     --peach-color: #ED3545;
+    --brown-like: #861A24;
     --grey: #e9e9e9;
     --black-like: #303030;
     --green: #2B9407;
@@ -23,12 +24,7 @@ a{
 .white{
     color: white;
 }
-.blur{
-    font-weight: 300;
-    line-height: 14px;
-    text-align: left;
-    background: var(--light-gray);
-}
+
 .line-through{
     text-decoration-line: line-through;
 }
@@ -167,7 +163,7 @@ nav {
         height: 50%;
         top: 50%;
         left: 50%;
-        font-size: 80%;
+        font-size: 70%;
     }
     .inline-cell{
         display: block;
@@ -180,6 +176,9 @@ nav {
         height: 4%;
     }
     .normal-font{
+        font-size: 80%;
+    }
+    .bold{
         font-size: 80%;
     }
 }

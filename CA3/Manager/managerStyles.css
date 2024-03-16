@@ -59,19 +59,18 @@ body {
 }
 .tables-list{
     display: grid;
-    column-gap: 1px;
     grid-template-columns: auto auto auto auto auto auto;
     padding: 5%;
-    .table-item{
-        width: 52px;
-        height: 36px;
+    row-gap: 30px;
+    .table-card{
+        width: 60px;
+        height: 40px;
         border-radius: 6px;
-        background: #861A24;
+        background: var(--brown-like);
         padding: 3% 5%;
         display: grid;
-        column-gap: 1px;
         grid-template-columns: auto auto;
-        .table-card{
+        .card-part{
             font-size: xx-small;
             color: white;
             .seat{
@@ -92,11 +91,38 @@ body {
 .left-align{
     text-align: left;
 }
+
+
 @media screen and (max-width: 768px){
     p{
         font-size: 70%;
     }
+    .grid-container{
+        grid-template-columns: 40% auto;
+    }
     .grid-item{
-        height: calc(100vh - 250px);;
+        height: calc(100vh - 100px);;
+    }
+    .blur{
+        font-size: 70%;
+    }
+    .bold{
+        font-size: 80%;
+    }
+    .wide{
+        display: block;
+        padding: 0;
+        margin: 0;
+    }
+
+    .tables-list{
+        row-gap: 10%;
+        grid-template-columns: auto auto auto auto;
+
+    }
+    .reservations{
+        *{
+            font-size: 90%;
+        }
     }
 }

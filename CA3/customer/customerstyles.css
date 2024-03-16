@@ -52,7 +52,9 @@ a{
 }
 
 @media screen and (max-width: 768px) {
-
+    p{
+        font-size: 70%;
+    }
     .notif{
         height: 120%;
         width: 90%;
