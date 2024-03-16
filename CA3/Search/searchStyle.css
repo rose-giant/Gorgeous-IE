@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300..700&display=swap');
+
+body {
+    overflow-x: auto;
+}
+
+.text{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    padding: 2% 20%;
+
+
+}
