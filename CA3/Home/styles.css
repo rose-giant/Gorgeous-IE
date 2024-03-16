@@ -115,29 +115,28 @@
         color: var(--black-like);
         font-size: 16px;
         padding-left: 3%;
-        padding-bottom: .8%;
+        margin-top: 5%;
     }
 
-    .ul {
+    ul {
         list-style: none;
         display: flex;
         width: 100%;
         flex-wrap:wrap;
         margin: auto;
 
-        .li {
+        li {
             margin-inline: 12px;
             margin-block: 16px;
-            border: solid var(--grey) 8px;
+            border: none;
 
             .card {
-                border-radius: 12px;
-                width: 202px;
-                height: 270px;
+                background-color: white;
+                border: none;
 
                 .body {
 
-                    .img {
+                    img {
                         border-top-left-radius: 12px;
                         border-top-right-radius: 12px;
                         width: 200px;
@@ -147,32 +146,52 @@
                     }
                 }
 
-                .footer {
+                .card-footer {
+                    background-color: white;
                     width: inherit;
-                    padding: 16px;
+                    border: solid var(--grey) 1px;
+                    border-radius: 12px;
+
+                    * {
+                        color: var(--black-like);
+                        font-size: 10px;
+                        line-height: 16px;
+                        margin: 0;
+                    }
+
+                    .reviews {
+                        color: #7e7e7e;
+                        font-weight: 500;
+                    }
 
                     .place {
-
                         .location {
                             display: flex;
                             padding-block: 1px;
 
-                            .img {
+                            img {
                                 width: 1px;
                                 height: 1px;
                             }
                         }
                     }
 
-                    * {
-                        font-size: 10px;
-                        margin: 0;
-                    }
-
                     .title {
                         font-size: 14px;
                         color: var(--black-like);
                         font-weight: 600;
+                    }
+
+                    span {
+                        font-weight: 500;
+                    }
+
+                    .close-span {
+                        color: var(--red);
+                    }
+
+                    .open-span {
+                        color: var(--green);
                     }
                 }
             }
@@ -194,7 +213,7 @@
     justify-content: space-evenly;
     padding-top: 2%;
 
-    .img {
+    img {
         width: 474px;
         height: 439px;
     }
@@ -210,10 +229,10 @@
 
         .text {
             color: var(--black-like);
+        }
 
-            .span {
-                color: var(--peach-color);
-            }
+        .peach-span {
+            color: var(--peach-color);
         }
     }
 
@@ -225,7 +244,7 @@
         margin: auto;
         display: block;
 
-        .img {
+        img {
             display: block;
             margin: auto;
             width: 90%;
@@ -239,15 +258,3 @@
     }
 }
 
-footer {
-    height: 45px;
-    background-color: var(--peach-color);
-    padding-top: 12px;
-
-    .content {
-        text-align: center;
-        color: white;
-        font-weight: 700;
-        font-size: 14px;
-    }
-}
