@@ -9,7 +9,7 @@ body {
 }
 
 .notif {
-    background-color:  #FFF6F7;
+    background-color: var(--pink);
     width: 70%;
     height: 40px;
     border-radius: 12px;
@@ -30,12 +30,13 @@ body {
     border-radius: 12px;
     font-size: 16px;
     .center {
+        width: 70%;
         margin-left: auto;
         margin-right: auto;
     }
     .table{
         margin-top: 2%;
-        width: 70%;
+        /*width: 70%;*/
         border-collapse:initial;
         border-radius: 12px;
         border: 1px solid var(--border-color);
@@ -44,15 +45,6 @@ body {
             border-radius: 12px;
         }
     }
-}
-.green{
-    color: var(--green);
-}
-.red{
-    color: var(--peach-color);
-}
-.gray{
-    color: var(--unable);
 }
 
 a{
@@ -63,6 +55,7 @@ a{
 
     .notif{
         height: 120%;
+        width: 90%;
         *{
             font-size: 90%;
         }
@@ -73,6 +66,11 @@ a{
     .table{
         *{
             font-size: 90%;
+        }
+    }
+    .reservations{
+        .center{
+            width: 90%;
         }
     }
 
