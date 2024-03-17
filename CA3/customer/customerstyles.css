@@ -6,6 +6,7 @@ body {
 
 .container {
     margin-top: 2%;
+    height: 81vh;
 }
 
 .notif {
@@ -29,6 +30,7 @@ body {
 .reservations{
     border-radius: 12px;
     font-size: 16px;
+
     .center {
         width: 70%;
         margin-left: auto;
