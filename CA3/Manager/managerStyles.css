@@ -4,8 +4,26 @@ body {
     overflow-x: auto;
 }
 
+.nav-right {
+    display: flex;
+}
+
+.message {
+    padding-top: 18px;
+    padding-right: 12px;
+
+    @media screen and (max-width: 780px) {
+        display: none;
+    }
+}
+
+.container {
+    height: 100vh;
+}
+
 .restaurants{
     margin-top: 4%;
+    height: 80vh;
 
     .table{
         width: 40%;
@@ -15,9 +33,23 @@ body {
         }
     }
 }
-.reservations{
-    font-size: 12px;
+
+.reserve-row {
+    padding-block: 12px;
+    margin-block: 120px;
+    font-size: 14px;
 }
+
+.sub-nav {
+    background-color: var(--peach-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 18px;
+    padding-top: 12px;
+}
+
 .blur{
     font-size: 10px;
     font-weight: 300;
@@ -45,43 +77,81 @@ body {
     background-color: var(--peach-color);
     padding: 0;
 }
+
 .grid-item {
     background-color: white;
     height: calc(100vh - 200px);
     padding: 20px;
     font-size: 30px;
     text-align: center;
+
     .inline-cell{
-        font-size: 10px;
+        font-size: 16px;
         padding: 0;
         margin: 0;
     }
 }
+
+@media screen and (max-width:1200px) {
+    .grid-container {
+        display: block;
+    }
+}
+
 .tables-list{
-    display: grid;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
     grid-template-columns: auto auto auto auto auto auto;
     padding: 5%;
     row-gap: 30px;
+    margin: auto;
+
     .table-card{
-        width: 60px;
-        height: 40px;
-        border-radius: 6px;
+        width: 102px;
+        height: 75px;
+        border-radius: 10px;
         background: var(--brown-like);
         padding: 3% 5%;
         display: grid;
         grid-template-columns: auto auto;
+        margin: 12px;
+
         .card-part{
-            font-size: xx-small;
+            font-size: 16px;
             color: white;
+
             .seat{
-                width: 11px;
-                height: 9px;
+                width: 22px;
+                height: 18px;
                 top: 356px;
                 left: 847px;
             }
         }
     }
 }
+
+@media screen and (max-width:490px) {
+
+    .tables-list {
+        width: 90%;
+        height: fit-content;
+        overflow-y: scroll;
+    }
+
+    .table-card{
+        width: 42px;
+        height: 25px;
+        border-radius: 8px;
+        margin: 4px;
+    }
+
+    .pink-back {
+        position: relative;
+        
+    }
+}
+
 .table{
     border: 1px solid var(--pink);
     .ruler{
@@ -94,35 +164,27 @@ body {
 
 
 @media screen and (max-width: 768px){
-    p{
-        font-size: 70%;
-    }
     .grid-container{
         grid-template-columns: 40% auto;
     }
-    .grid-item{
-        height: calc(100vh - 100px);;
-    }
+   
     .blur{
         font-size: 70%;
     }
+
     .bold{
         font-size: 80%;
     }
+
     .wide{
         display: block;
         padding: 0;
         margin: 0;
     }
 
-    .tables-list{
-        row-gap: 10%;
-        grid-template-columns: auto auto auto auto;
-
-    }
     .reservations{
         *{
-            font-size: 90%;
+            font-size: 14px;
         }
     }
 }
