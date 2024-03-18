@@ -193,8 +193,19 @@ body {
             font-size: 14px;
         }
     }
+
+    .nav-title{
+        display: none;
+    }
 }
 
 td {
     color: var(--light-grey);
+}
+
+.second-table {
+    @media screen and (max-width:798px) {
+        display: block;
+        
+    }
 }

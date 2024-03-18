@@ -58,6 +58,7 @@ a{
         font-size: 70%;
     }
     .notif{
+        display: block;
         height: 65px;
         width: 90%;
         *{
@@ -76,6 +77,10 @@ a{
         .center{
             width: 90%;
         }
+    }
+
+    .nav-title {
+        display: none;
     }
 
 }

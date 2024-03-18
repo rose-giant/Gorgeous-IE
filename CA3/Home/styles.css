@@ -78,7 +78,7 @@
     }
 }
 
-@media screen and (max-width: 698px) {
+@media screen and (max-width: 678px) {
     .hero {
         .cover {
             object-position:right;
@@ -203,7 +203,7 @@
     }
 }
 
-@media screen and (max-width: 698px) {
+@media screen and (max-width: 778px) {
     .top-title {
         text-align: center;
     }
@@ -242,7 +242,7 @@
 
 }
 
-@media screen and (max-width: 698px) {
+@media screen and (max-width: 778px) {
     .about {
         width: 100%;
         margin: auto;
