@@ -6,6 +6,10 @@ body {
 
 .nav-right {
     display: flex;
+
+    p {
+        margin-top: 20px;
+    }
 }
 
 .message {
@@ -99,7 +103,7 @@ body {
 }
 
 .tables-list{
-    width: 80%;
+    width: 60%;
     display: flex;
     flex-wrap: wrap;
     grid-template-columns: auto auto auto auto auto auto;
@@ -189,4 +193,8 @@ body {
             font-size: 14px;
         }
     }
+}
+
+td {
+    color: var(--light-grey);
 }
