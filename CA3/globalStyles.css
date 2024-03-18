@@ -17,8 +17,24 @@
     padding: 0;
 }
 
+.staricon {
+    width: 20px;
+    height: 20px;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    padding-bottom: 4px;
+}
+
+input {
+    cursor: pointer;
+}
+
 a{
     text-decoration: none;
+    cursor: pointer;
 }
 .bold{
     font-weight: 600;
@@ -55,6 +71,7 @@ button {
     padding-inline: 18px;
     padding-block: 10px;
     color: white;
+    cursor: pointer;
 }
 
 .inline {
