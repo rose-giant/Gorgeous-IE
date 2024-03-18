@@ -2,7 +2,7 @@
 @import url("./../globalStyles.css");
 
 .hero {
-    width: 100vw;
+    width: 100%;
     height: 900px;
     object-position: center;
     display: block;

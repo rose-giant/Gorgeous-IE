@@ -56,7 +56,7 @@ body {
     line-height: 14px;
     letter-spacing: 0;
     text-align: left;
-    background: var(--light-gray);
+    color: var(--light-grey);
 }
 .bold{
     font-size: 16px;
@@ -82,11 +82,11 @@ body {
     background-color: white;
     height: calc(100vh - 200px);
     padding: 20px;
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
 
     .inline-cell{
-        font-size: 16px;
+        font-size: 13px;
         padding: 0;
         margin: 0;
     }
@@ -103,13 +103,15 @@ body {
     display: flex;
     flex-wrap: wrap;
     grid-template-columns: auto auto auto auto auto auto;
-    padding: 5%;
-    row-gap: 30px;
+    padding: 2%;
+    row-gap: 10px;
     margin: auto;
 
     .table-card{
-        width: 102px;
-        height: 75px;
+        /*width: 102px;*/
+        /*height: 75px;*/
+        width: 67px;
+        height: 57px;
         border-radius: 10px;
         background: var(--brown-like);
         padding: 3% 5%;
@@ -122,8 +124,8 @@ body {
             color: white;
 
             .seat{
-                width: 22px;
-                height: 18px;
+                width: 18px;
+                height: 14px;
                 top: 356px;
                 left: 847px;
             }
@@ -167,7 +169,7 @@ body {
     .grid-container{
         grid-template-columns: 40% auto;
     }
-   
+
     .blur{
         font-size: 70%;
     }

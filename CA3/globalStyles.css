@@ -89,7 +89,7 @@ button {
 }
 
 nav {
-    width: 100vw;
+    width: 100%;
     padding-left: 32px;
     align-self:center;
     justify-content: space-between;
@@ -129,31 +129,12 @@ nav {
     }
 }
 
-@media screen and (max-width: 698px) {
-    nav {
-        .navbar-brand{
-            img {
-                width: 80px;
-                height: 65px;
-            }
-
-            .nav-title {
-                display: none;
-            }
-        }
-
-        .nav-right {
-            button {
-                text-align: center;
-                font-size: 10px;
-                width: 105px;
-                height: 40px;
-            }
-
-            margin-right: 0px;
-        }
-    }
-
+.btn{
+    background-color: var(--peach-color);
+    border-radius: 12px;
+    padding-inline: 18px;
+    padding-block: 10px;
+    color: white;
 }
 
 footer {
@@ -194,6 +175,33 @@ footer {
     color: var(--unable);
 }
 
+@media screen and (max-width: 698px) {
+    nav {
+        .navbar-brand{
+            img {
+                width: 80px;
+                height: 65px;
+            }
+
+            .nav-title {
+                display: none;
+            }
+        }
+
+        .nav-right {
+            button {
+                text-align: center;
+                font-size: 10px;
+                width: 105px;
+                height: 40px;
+            }
+
+            margin-right: 0px;
+        }
+    }
+
+}
+
 @media screen and (max-width: 768px) {
     nav {
         .navbar-brand{
@@ -218,8 +226,8 @@ footer {
 
     }
     .btn{
-        width: 50%;
-        height: 50%;
+        /*width: 80%;*/
+        /*height: 80%;*/
         top: 50%;
         left: 50%;
         font-size: 70%;
