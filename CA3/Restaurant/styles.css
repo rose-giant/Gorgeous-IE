@@ -52,6 +52,7 @@
                 background-color: var(--green);
                 color: white;
                 border-radius: 12px;
+                padding-bottom: 32px;
             }
         }
     
@@ -274,10 +275,14 @@
             }
 
             .rating {
+                display: flex;
+
                 .rating-sub {
                     color: var(--black-like);
                     font-weight: 400;
                     font-size: 12px;
+                    margin-left: 16px;
+                    padding-top: 5px;
                 }
             }
         }
@@ -393,6 +398,12 @@
                 }
 
                 .right {
+                    display: flex;
+                    .stars {
+                        padding-bottom: 24px;
+                        margin-right: 12px;
+                    }
+
                     .date {
                         color: var(--light-gray);
                         font-size: 16px;
@@ -405,6 +416,15 @@
 
 @media screen and (max-width: 970px) {
     .review-sec {
+
+        .rating {
+            display: block;
+        }
+
+        .stars {
+            display: flex;
+        }
+
         .overview {
             display: block;
 
@@ -450,6 +470,10 @@
                                 width: 100%;
                             }
                         }
+                    }
+
+                    .right {
+                        display: block;
                     }
                 }
             }
