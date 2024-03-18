@@ -1,0 +1,25 @@
+@import url("./../globalStyles.css");
+
+.container {
+    display: block;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+
+    form {
+        padding: 12px;
+
+        * {
+            margin-block: 4px;
+        }
+
+        input {
+            margin-bottom: 16px;
+        }
+    }
+    
+    h3 {
+        margin-block: 16px;
+        color: var(--peach-color);
+    }
+}
