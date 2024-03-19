@@ -135,7 +135,35 @@ nav {
     padding-inline: 18px;
     padding-block: 10px;
     color: white;
+
 }
+
+body {margin:0;}
+
+.navbar {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+.navbar a {
+    color: #f2f2f2;
+}
+
+.navbar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+.main {
+    padding: 16px;
+    margin-top: 20px;
+}
+
 
 footer {
     height: 45px;
