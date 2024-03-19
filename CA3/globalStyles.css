@@ -12,6 +12,7 @@
     --border-color: #D9D9D9;
     --very-light-grey: #F5F5F5;
     --font: "Spline Sans", sans-serif;
+    --nav-height: 110px;
     font-family: var(--font);
     margin: auto;
     padding: 0;
@@ -97,6 +98,9 @@ nav {
     border: var(--grey);
     border-width: 1px;
     border-style: solid;
+    height: var(--nav-height);
+    /*Element with a larger z-index covers the elements with lower ones.*/
+    z-index: 9999;
 
     .navbar-brand {
         display: flex;
@@ -136,7 +140,36 @@ nav {
     padding-inline: 18px;
     padding-block: 10px;
     color: white;
+
 }
+
+body {margin:0;}
+
+.navbar {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+.navbar a {
+    color: #f2f2f2;
+}
+
+.navbar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+.main {
+    /*padding: 16px;*/
+    /*margin-top: var(--nav-height);*/
+
+}
+
 
 footer {
     height: 45px;
@@ -200,7 +233,34 @@ footer {
             margin-right: 0px;
         }
     }
+}
 
+.notif {
+    background-color: var(--pink);
+    width: 70%;
+    height: 40px;
+    border-radius: 12px;
+    *{
+        display: flex;
+    }
+    p  {
+        color: var(--black-like);
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+        letter-spacing: 0;
+        text-align: left;
+    }
+
+}
+
+.message {
+    padding-top: 18px;
+    padding-right: 12px;
+
+    @media screen and (max-width: 780px) {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 698px) {
