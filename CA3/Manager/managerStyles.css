@@ -8,15 +8,6 @@ body {
     display: flex;
 }
 
-.message {
-    padding-top: 18px;
-    padding-right: 12px;
-
-    @media screen and (max-width: 780px) {
-        display: none;
-    }
-}
-
 .container {
     height: 100vh;
 }

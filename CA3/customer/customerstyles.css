@@ -9,23 +9,7 @@ body {
     height: 81vh;
 }
 
-.notif {
-    background-color: var(--pink);
-    width: 70%;
-    height: 40px;
-    border-radius: 12px;
 
-    *  {
-        display: flex;
-        color: var(--black-like);
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 19px;
-        letter-spacing: 0;
-        text-align: left;
-    }
-
-}
 
 .reservations{
     border-radius: 12px;
