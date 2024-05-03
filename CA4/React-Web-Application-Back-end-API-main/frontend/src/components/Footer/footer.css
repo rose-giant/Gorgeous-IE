@@ -1,0 +1,13 @@
+footer {
+    background-color: var(--peach-color);
+    margin: auto;
+    padding: .1%;
+    text-align: center;
+    
+    p {
+        font-weight: 600;
+        color: white;
+        position: relative;
+        top: 8px;
+    }
+}

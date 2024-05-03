@@ -1,0 +1,91 @@
+.card {
+    width: 200px;
+    background-color: white;
+    border: none;
+
+    * {
+        text-align: start;
+    }
+
+    .header {
+        border: none;
+    }
+    
+    .body {
+        img {
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            width: 200px;
+            height: 144px;
+            object-fit: cover;
+            object-position: center;
+        }
+    }
+
+    .card-footer {
+        background-color: white;
+        border-style: solid;
+        border: rgba(255, 255, 255, 0.09);
+        box-shadow: #eaeaea 1px 1px 1px;
+        border-width: 1px;
+        padding-top: 12px;
+
+        * {
+            color: var(--black-like);
+            font-size: 10px;
+            line-height: 16px;
+            margin: 0;
+            margin-bottom: 2.4px;
+        }
+
+        .reviews {
+            color: var(--light-grey);
+            font-weight: 500;
+            font-size: 10px;
+        }
+
+        .type {
+            color: black;
+            font-size: 10px;
+            font-weight: 300;
+        }
+
+        .place {
+            .location {
+                display: flex;
+                p {
+                    color: var(--black-like);
+                    font-weight: 400;   
+                }
+                
+                img {
+                    margin-top: 2px;
+                    margin-right: 2px;
+                }   
+            }
+        }
+
+        .title {
+            font-size: 14px;
+            color: var(--black-like);
+            font-weight: 400;
+        }
+
+        span {
+            font-weight: 500;
+        }
+
+        .close-span {
+            color: var(--red);
+        }
+
+        .open-span {
+            color: var(--green);
+        }
+    }
+}
+
+.location-icon {
+    width: 11.2px;
+    height: 12px;
+}

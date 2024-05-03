@@ -1,0 +1,73 @@
+.container {
+    padding-top: 12%;
+}
+
+form {
+    width: 40%;
+    display: block;
+    margin: auto;
+
+    button {
+        border-radius: 12px;
+        padding-inline: 16px;
+        padding-block: 8px;
+        margin-top: 16px;
+    }
+}
+
+input {
+    border-radius: 8px;
+    border-color: rgb(228, 228, 228);
+    border-width: 2px;
+    border-style: solid;
+}
+
+.radios {
+    display: flex;
+    margin-top: 16px;
+}
+
+input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin-inline: 24px;
+    position: relative;
+    top: 18px;
+}
+
+label {
+    margin-top: 16px;
+}
+
+button {
+    border-radius: 12px;
+    background-color: var(--peach-color);
+    color: white;   
+}
+
+.activators {
+    width: fit-content;
+    display: block;
+    margin: auto;
+
+    button {
+        padding-inline: 48px;
+        padding-block: 16px;
+    }
+}
+
+.activeLogin {
+    background-color: var(--peach-color);
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.activeRegister {
+    background-color: var(--peach-color);
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.inactiveButton {
+    background-color: grey;
+}
